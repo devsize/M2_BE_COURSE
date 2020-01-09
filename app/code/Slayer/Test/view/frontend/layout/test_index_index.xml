@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main">
+            <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
+                <block class="Magento\Framework\View\Element\Template" name="test-1.block" template="Slayer_Test::template.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="test-2.block" template="Slayer_Test::template.phtml"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="sidebar.main">
+            <referenceBlock name="breadcrumbs">
+                <action method="addCrumb">
+                    <argument name="crumbName" xsi:type="string">Home</argument>
+                    <argument name="crumbInfo" xsi:type="array">
+                        <item name="title" xsi:type="string">Home</item>
+                        <item name="label" xsi:type="string">Home</item>
+                        <item name="link" xsi:type="string">{{baseUrl}}</item>
+                    </argument>
+                </action>
+            </referenceBlock>
+            <block class="Magento\Framework\View\Element\Template" name="test.leftnav" before="-" template="Slayer_Test::sidebarTemplate.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
