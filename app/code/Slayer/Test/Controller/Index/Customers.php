@@ -10,7 +10,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends Action
+class Customers extends Action
 {
     /**
      * @var PageFactory
@@ -21,21 +21,12 @@ class Index extends Action
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */
-    /*public function __construct(
-        Context $context,
-        PageFactory $resultPageFactory
-    ) {
-        $this->resultPageFactory = $resultPageFactory;
-        parent::__construct($context);
-    }*/
 
     /**
      * @return ResponseInterface|ResultInterface|Page
      */
     public function execute()
     {
-//      $array = ['GET_PARAMS' => $this->getRequest()->getParams()];
-//      return $this->resultPageFactory->create();
         return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
     }
 }

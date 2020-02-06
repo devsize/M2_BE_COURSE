@@ -1,0 +1,57 @@
+/* COMMON STYLES */
+@orange_color: #fc6c24;
+@brown_color: #935b4a;
+@link_color: #006bb4;
+@link_hover_color: #4ca939;
+@font_bold: bold;
+@text_shadow: 1px 1px 1px #000000;
+
+& when (@media-common = true) {
+  h3 {
+    color: @brown_color;
+    font-weight: @font_bold;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif
+  }
+
+  a {
+    font-weight: @font_bold;
+    color: @link_color;
+    font-size: 1.5em;
+  }
+
+  a:hover {
+    color: @link_hover_color;
+    text-decoration: none;
+  }
+
+  .custom-block {
+    font-weight: @link_hover_color;
+  }
+
+  .block-name {
+    color: @orange_color;
+    font-weight: @font_bold;
+    text-shadow: @text_shadow;
+  }
+
+  .cache {
+    color: @brown_color;
+  }
+
+  .cache-number, .preference, .order_plugin {
+    color: @link_color;
+  }
+
+  .test-sidebar-header {
+    margin-top: -10px;
+  }
+
+  ul.test-sidebar-nav {
+    list-style: none;
+    margin-left: -39px;
+  }
+
+  .test-sidebar-nav li {
+    font-weight: @font_bold;
+  }
+}

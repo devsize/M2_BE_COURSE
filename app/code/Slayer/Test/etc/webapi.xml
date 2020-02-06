@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/test/orders/service" method="POST">
+        <service class="Slayer\Test\Api\OrdersServiceInterface" method="getOrdersList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/test/orders/service:userId" method="GET">
+        <service class="Slayer\Test\Api\OrdersServiceInterface" method="getOrdersListByUserId"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+ <!--   <route url="/V1/test/new_orders/service:userId" method="PUT">
+        <service class="Slayer\Test\Api\OrdersServiceInterface" method="setOrderIdByUserId"/>
+        <resources>
+            <resource ref="Slayer_Test::create" />
+        </resources>
+    </route>
+    <route url="/V1/test/orders/service:orderId" method="DELETE">
+        <service class="Slayer\Test\Api\OrdersServiceInterface" method="deleteOrdersByUserId"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>-->
+</routes>

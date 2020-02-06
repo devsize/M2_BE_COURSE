@@ -16,12 +16,10 @@
                 </referenceBlock>
             </referenceContainer>
             <referenceContainer name="sidebar.main">
-                <block class="Magento\Framework\View\Element\Template" name="test.left.sidebar.from.theme" before="-"
-                       template="Slayer_Test::leftSidebarThemeTemplate.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="test.left.sidebar.from.theme" before="-" template="Slayer_Test::leftSidebarThemeTemplate.phtml"/>
             </referenceContainer>
             <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
-                <block class="Slayer\Test\Block\Customer" name="custom.block"
-                       template="Slayer_Test::theme-template.phtml"/>
+                <block class="Slayer\Test\Block\Order" name="order.block.from.module" template="Slayer_Test::order-module.phtml"/>
             </container>
         </referenceContainer>
     </body>

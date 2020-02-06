@@ -1,0 +1,34 @@
+<?php
+
+use Slayer\Test\Model\OrderModel;
+
+/** @var Slayer\Test\Block\Order $block */
+$blockName = $block->getNameInLayout();
+
+/** @var Slayer\Test\Model\ResourceModel\Order\Collection $orderCollection */
+$orderCollection = $block->getOrderCollection();
+//$sqlString = $orderCollection->getSelect()->__toString();
+?>
+
+<h1 class="custom-block block-name">My Orders Collection: <?= $blockName ?>!</h1>
+<!--<h2 class="sql-query">Query was:
+    <span style="color: red"><?/*= $sqlString */?></span>
+</h2>-->
+<div class="container">
+    <?php if ($orderCollection): ?>
+        <?php foreach ($orderCollection as $order): ?>
+            <?php /** @var OrderModel $order */ ?>
+            <div class="customer">
+                <h3 class="user-id">User ID: <?= $order->getUserId() ?></h3>
+                <h3 class="order-id">Order ID: <?= $order->getOrderId() ?></h3>
+                <h3 class="order-name">Order name: <?= $order->getOrderName() ?></h3>
+                <h3 class="created-at">Created At: <?= $order->getCreatedAt() ?></h3>
+                <h3 class="price">Price: <?= $order->getPrice() ?></h3>
+                <p>
+                    <a class="go-back" href="<?= $block->getUrl('test') ?>">Go Back</a>
+                </p>
+                <hr>
+            </div><br>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>

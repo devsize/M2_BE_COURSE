@@ -11,23 +11,9 @@ $links = [
 'CLI commands' => 'https://devdocs.magento.com/guides/v2.3/extension-dev-guide/cli-cmds/cli-add.html'
 ];
 ?>
-<style>
-    h2.test-sidebar {
-        margin-top: -10px;
-        color: darkred;
-        font-weight: bolder;
-    }
-    ul.magento-documentation {
-        list-style: none;
-        margin-left: -39px;
-    }
-    .magento-documentation li {
-        font-weight: bold;
-    }
-</style>
-<h2 class="test-sidebar">Magento 2.3 documentation links</h2>
-<ul class="magento-documentation">
+<h2 class="test-sidebar-header color-fw">Magento 2.3 documentation links</h2>
+<ul class="test-sidebar-nav">
 <?php foreach($links as $linkTitle => $link): ?>
-        <li><a href="<?= $link ?>" alt="<?= $linkTitle ?>" target="_blank"><?= $linkTitle ?></a></li>
+    <li><a href="<?= $link ?>" alt="<?= $linkTitle ?>" target="_blank"><?= $linkTitle ?></a></li>
 <?php endforeach; ?>
 </ul>

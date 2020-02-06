@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Slayer\Test\Api\CustomerRepositoryInterface"
+                type="Slayer\Test\Model\CustomerRepository"/>
+    <preference for="Slayer\Test\Api\Data\CustomerInterface"
+                type="Slayer\Test\Model\CustomerModel"/>
+    <preference for="Slayer\Test\Api\OrderRepositoryInterface"
+                type="Slayer\Test\Model\OrderRepository"/>
+    <preference for="Slayer\Test\Api\Data\OrderInterface"
+                type="Slayer\Test\Model\OrderModel"/>
+    <preference for="Slayer\Test\Api\OrdersServiceInterface"
+                type="Slayer\Test\Model\OrdersService"/>
+
+    <preference for="Slayer\Test\Model\CustomerModel" type="Slayer\Test\Preference\Model\PreferenceCustomerModel"/>
+</config>

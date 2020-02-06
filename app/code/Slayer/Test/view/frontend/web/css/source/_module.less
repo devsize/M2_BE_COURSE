@@ -1,0 +1,39 @@
+//Common
+@c: #fc6c24;
+@fw: bold;
+@h3c: #294a70;
+@ts: 1px 1px 2px #000000;
+
+& when (@media-common = true) {
+  .custom-block,.my-block {
+    font-weight: @fw;
+  }
+
+  h3 {
+    color: @h3c;
+  }
+
+  .color-fw {
+    color: @c;
+    font-weight: @fw;
+    text-shadow: @ts;
+  }
+
+  .span-color {
+    color: #935b4a;
+    text-shadow: @ts;
+  }
+
+  .test-sidebar-header {
+    margin-top: -10px;
+  }
+
+  ul.test-sidebar-nav {
+    list-style: none;
+    margin-left: -39px;
+  }
+
+  .test-sidebar-nav li {
+    font-weight: @fw;
+  }
+}

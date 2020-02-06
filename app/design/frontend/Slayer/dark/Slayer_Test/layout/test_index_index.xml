@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
-      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="main">
             <referenceContainer name="breadcrumbs.main">
@@ -16,12 +15,10 @@
                 </referenceBlock>
             </referenceContainer>
             <referenceContainer name="sidebar.main">
-                <block class="Magento\Framework\View\Element\Template" name="test.left.sidebar.from.theme" before="-"
-                       template="Slayer_Test::leftSidebarThemeTemplate.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="test.left.sidebar.from.theme" before="-" template="Slayer_Test::leftSidebarThemeTemplate.phtml"/>
             </referenceContainer>
             <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
-                <block class="Slayer\Test\Block\Customer" name="custom.block"
-                       template="Slayer_Test::theme-template.phtml"/>
+                <block class="Slayer\Test\Block\Customer" name="custom.block" template="Slayer_Test::theme-template.phtml"/>
             </container>
         </referenceContainer>
     </body>
