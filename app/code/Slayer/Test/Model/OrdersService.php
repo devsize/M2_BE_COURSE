@@ -110,7 +110,6 @@ class OrdersService implements OrdersServiceInterface
 //        /** @var  SearchResultsInterface $searchResults */
 //        $searchResults = $this->orderRepository->getList($searchCriteria);
 //        $resultArray = $searchResults;
-//        foreach ($resultArray as $item) {
 //            /** @var OrderInterface $item */
 //            $resultArray[] = [
 //                'id' => $item->setId(OrderInterface::ENTITY_ID),
@@ -120,7 +119,6 @@ class OrdersService implements OrdersServiceInterface
 //                'created_at' => $item->setCreatedAt(OrderInterface::CREATED_AT),
 //                'price' => $item->setPrice(OrderInterface::PRICE)
 //            ];
-//        }
 //
 //        return $resultArray;
 //    }
