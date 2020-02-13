@@ -15,7 +15,7 @@ use Slayer\Test\Api\Data\OrderInterface;
 use Slayer\Test\Model\OrderModelFactory;
 use Slayer\Test\Model\ResourceModel\Order\Collection;
 use Slayer\Test\Model\ResourceModel\Order\CollectionFactory as OrderCollectionFactory;
-use Slayer\Test\Model\ResourceModel\Order;
+use Slayer\Test\Model\ResourceModel\Order as OrderResource;
 
 /**
  * Class OrderRepository

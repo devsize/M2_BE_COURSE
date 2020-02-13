@@ -117,9 +117,10 @@ class OrderModel extends AbstractModel implements OrderInterface
     /**
      * {@inheritdoc}
      */
-    public function setCreatedAt(\DateTime $createdAt): OrderInterface
+    public function setCreatedAt(string $createdAt): OrderInterface
     {
-        return $this->setData(self::CREATED_AT, $createdAt->format('Y-m-d H:i:s'));
+        $createdAtObject = new \DateTime($createdAt);
+        return $this->setData(self::CREATED_AT, $createdAtObject->format('Y-m-d H:i:s'));
     }
 
     /**

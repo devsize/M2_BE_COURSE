@@ -48,7 +48,7 @@ class CustomerRepository implements CustomerRepositoryInterface
     private $collectionProcessor;
 
     /**
-     * @param CustomerModelFactory $CustomerFactory
+     * @param CustomerModelFactory $customerFactory
      * @param CustomerCollectionFactory $customerCollectionFactory
      * @param CustomerResource $resource
      * @param SearchResultsInterfaceFactory $searchResultsFactory
@@ -60,8 +60,7 @@ class CustomerRepository implements CustomerRepositoryInterface
         CustomerResource $resource,
         SearchResultsInterfaceFactory $searchResultsFactory,
         CollectionProcessorInterface $collectionProcessor
-    )
-    {
+    ) {
         $this->customerFactory = $customerFactory;
         $this->customerCollectionFactory = $customerCollectionFactory;
         $this->resource = $resource;

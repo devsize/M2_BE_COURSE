@@ -91,10 +91,11 @@ interface OrderInterface
     /**
      * Set created at date
      *
-     * @param \DateTime $createdAt
+//      @param \DateTime $createdAt
+     * @param string $createdAt
      * @return OrderInterface
      */
-    public function setCreatedAt(\DateTime $createdAt): OrderInterface;
+    public function setCreatedAt(string $createdAt): OrderInterface;
 
     /**
      * Set car price

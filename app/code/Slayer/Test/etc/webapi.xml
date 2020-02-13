@@ -6,22 +6,34 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
-    <route url="/V1/test/orders/service:userId" method="GET">
+    <route url="/V1/test/orders/service/:userId" method="GET">
         <service class="Slayer\Test\Api\OrdersServiceInterface" method="getOrdersListByUserId"/>
         <resources>
             <resource ref="self"/>
         </resources>
     </route>
- <!--   <route url="/V1/test/new_orders/service:userId" method="PUT">
-        <service class="Slayer\Test\Api\OrdersServiceInterface" method="setOrderIdByUserId"/>
+   <!-- <route url="/V1/test/orders/service/setOrder" method="PUT">
+        <service class="Slayer\Test\Api\OrdersServiceInterface" method="setOrder"/>
         <resources>
-            <resource ref="Slayer_Test::create" />
+            <resource ref="anonymous"/>
         </resources>
     </route>
-    <route url="/V1/test/orders/service:orderId" method="DELETE">
+    <route url="/V1/test/orders/service/:userId/deleteOrders" method="DELETE">
         <service class="Slayer\Test\Api\OrdersServiceInterface" method="deleteOrdersByUserId"/>
         <resources>
-            <resource ref="anonymous" />
+            <resource ref="anonymous"/>
         </resources>
     </route>-->
+    <route url="/V1/test/orders/save" method="PUT">
+        <service class="Slayer\Test\Api\OrdersServiceInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/test/orders/delete/:orderId" method="DELETE">
+        <service class="Slayer\Test\Api\OrdersServiceInterface" method="delete"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
