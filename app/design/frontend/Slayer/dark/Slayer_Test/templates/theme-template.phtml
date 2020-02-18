@@ -1,6 +1,7 @@
 <?php
 
 use Slayer\Test\Model\CustomerModel;
+use Slayer\Test\ViewModel\ExtraInfo;
 
 /** @var Slayer\Test\Block\Customer $block */
 $blockName = $block->getNameInLayout();
@@ -9,6 +10,11 @@ $pattern = '/[^A-Z_].*/';
 preg_match($pattern, $str, $matches);
 $cacheKey = implode($matches);
 
+$string = $block->getData('custom_string');
+$array = $block->getData('custom_array');
+/** @var ExtraInfo $viewModel */
+$viewModel = $block->getData('view_model');
+
 /** @var Slayer\Test\Model\ResourceModel\Customer\Collection $customerCollection */
 $customerCollection = $block->getCustomerCollection();
 //$items = $customerCollection->load();
@@ -16,6 +22,12 @@ $customerCollection = $block->getCustomerCollection();
 ?>
 
 <h1 class="custom-block block-name">My custom information in my <?= $blockName ?>!</h1>
+<h2>My custom string is:  "<?= $string ?>"</h2>
+<h4 style="color: darkred">First key in my custom array is:  "<?= $array['key_one'] ?>"</h4>
+<h4 style="color: darkred">Second key in my custom array is: "<?= $array['key_two'] ?>"</h4>
+<?php if ($viewModel && $viewModel->getCurrentDate()): ?>
+    <h3 style="color: darkblue">Current date is: "<?= $viewModel->getCurrentDate(); ?>"</h3>
+<?php endif; ?>
 <p><b><span class="cache">We get block with cache key = </span><span class="cache-number"><?= $cacheKey; ?></span></b></p>
 <div class="container">
     <?php foreach ($customerCollection as $customer): ?>

@@ -1,6 +1,7 @@
 <?php
 
 use Slayer\Test\Model\OrderModel;
+use Slayer\Test\ViewModel\ExtraInfo;
 
 /** @var Slayer\Test\Block\Order $block */
 $blockName = $block->getNameInLayout();
@@ -8,12 +9,18 @@ $blockName = $block->getNameInLayout();
 /** @var Slayer\Test\Model\ResourceModel\Order\Collection $orderCollection */
 $orderCollection = $block->getOrderCollection();
 //$sqlString = $orderCollection->getSelect()->__toString();
+
+/** @var ExtraInfo $viewModel */
+$viewModel = $block->getData('view_model');
 ?>
 
 <h1 class="custom-block block-name">My Orders Collection: <?= $blockName ?>!</h1>
 <!--<h2 class="sql-query">Query was:
     <span style="color: red"><?/*= $sqlString */?></span>
 </h2>-->
+<?php if ($viewModel && $viewModel->getCurrentDate()): ?>
+    <h3 style="color: darkblue">Current date is: "<?= $viewModel->getCurrentDate(); ?>"</h3>
+<?php endif; ?>
 <div class="container">
     <?php if ($orderCollection): ?>
         <?php foreach ($orderCollection as $order): ?>
