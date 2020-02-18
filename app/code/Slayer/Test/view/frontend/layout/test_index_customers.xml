@@ -15,7 +15,7 @@
                     </action>
                 </referenceBlock>
             </referenceContainer>
-            <referenceContainer name="sidebar.main">
+            <referenceContainer name="sidebar.main" htmlTag="div" htmlClass="slayer-sidebar">
                 <block class="Magento\Framework\View\Element\Template" name="test.left.sidebar.from.theme" before="-" template="Slayer_Test::leftSidebarThemeTemplate.phtml"/>
             </referenceContainer>
             <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
@@ -26,6 +26,5 @@
                 </block>
             </container>
         </referenceContainer>
-
     </body>
 </page>

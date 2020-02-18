@@ -14,25 +14,26 @@ $orderCollection = $block->getOrderCollection();
 $viewModel = $block->getData('view_model');
 ?>
 
-<h1 class="custom-block block-name">My Orders Collection: <?= $blockName ?>!</h1>
+<h1 class="custom-block block-name" style="color: #fc6c24; font-weight: bold; text-shadow: 1px 1px 1px #000000;"><?= __('My Orders Collection: '); ?><?= $blockName ?>!</h1>
 <!--<h2 class="sql-query">Query was:
     <span style="color: red"><?/*= $sqlString */?></span>
 </h2>-->
 <?php if ($viewModel && $viewModel->getCurrentDate()): ?>
-    <h3 style="color: darkblue">Current date is: "<?= $viewModel->getCurrentDate(); ?>"</h3>
+    <h3 style="color: darkblue"><?= __('Current date is: %1', $viewModel->getCurrentDate()); ?></h3>
 <?php endif; ?>
 <div class="container">
     <?php if ($orderCollection): ?>
         <?php foreach ($orderCollection as $order): ?>
             <?php /** @var OrderModel $order */ ?>
             <div class="customer">
-                <h3 class="user-id">User ID: <?= $order->getUserId() ?></h3>
-                <h3 class="order-id">Order ID: <?= $order->getOrderId() ?></h3>
-                <h3 class="order-name">Order name: <?= $order->getOrderName() ?></h3>
-                <h3 class="created-at">Created At: <?= $order->getCreatedAt() ?></h3>
-                <h3 class="price">Price: <?= $order->getPrice() ?></h3>
+                <h3 class="user-id" style="color: darkred;"><?= __('User ID: '); ?><span style="color: #0e301a"><?= $order->getUserId() ?></span></h3>
+                <h3 class="order-id" style="color: darkred;"><?= __('Order ID: '); ?><span style="color: #0e301a"><?= $order->getOrderId() ?></span></h3>
+                <h3 class="order-name" style="color: darkred;"><?= __('Order name: '); ?><span style="color: #0e301a"><?= $order->getOrderName() ?></span></h3>
+                <h3 class="created-at" style="color: darkred;"><?= __('Created At: '); ?><span style="color: #0e301a"><?= $order->getCreatedAt() ?></span></h3>
+                <h3 class="price" style="color: darkred;"><?= __('Price: '); ?><span style="color: #0e301a"><?= $order->getPrice() ?> грн.</span></h3>
                 <p>
-                    <a class="go-back" href="<?= $block->getUrl('test') ?>">Go Back</a>
+                    <a class="go-back" href="<?= $block->getUrl('test') ?>" style="font-weight: bolder; color: #006bb4; font-size: 1.5em; text-decoration: none;"
+                       onmouseover="this.style.color='#4ca939';" onmouseout="this.style.color='darkblue';"><?= __('Go Back'); ?></a>
                 </p>
                 <hr>
             </div><br>
