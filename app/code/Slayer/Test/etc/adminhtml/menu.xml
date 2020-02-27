@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Slayer_Test::slayer" title="Customers and Orders" translate="title" module="Slayer_Test" sortOrder="10" resource="Slayer_Test::slayer_main"/>
+        <add id="Slayer_Test::slayer_manage_customers" title="Manage Customers" translate="title" module="Slayer_Test" sortOrder="10" parent="Slayer_Test::slayer" action="my_admin/customers/index" resource="Slayer_Test::slayer_manage_customers"/>
+        <add id="Slayer_Test::slayer_manage_orders" title="Manage Orders" translate="title" module="Slayer_Test" sortOrder="30" parent="Slayer_Test::slayer" action="my_admin/orders/index" resource="Slayer_Test::slayer_manage_orders"/>
+    </menu>
+</config>

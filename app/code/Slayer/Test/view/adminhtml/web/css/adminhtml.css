@@ -1,0 +1,5 @@
+.admin__menu .level-0.item-slayer > a:before {
+    content: '';
+    background: url('../images/admin_menu_icon.png') top center no-repeat;
+    background-size: contain;
+}

@@ -12,4 +12,43 @@
                 type="Slayer\Test\Model\OrdersService"/>
 
     <preference for="Slayer\Test\Model\CustomerModel" type="Slayer\Test\Preference\Model\PreferenceCustomerModel"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="slayer_test_listing_data_source" xsi:type="string">Slayer\Test\Model\ResourceModel\Orders\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Slayer\Test\Model\ResourceModel\Orders\Grid\Collection" type="Slayer\Test\Model\ResourceModel\GridCollectionUniversal">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">my_orders_table</argument>
+            <argument name="eventPrefix" xsi:type="string">slayer_test_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">slayer_test_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Slayer\Test\Model\ResourceModel\Order</argument>
+        </arguments>
+    </virtualType>
+
+    <!--    <virtualType name="Roma\Test\Model\ImageUploader" type="Magento\Catalog\Model\ImageUploader">-->
+    <!--        <arguments>-->
+    <!--            <argument name="baseTmpPath" xsi:type="string">cars/tmp</argument>-->
+    <!--            <argument name="basePath" xsi:type="string">cars/</argument>-->
+    <!--            <argument name="allowedExtensions" xsi:type="array">-->
+    <!--                <item name="jpg" xsi:type="string">jpg</item>-->
+    <!--                <item name="jpeg" xsi:type="string">jpeg</item>-->
+    <!--                <item name="gif" xsi:type="string">gif</item>-->
+    <!--                <item name="png" xsi:type="string">png</item>-->
+    <!--            </argument>-->
+    <!--        </arguments>-->
+    <!--    </virtualType>-->
+    <!--    <type name="Roma\Test\Controller\Adminhtml\Cars\Upload">-->
+    <!--        <arguments>-->
+    <!--            <argument name="imageUploader" xsi:type="object">Roma\Test\Model\ImageUploader</argument>-->
+    <!--        </arguments>-->
+    <!--    </type>-->
+    <!--    <type name="Roma\Test\Controller\Adminhtml\Cars\Save">-->
+    <!--        <arguments>-->
+    <!--            <argument name="imageUploader" xsi:type="object">Roma\Test\Model\ImageUploader</argument>-->
+    <!--        </arguments>-->
+    <!--    </type>-->
 </config>
