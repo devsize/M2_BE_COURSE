@@ -1,6 +1,6 @@
 <?php
 
-namespace Roma\Test\Block\Adminhtml\Buttons;
+namespace Slayer\Test\Block\Adminhtml\Buttons;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 

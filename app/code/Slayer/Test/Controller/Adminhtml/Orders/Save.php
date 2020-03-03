@@ -13,9 +13,11 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Controller\ResultInterface;
-use Slayer\Test\Api\OrderRepositoryInterface;
+use Slayer\Test\Api\CustomerRepositoryInterface;
+use Slayer\Test\Api\Data\CustomerInterface;
 use Slayer\Test\Api\Data\OrderInterface;
 use Slayer\Test\Api\Data\OrderInterfaceFactory;
+use Slayer\Test\Api\OrderRepositoryInterface;
 use Slayer\Test\Model\OrderModel;
 
 /**
@@ -39,6 +41,11 @@ class Save extends BackendAction implements HttpPostActionInterface
     private $orderRepository;
 
     /**
+     * @var CustomerRepositoryInterface
+     */
+    private $customerRepository;
+
+    /**
      * @var OrderInterfaceFactory
      */
     private $orderFactory;
@@ -51,6 +58,7 @@ class Save extends BackendAction implements HttpPostActionInterface
     /**
      * @param Context $context
      * @param OrderRepositoryInterface $orderRepository
+     * @param CustomerRepositoryInterface $customerRepository
      * @param OrderInterfaceFactory $orderFactory
      * @param DataPersistorInterface $dataPersistor
     //     * @param ImageUploader $imageUploader
@@ -58,12 +66,14 @@ class Save extends BackendAction implements HttpPostActionInterface
     public function __construct(
         Context $context,
         OrderRepositoryInterface $orderRepository,
+        CustomerRepositoryInterface $customerRepository,
         OrderInterfaceFactory $orderFactory,
         DataPersistorInterface $dataPersistor
 //        ImageUploader $imageUploader
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->orderRepository = $orderRepository;
+        $this->customerRepository = $customerRepository;
         $this->orderFactory = $orderFactory;
 //        $this->imageUploader = $imageUploader;
         parent::__construct($context);
@@ -104,6 +114,13 @@ class Save extends BackendAction implements HttpPostActionInterface
             $model->setData($data);
 
             try {
+                /**
+                 * This chunk of code was added in order to check if car customer exists
+                 * in database by provided user_id from the form on admin edit page
+                 */
+                $customerId = (int)$data[OrderInterface::USER_ID];
+                $this->customerRepository->getById($customerId);
+
                 $this->orderRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved the order.'));
                 $this->dataPersistor->clear('order');
