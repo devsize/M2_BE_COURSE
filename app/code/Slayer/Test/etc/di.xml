@@ -29,6 +29,22 @@
         </arguments>
     </virtualType>
 
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="slayer_test_customers_listing_data_source" xsi:type="string">Slayer\Test\Model\ResourceModel\Customers\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Slayer\Test\Model\ResourceModel\Customers\Grid\Collection" type="Slayer\Test\Model\ResourceModel\CustomersGridCollection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">my_customers_table</argument>
+            <argument name="eventPrefix" xsi:type="string">slayer_test_customers_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">slayer_test_customers_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Slayer\Test\Model\ResourceModel\Customer</argument>
+        </arguments>
+    </virtualType>
+
     <!--    <virtualType name="Roma\Test\Model\ImageUploader" type="Magento\Catalog\Model\ImageUploader">-->
     <!--        <arguments>-->
     <!--            <argument name="baseTmpPath" xsi:type="string">cars/tmp</argument>-->

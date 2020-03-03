@@ -1,13 +1,13 @@
 <?php
 
-namespace Slayer\Test\Model\Orders;
+namespace Slayer\Test\Model\Customers;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Ui\DataProvider\AbstractDataProvider;
-use Slayer\Test\Api\Data\OrderInterface;
-use Slayer\Test\Model\ResourceModel\Order\Collection as OrdersCollection;
-use Slayer\Test\Model\ResourceModel\Order\CollectionFactory as OrdersCollectionFactory;
+use Slayer\Test\Api\Data\CustomerInterface;
+use Slayer\Test\Model\ResourceModel\Customer\Collection as CustomersCollection;
+use Slayer\Test\Model\ResourceModel\Customer\CollectionFactory as CustomersCollectionFactory;
 
 /**
  * Class DataProvider
@@ -15,7 +15,7 @@ use Slayer\Test\Model\ResourceModel\Order\CollectionFactory as OrdersCollectionF
 class DataProvider extends AbstractDataProvider
 {
     /**
-     * @var OrdersCollection
+     * @var CustomersCollection
      */
     protected $collection;
 
@@ -40,7 +40,7 @@ class DataProvider extends AbstractDataProvider
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
-     * @param OrdersCollectionFactory $ordersCollectionFactory
+     * @param CustomersCollectionFactory $customersCollectionFactory
      * @param DataPersistorInterface $dataPersistor
      * @param UrlInterface $urlBuilder
      * @param array $meta
@@ -50,13 +50,13 @@ class DataProvider extends AbstractDataProvider
         $name,
         $primaryFieldName,
         $requestFieldName,
-        OrdersCollectionFactory $ordersCollectionFactory,
+        CustomersCollectionFactory $customersCollectionFactory,
         DataPersistorInterface $dataPersistor,
         UrlInterface $urlBuilder,
         array $meta = [],
         array $data = []
     ) {
-        $this->collection = $ordersCollectionFactory->create();
+        $this->collection = $customersCollectionFactory->create();
         $this->dataPersistor = $dataPersistor;
         $this->urlBuilder = $urlBuilder;
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
@@ -70,17 +70,17 @@ class DataProvider extends AbstractDataProvider
         if ($this->loadedData === null) {
             $this->loadedData = [];
             $items = $this->collection->getItems();
-            /** @var OrderInterface $order */
-            foreach ($items as $order) {
-                $this->loadedData[$order->getId()] = $this->prepareData($order);
+            /** @var CustomerInterface $customer */
+            foreach ($items as $customer) {
+                $this->loadedData[$customer->getId()] = $this->prepareData($customer);
             }
 
-            $data = $this->dataPersistor->get('orders');
+            $data = $this->dataPersistor->get('customers');
             if (!empty($data)) {
-                $order = $this->collection->getNewEmptyItem();
-                $order->setData($data);
-                $this->loadedData[$order->getId()] = $this->prepareData($order);
-                $this->dataPersistor->clear('orders');
+                $customer = $this->collection->getNewEmptyItem();
+                $customer->setData($data);
+                $this->loadedData[$customer->getId()] = $this->prepareData($customer);
+                $this->dataPersistor->clear('customers');
             }
         }
 
@@ -88,18 +88,18 @@ class DataProvider extends AbstractDataProvider
     }
 
     /**
-     * @param OrderInterface $order
+     * @param CustomerInterface $customer
      * @return array
      */
-    private function prepareData($order)
+    private function prepareData($customer)
     {
-        $data = $order->getData();
+        $data = $customer->getData();
         return $data;
 
         if (isset($data['logo'])) {
             unset($data['logo']);
-            $data['logo'][0]['name'] = $order->getData('logo');
-            $data['logo'][0]['url'] = $this->getFileUrl($order->getLogo());
+            $data['logo'][0]['name'] = $customer->getData('logo');
+            $data['logo'][0]['url'] = $this->getFileUrl($customer->getLogo());
         }
 
         return $data;
@@ -111,6 +111,6 @@ class DataProvider extends AbstractDataProvider
      */
     private function getFileUrl($fileName)
     {
-        return $this->urlBuilder->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]) . 'orders/' . $fileName;
+        return $this->urlBuilder->getBaseUrl(['_type' => UrlInterface::URL_TYPE_MEDIA]) . 'customers/' . $fileName;
     }
 }

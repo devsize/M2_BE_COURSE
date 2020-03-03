@@ -2,9 +2,9 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">slayer_test_form.orders_form_data_source</item>
+            <item name="provider" xsi:type="string">slayer_test_customers_form.customers_form_data_source</item>
         </item>
-        <item name="label" xsi:type="string" translate="true">Orders Information</item>
+        <item name="label" xsi:type="string" translate="true">Customers Information</item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
     <settings>
@@ -14,22 +14,22 @@
             <button name="delete" class="Slayer\Test\Block\Adminhtml\Buttons\DeleteButton"/>
             <button name="back" class="Slayer\Test\Block\Adminhtml\Buttons\BackButton"/>
         </buttons>
-        <namespace>slayer_test_form</namespace>
+        <namespace>slayer_test_customers_form</namespace>
         <dataScope>data</dataScope>
         <deps>
-            <dep>slayer_test_form.orders_form_data_source</dep>
+            <dep>slayer_test_customers_form.customers_form_data_source</dep>
         </deps>
     </settings>
-    <dataSource name="orders_form_data_source">
+    <dataSource name="customers_form_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
         <settings>
-            <submitUrl path="my_admin/orders/save"/>
+            <submitUrl path="my_admin/customers/save"/>
         </settings>
-        <dataProvider class="Slayer\Test\Model\Orders\DataProvider" name="orders_form_data_source">
+        <dataProvider class="Slayer\Test\Model\Customers\DataProvider" name="customers_form_data_source">
             <settings>
                 <requestFieldName>entity_id</requestFieldName>
                 <primaryFieldName>entity_id</primaryFieldName>
@@ -43,7 +43,7 @@
         <field name="entity_id" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">orders</item>
+                    <item name="source" xsi:type="string">customers</item>
                 </item>
             </argument>
             <settings>
@@ -52,26 +52,10 @@
                 <dataScope>entity_id</dataScope>
             </settings>
         </field>
-        <field name="user_id" component="Magento_Ui/js/form/element/select" sortOrder="20" formElement="select">
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">User Name</label>
-            </settings>
-            <formElements>
-                <select>
-                    <settings>
-                        <options class="Slayer\Test\Model\ResourceModel\Customer\Collection"/>
-                    </settings>
-                </select>
-            </formElements>
-        </field>
-        <!--<field name="user_id" sortOrder="20" formElement="input">
+        <field name="name" sortOrder="20" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">orders</item>
+                    <item name="source" xsi:type="string">customers</item>
                 </item>
             </argument>
             <settings>
@@ -79,29 +63,29 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">User Id</label>
-                <dataScope>user_id</dataScope>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
             </settings>
-        </field>-->
-        <field name="order_id" formElement="input">
+        </field>
+        <field name="surname" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">orders</item>
+                    <item name="source" xsi:type="string">customers</item>
                 </item>
             </argument>
             <settings>
                 <validation>
-                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Order Id</label>
-                <dataScope>order_id</dataScope>
+                <label translate="true">Surname</label>
+                <dataScope>surname</dataScope>
             </settings>
         </field>
-        <field name="order_name" formElement="input">
+        <field name="email" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">orders</item>
+                    <item name="source" xsi:type="string">customers</item>
                 </item>
             </argument>
             <settings>
@@ -109,24 +93,23 @@
                     <rule name="required-entry" xsi:type="boolean">false</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Order Name</label>
-                <dataScope>order_name</dataScope>
+                <label translate="true">Email</label>
+                <dataScope>email</dataScope>
             </settings>
         </field>
-        <field name="price" formElement="input">
+        <field name="phone_number" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">orders</item>
+                    <item name="source" xsi:type="string">customers</item>
                 </item>
             </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
                     <rule name="validate-number" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Price</label>
-                <dataScope>price</dataScope>
+                <label translate="true">Phone number</label>
+                <dataScope>phone_number</dataScope>
             </settings>
         </field>
         <!--        <field name="logo">-->
