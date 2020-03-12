@@ -112,5 +112,4 @@ class CustomerModel extends AbstractModel implements CustomerInterface
     {
         return $this->setData(self::PHONE_NUMBER, $phoneNumber);
     }
-
 }

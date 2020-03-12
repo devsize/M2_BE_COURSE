@@ -5,9 +5,10 @@ namespace Slayer\Test\Model;
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchResultsInterface;
-use Slayer\Test\Api\OrdersServiceInterface;
 use Slayer\Test\Api\OrderRepositoryInterface;
+use Slayer\Test\Api\OrdersServiceInterface;
 use Slayer\Test\Api\Data\OrderInterface;
+
 //use Slayer\Test\Model\OrderModelFactory;
 
 /**
@@ -16,7 +17,7 @@ use Slayer\Test\Api\Data\OrderInterface;
 class OrdersService implements OrdersServiceInterface
 {
     /**
-     * @var OrderModelFactory
+//     * @var OrderModelFactory
      */
 //    private $orderFactory;
 
@@ -46,8 +47,6 @@ class OrdersService implements OrdersServiceInterface
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
 //        $this->orderFactory = $orderFactory;
     }
-
-
 
     /**
      * @param int|null $userId
@@ -85,8 +84,8 @@ class OrdersService implements OrdersServiceInterface
                     /** @var OrderInterface $item */
                     $resultArray[] = [
                         'id' => $item->getId(),
-                        'order_id' => $item->getOrderId(),
                         'user_id' => $item->getUserId(),
+                        'order_id' => $item->getOrderId(),
                         'order_name' => $item->getOrderName(),
                         'created_at' => $item->getCreatedAt(),
                         'price' => $item->getPrice()
@@ -209,8 +208,10 @@ class OrdersService implements OrdersServiceInterface
 //    }
 /** End of my functions */
 
-    public function save(OrderInterface $order)
-//    must be named as public function "saveOrUpdate"(OrderInterface $order)
+    /**
+     * {@inheritDoc}
+     */
+    public function saveOrUpdate(OrderInterface $order)
     {
         try {
             $newOrder = $this->orderRepository->save($order);
@@ -218,19 +219,48 @@ class OrdersService implements OrdersServiceInterface
         } catch (\Exception $exception) {
             $message = sprintf('could not save: %s', $exception->getMessage());
         }
+
         return $message;
     }
 
-    public function delete(int $orderId)
-//    must be named as public function deleteById(int $orderId)
+    /**
+     * {@inheritDoc}
+     */
+    public function deleteById(int $orderId)
     {
         try {
             $this->orderRepository->deleteById($orderId);
-            $message = sprintf('order with id %s was deleted!', $orderId);
+            $message = sprintf('Success, order with id "%s" was deleted!', $orderId);
         } catch (\Exception $exception) {
             $exceptionMessage = $exception->getMessage();
-            $message = sprintf('could not delete order with id: %s; message: %s', $orderId, $exceptionMessage);
+            $message = sprintf('Could not delete order with id: %s; message: %s', $orderId, $exceptionMessage);
         }
+
         return $message;
     }
+
+//    public function save(OrderInterface $order)
+//    must be named as public function "saveOrUpdate"(OrderInterface $order)
+//    {
+//        try {
+//            $newOrder = $this->orderRepository->save($order);
+//            $message = sprintf('success, new order id is: %s', $newOrder->getId());
+//        } catch (\Exception $exception) {
+//            $message = sprintf('could not save: %s', $exception->getMessage());
+//        }
+//        return $message;
+//    }
+
+//    public function delete(int $orderId)
+//    must be named as public function deleteById(int $orderId)
+//    {
+//        try {
+//            $this->orderRepository->deleteById($orderId);
+//            $message = sprintf('order with id %s was deleted!', $orderId);
+//        } catch (\Exception $exception) {
+//            $exceptionMessage = $exception->getMessage();
+//            $message = sprintf('could not delete order with id: %s; message: %s', $orderId, $exceptionMessage);
+//        }
+//        return $message;
+//    }
 }

@@ -36,12 +36,12 @@ interface OrdersServiceInterface
      * @param Data\OrderInterface $order
      * @return mixed
      */
-    public function save(Data\OrderInterface $order);
-
+//    public function save(Data\OrderInterface $order);
+    public function saveOrUpdate(Data\OrderInterface $order);
     /**
      * @param int $orderId
      * @return mixed
      */
-    public function delete(int $orderId);
-
+//    public function delete(int $orderId);
+    public function deleteById(int $orderId);
 }

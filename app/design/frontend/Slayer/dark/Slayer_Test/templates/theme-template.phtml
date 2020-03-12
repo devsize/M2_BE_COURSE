@@ -48,15 +48,16 @@ $customers = $block->getCustomers();
                 <h3 class="email"><?= __('Email') ?>: <?= $customer->getEmail() ?></h3>
                 <h3 class="phone-number"><?= __('Phone number') ?>: +<?= $customer->getPhoneNumber() ?></h3>
                 <p class="link">
+<!--   <a class="read-more" href="--><?//= $block->getUrl('test/index/customers', ['user_id' => $customer->getId()])?><!--">See Customer Orders</a>-->
                     <?php $href = $block->getOrdersUrl($customer->getId()); ?>
                 <a class="read-more" data-mage-init='{
                                     "getCustomerOrders": {
                                         "userId":"<?= $customer->getId() ?>",
                                         "userName":"<?= $customer->getName() ?>",
-                                        "userAjax":"<?= $viewModel ? $viewModel->useAjax() : false ?>"
+                                        "useAjax":"<?= $viewModel ? $viewModel->useAjax() : false ?>"
                                     }
                                 }'
-                        href="<?= $href ?>"><?= __('See Customer Orders of %1', $customer->getName()) ?>
+                        href="<?= $href ?>"><?= __('See Orders of %1', $customer->getName()) ?>
                     </a>
                 </p>
             </div>
