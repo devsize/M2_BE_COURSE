@@ -29,20 +29,20 @@ class Delete extends BackendAction implements HttpGetActionInterface
     /**
      * @var CustomerRepositoryInterface
      */
-    private $orderRepository;
+    private $customerRepository;
 
     /**
      * @param Context $context
-     * @param CustomerRepositoryInterface $orderRepository
+     * @param CustomerRepositoryInterface $customerRepository
      * @param DataPersistorInterface $dataPersistor
      */
     public function __construct(
         Context $context,
-        CustomerRepositoryInterface $orderRepository,
+        CustomerRepositoryInterface $customerRepository,
         DataPersistorInterface $dataPersistor
     ) {
         $this->dataPersistor = $dataPersistor;
-        $this->orderRepository = $orderRepository;
+        $this->customerRepository = $customerRepository;
         parent::__construct($context);
     }
 
@@ -56,16 +56,16 @@ class Delete extends BackendAction implements HttpGetActionInterface
         $id = (int)$this->getRequest()->getParam(CustomerInterface::ENTITY_ID);
 
         try {
-            $this->orderRepository->deleteById($id);
-            $this->messageManager->addSuccessMessage(__('You deleted the order'));
-            $this->dataPersistor->clear('order');
+            $this->customerRepository->deleteById($id);
+            $this->messageManager->addSuccessMessage(__('You deleted the customer'));
+            $this->dataPersistor->clear('customer');
             return $resultRedirect->setPath('*/*/');
         } catch (NoSuchEntityException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
-            $this->messageManager->addExceptionMessage($e, __('Something went wrong while deleting the order.'));
+            $this->messageManager->addExceptionMessage($e, __('Something went wrong while deleting the customer.'));
         }
 
         return $resultRedirect->setPath('*/*/');

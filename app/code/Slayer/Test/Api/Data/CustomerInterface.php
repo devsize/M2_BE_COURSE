@@ -13,6 +13,7 @@ interface CustomerInterface
     const SURNAME = 'surname';
     const EMAIL = 'email';
     const PHONE_NUMBER = 'phone_number';
+    const CREATED_AT = 'created_at';
 
     /**
      * Get entity id

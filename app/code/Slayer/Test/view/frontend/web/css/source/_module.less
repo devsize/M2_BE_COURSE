@@ -5,7 +5,7 @@
 @ts: 1px 1px 2px #000000;
 
 & when (@media-common = true) {
-  .custom-block,.my-block {
+  .custom-block, .my-block {
     font-weight: @fw;
   }
 
@@ -35,5 +35,75 @@
 
   .test-sidebar-nav li {
     font-weight: @fw;
+  }
+
+  .customers {
+    &.container {
+      position: relative;
+
+      #orders-container {
+        display: block;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 10;
+        width: 500px;
+        background-color: aliceblue;
+        height: 100%;
+
+        .orders.items {
+          position: relative;
+          padding: 40px 25px;
+
+          .close {
+            display: block;
+            position: absolute;
+            top: 40px;
+            right: 25px;
+            font-weight: 600;
+            color: #cd181d;
+          }
+
+          .label {
+            .orders-label {
+              color: teal;
+            }
+          }
+
+          .orders-list.wrapper {
+            padding: 25px;
+
+            ul.orders {
+              list-style-type: none;
+
+              .order {
+                display: block;
+
+                .line {
+                  display: block;
+
+                  .label, .value {
+                    display: inline-block;
+                  }
+
+                  .label {
+                    color: darkmagenta;
+                  }
+
+                  .value {
+                    font-weight: 600;
+                    color: forestgreen;
+                  }
+                }
+              }
+            }
+            .show-more {
+              padding-left: 40px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
   }
 }

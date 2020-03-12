@@ -1,6 +1,6 @@
 <?php
 
-namespace Slayer\Test\Controller\Adminhtml\Cars;
+namespace Slayer\Test\Controller\Adminhtml\Customers;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context;
@@ -11,10 +11,10 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Slayer\Test\Api\Data\OrderInterface;
-use Slayer\Test\Api\OrderRepositoryInterface;
-use Slayer\Test\Model\ResourceModel\Order\Collection as OrderCollection;
-use Slayer\Test\Model\ResourceModel\Order\CollectionFactory as OrderResourceCollectionFactory;
+use Slayer\Test\Api\Data\CustomerInterface;
+use Slayer\Test\Api\CustomerRepositoryInterface;
+use Slayer\Test\Model\ResourceModel\Customer\Collection as CustomerCollection;
+use Slayer\Test\Model\ResourceModel\Customer\CollectionFactory as CustomerResourceCollectionFactory;
 
 /**
  * Class MassDelete
@@ -24,7 +24,7 @@ class MassDelete extends BackendAction implements HttpPostActionInterface
     /**
      * {@inheritdoc}
      */
-    const ADMIN_RESOURCE = 'Slayer_Test::order_mass_delete';
+    const ADMIN_RESOURCE = 'Slayer_Test::customer_mass_delete';
 
     /**
      * @var DataPersistorInterface
@@ -32,9 +32,9 @@ class MassDelete extends BackendAction implements HttpPostActionInterface
     private $dataPersistor;
 
     /**
-     * @var OrderRepositoryInterface
+     * @var CustomerRepositoryInterface
      */
-    private $orderRepository;
+    private $customerRepository;
 
     /**
      * @var Filter
@@ -42,27 +42,27 @@ class MassDelete extends BackendAction implements HttpPostActionInterface
     private $filter;
 
     /**
-     * @var OrderResourceCollectionFactory
+     * @var CustomerResourceCollectionFactory
      */
     private $collectionFactory;
 
     /**
      * @param Context $context
-     * @param OrderRepositoryInterface $orderRepository
-     * @param OrderResourceCollectionFactory $collectionFactory
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param CustomerResourceCollectionFactory $collectionFactory
      * @param Filter $filter
      * @param DataPersistorInterface $dataPersistor
      */
     public function __construct(
         Context $context,
-        OrderRepositoryInterface $orderRepository,
-        OrderResourceCollectionFactory $collectionFactory,
+        CustomerRepositoryInterface $customerRepository,
+        CustomerResourceCollectionFactory $collectionFactory,
         Filter $filter,
         DataPersistorInterface $dataPersistor
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->filter = $filter;
-        $this->orderRepository = $orderRepository;
+        $this->customerRepository = $customerRepository;
         $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
     }
@@ -76,26 +76,26 @@ class MassDelete extends BackendAction implements HttpPostActionInterface
         $resultRedirect = $this->resultRedirectFactory->create();
 
         try {
-            /** @var OrderCollection $collection */
+            /** @var CustomerCollection $collection */
             $collection = $this->filter->getCollection($this->collectionFactory->create());
             $count = 0;
             foreach ($collection as $car) {
-                /** @var OrderInterface $car */
-                if ($this->orderRepository->delete($car)) {
+                /** @var CustomerInterface $car */
+                if ($this->customerRepository->delete($car)) {
                     $count++;
                 }
             }
 
             $message = __('A total of %1 record(s) have been deleted.', $count);
             $this->messageManager->addSuccessMessage($message);
-            $this->dataPersistor->clear('order');
+            $this->dataPersistor->clear('customer');
             return $resultRedirect->setPath('*/*/');
         } catch (NoSuchEntityException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (LocalizedException $e) {
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
-            $this->messageManager->addExceptionMessage($e, __('Something went wrong while deleting orders.'));
+            $this->messageManager->addExceptionMessage($e, __('Something went wrong while deleting customers.'));
         }
 
         return $resultRedirect->setPath('*/*/');

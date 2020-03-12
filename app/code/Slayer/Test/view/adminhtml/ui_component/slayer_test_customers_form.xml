@@ -9,9 +9,9 @@
     </argument>
     <settings>
         <buttons>
-            <button name="save_and_continue" class="Slayer\Test\Block\Adminhtml\Buttons\SaveAndContinueButton"/>
-            <button name="save" class="Slayer\Test\Block\Adminhtml\Buttons\SaveButton"/>
-            <button name="delete" class="Slayer\Test\Block\Adminhtml\Buttons\DeleteButton"/>
+            <button name="save_and_continue" class="Slayer\Test\Block\Adminhtml\Buttons\CustomerSaveAndContinueButton"/>
+            <button name="save" class="Slayer\Test\Block\Adminhtml\Buttons\CustomerSaveButton"/>
+            <button name="delete" class="Slayer\Test\Block\Adminhtml\Buttons\CustomerDeleteButton"/>
             <button name="back" class="Slayer\Test\Block\Adminhtml\Buttons\BackButton"/>
         </buttons>
         <namespace>slayer_test_customers_form</namespace>
@@ -61,6 +61,8 @@
             <settings>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">64</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">Name</label>
@@ -76,6 +78,8 @@
             <settings>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">64</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">Surname</label>
@@ -90,28 +94,28 @@
             </argument>
             <settings>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                    <rule name="validate-email" xsi:type="boolean">true</rule>
+                    <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">64</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
                 <label translate="true">Email</label>
                 <dataScope>email</dataScope>
             </settings>
         </field>
-        <field name="phone_number" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">customers</item>
-                </item>
-            </argument>
+        <field name="phone" formElement="input">
             <settings>
                 <validation>
+                    <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">12</rule>
                     <rule name="validate-number" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Phone number</label>
-                <dataScope>phone_number</dataScope>
+                <label translate="true">Phone</label>
             </settings>
         </field>
+
         <!--        <field name="logo">-->
         <!--            <argument name="data" xsi:type="array">-->
         <!--                <item name="config" xsi:type="array">-->

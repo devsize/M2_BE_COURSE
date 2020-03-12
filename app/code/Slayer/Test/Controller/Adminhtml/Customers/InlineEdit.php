@@ -1,6 +1,6 @@
 <?php
 
-namespace Slayer\Test\Controller\Adminhtml\Orders;
+namespace Slayer\Test\Controller\Adminhtml\Customers;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context;
@@ -10,8 +10,9 @@ use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotSaveException;
-use Slayer\Test\Api\Data\OrderInterface;
-use Slayer\Test\Api\OrderRepositoryInterface;
+use Slayer\Test\Api\Data\CustomerInterface;
+use Slayer\Test\Api\CustomerRepositoryInterface;
+use Slayer\Test\Model\CustomerModel;
 
 /**
  * Class InlineEdit
@@ -21,7 +22,7 @@ class InlineEdit extends BackendAction implements HttpPostActionInterface
     /**
      * {@inheritdoc}
      */
-    const ADMIN_RESOURCE = 'Slayer_Test::order_inline_edit';
+    const ADMIN_RESOURCE = 'Slayer_Test::customer_inline_edit';
 
     /**
      * @var JsonFactory
@@ -29,21 +30,21 @@ class InlineEdit extends BackendAction implements HttpPostActionInterface
     private $jsonFactory;
 
     /**
-     * @var OrderRepositoryInterface
+     * @var CustomerRepositoryInterface
      */
-    private $orderRepository;
+    private $customerRepository;
 
     /**
      * @param Context $context
-     * @param OrderRepositoryInterface $orderRepository
+     * @param CustomerRepositoryInterface $customerRepository
      * @param JsonFactory $jsonFactory
      */
     public function __construct(
         Context $context,
-        OrderRepositoryInterface $orderRepository,
+        CustomerRepositoryInterface $customerRepository,
         JsonFactory $jsonFactory
     ) {
-        $this->orderRepository = $orderRepository;
+        $this->customerRepository = $customerRepository;
         $this->jsonFactory = $jsonFactory;
         parent::__construct($context);
     }
@@ -66,10 +67,10 @@ class InlineEdit extends BackendAction implements HttpPostActionInterface
             } else {
                 foreach (array_keys($postItems) as $id) {
                     try {
-                        /** @var OrderInterface $model */
-                        $model = $this->orderRepository->getById($id);
+                        /** @var CustomerInterface $model */
+                        $model = $this->customerRepository->getById($id);
                         $model->setData(array_merge($model->getData(), $postItems[$id]));
-                        $this->orderRepository->save($model);
+                        $this->customerRepository->save($model);
                     } catch (NoSuchEntityException $e) {
                         $messages[] = $e->getMessage();
                         $error = true;

@@ -5,11 +5,10 @@ namespace Slayer\Test\Model;
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchResultsInterface;
-use Slayer\Test\Api\Data;
 use Slayer\Test\Api\OrdersServiceInterface;
 use Slayer\Test\Api\OrderRepositoryInterface;
 use Slayer\Test\Api\Data\OrderInterface;
-use Slayer\Test\Model\OrderModelFactory;
+//use Slayer\Test\Model\OrderModelFactory;
 
 /**
  * Class OrdersService
@@ -19,7 +18,7 @@ class OrdersService implements OrdersServiceInterface
     /**
      * @var OrderModelFactory
      */
-    private $orderFactory;
+//    private $orderFactory;
 
     /**
      *
@@ -34,44 +33,100 @@ class OrdersService implements OrdersServiceInterface
     private $searchCriteriaBuilder;
 
     /**
-     * @param OrderModelFactory $orderFactory
+//     * @param OrderModelFactory $orderFactory
      * @param OrderRepositoryInterface $orderRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      */
     public function __construct(
         OrderRepositoryInterface $orderRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        OrderModelFactory $orderFactory
+        SearchCriteriaBuilder $searchCriteriaBuilder//,
+//        OrderModelFactory $orderFactory
     ) {
         $this->orderRepository = $orderRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->orderFactory = $orderFactory;
+//        $this->orderFactory = $orderFactory;
     }
+
+
+
+    /**
+     * @param int|null $userId
+     * @return SearchCriteria
+     */
+    private function getSearchCriteria($userId = null)
+    {
+        if ($userId > 0) {
+            /** @var SearchCriteria $searchCriteria */
+            $searchCriteria = $this->searchCriteriaBuilder
+                ->addFilter(OrderInterface::USER_ID, $userId)
+                ->create();
+        } else {
+            /** @var SearchCriteria $searchCriteria */
+            $searchCriteria = $this->searchCriteriaBuilder->create();
+        }
+
+        return $searchCriteria;
+    }
+
+    /**
+     * @param int|null $userId
+     * @return array
+     */
+    private function composeList($userId = null)
+    {
+        $resultArray = [];
+        try {
+            /** @var SearchCriteria $searchCriteria */
+            $searchCriteria = $this->getSearchCriteria($userId);
+            /** @var SearchResultsInterface $searchResults */
+            $searchResults = $this->orderRepository->getList($searchCriteria);
+            if ($searchResults->getTotalCount() > 0) {
+                foreach ($searchResults->getItems() as $item) {
+                    /** @var OrderInterface $item */
+                    $resultArray[] = [
+                        'id' => $item->getId(),
+                        'order_id' => $item->getOrderId(),
+                        'user_id' => $item->getUserId(),
+                        'order_name' => $item->getOrderName(),
+                        'created_at' => $item->getCreatedAt(),
+                        'price' => $item->getPrice()
+                    ];
+                }
+            }
+        } catch (\Exception $exception) {
+            // logging
+        }
+
+        return $resultArray;
+    }
+
+
 
     /**
      * @inheritdoc
      */
     public function getOrdersList()
     {
-        /** @var  SearchCriteria $searchCriteria */
-        $searchCriteria = $this->searchCriteriaBuilder->create();
-        /** @var  SearchResultsInterface $searchResults */
-        $searchResults = $this->orderRepository->getList($searchCriteria);
-        $resultArray = [];
-        if ($searchResults->getTotalCount() > 0) {
-            foreach ($searchResults->getItems() as $item) {
-                /** @var OrderInterface $item */
-                $resultArray[] = [
-                    'id' => $item->getId(),
-                    'order_id' => $item->getOrderId(),
-                    'user_id' => $item->getUserId(),
-                    'order_name' => $item->getOrderName(),
-                    'created_at' => $item->getCreatedAt(),
-                    'price' => $item->getPrice()
-                ];
-            }
-        }
-        return $resultArray;
+//        /** @var  SearchCriteria $searchCriteria */
+//        $searchCriteria = $this->searchCriteriaBuilder->create();
+//        /** @var  SearchResultsInterface $searchResults */
+//        $searchResults = $this->orderRepository->getList($searchCriteria);
+//        $resultArray = [];
+//        if ($searchResults->getTotalCount() > 0) {
+//            foreach ($searchResults->getItems() as $item) {
+//                /** @var OrderInterface $item */
+//                $resultArray[] = [
+//                    'id' => $item->getId(),
+//                    'order_id' => $item->getOrderId(),
+//                    'user_id' => $item->getUserId(),
+//                    'order_name' => $item->getOrderName(),
+//                    'created_at' => $item->getCreatedAt(),
+//                    'price' => $item->getPrice()
+//                ];
+//            }
+//        }
+//        return $resultArray;
+        return $this->composeList();
     }
 
     /**
@@ -80,31 +135,33 @@ class OrdersService implements OrdersServiceInterface
     public function getOrdersListByUserId($userId)
     {
         if (empty($userId)) {
-            return false;
+//            return false;
+            return [];
         }
-        /** @var  SearchCriteria $searchCriteria */
-        $searchCriteria = $this->searchCriteriaBuilder
-            ->addFilter(OrderInterface::USER_ID, $userId)
-            ->create();
-        /** @var  SearchResultsInterface $searchResults */
-        $searchResults = $this->orderRepository->getList($searchCriteria);
-        $resultArray = [];
-        if ($searchResults->getTotalCount() > 0) {
-            foreach ($searchResults->getItems() as $item) {
-                /** @var OrderInterface $item */
-                $resultArray[] = [
-                    'id' => $item->getId(),
-                    'order_id' => $item->getOrderId(),
-                    'user_id' => $item->getUserId(),
-                    'order_name' => $item->getOrderName(),
-                    'created_at' => $item->getCreatedAt(),
-                    'price' => $item->getPrice()
-                ];
-            }
-        }
-        return $resultArray;
+        return $this->composeList($userId);
+//        /** @var  SearchCriteria $searchCriteria */
+//        $searchCriteria = $this->searchCriteriaBuilder
+//            ->addFilter(OrderInterface::USER_ID, $userId)
+//            ->create();
+//        /** @var  SearchResultsInterface $searchResults */
+//        $searchResults = $this->orderRepository->getList($searchCriteria);
+//        $resultArray = [];
+//        if ($searchResults->getTotalCount() > 0) {
+//            foreach ($searchResults->getItems() as $item) {
+//                /** @var OrderInterface $item */
+//                $resultArray[] = [
+//                    'id' => $item->getId(),
+//                    'order_id' => $item->getOrderId(),
+//                    'user_id' => $item->getUserId(),
+//                    'order_name' => $item->getOrderName(),
+//                    'created_at' => $item->getCreatedAt(),
+//                    'price' => $item->getPrice()
+//                ];
+//            }
+//        }
+//        return $resultArray;
     }
-
+/** These are my functions */
 //    /**
 //     * @param int $userId
 //     * @param int $orderId
@@ -150,8 +207,10 @@ class OrdersService implements OrdersServiceInterface
 //        }
 //        return "Your orders by $userId was deleted successfully!";
 //    }
+/** End of my functions */
 
     public function save(OrderInterface $order)
+//    must be named as public function "saveOrUpdate"(OrderInterface $order)
     {
         try {
             $newOrder = $this->orderRepository->save($order);
@@ -163,6 +222,7 @@ class OrdersService implements OrdersServiceInterface
     }
 
     public function delete(int $orderId)
+//    must be named as public function deleteById(int $orderId)
     {
         try {
             $this->orderRepository->deleteById($orderId);

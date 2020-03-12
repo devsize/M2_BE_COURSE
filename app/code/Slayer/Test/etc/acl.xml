@@ -8,8 +8,10 @@
                         <resource id="Slayer_Test::slayer_manage_customers_actions" title="Actions" translate="title" sortOrder="10">
                             <resource id="Slayer_Test::customer_add" title="Add Customer" translate="title" sortOrder="10" />
                             <resource id="Slayer_Test::customer_edit" title="Edit Customer" translate="title" sortOrder="20" />
-                            <resource id="Slayer_Test::customer_delete" title="Delete Customer" translate="title" sortOrder="30" />
-                            <resource id="Slayer_Test::customer_mass_delete" title="Mass Delete Customers" translate="title" sortOrder="30" />
+                            <resource id="Slayer_Test::customer_inline_edit" title="Inline Edit Customer" translate="title" sortOrder="30" />
+                            <resource id="Slayer_Test::customer_delete" title="Delete Customer" translate="title" sortOrder="40" />
+                            <resource id="Slayer_Test::customer_mass_delete" title="Mass Delete Customers" translate="title" sortOrder="50" />
+                            <resource id="Slayer_Test::customer_save" title="Save Customer" translate="title" sortOrder="60" />
                         </resource>
                     </resource>
                     <resource id="Slayer_Test::slayer_manage_orders" title="All My Orders" translate="title" sortOrder="10">
@@ -27,6 +29,7 @@
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
                             <resource id="Slayer_Test::slayer" title="Slayer integration" translate="title" sortOrder="50" />
+                            <resource id="Slayer_Test::slayer_customers" title="Slayer customers" translate="title" sortOrder="60" />
                         </resource>
                     </resource>
                 </resource>

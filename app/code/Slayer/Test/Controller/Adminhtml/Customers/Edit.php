@@ -1,6 +1,6 @@
 <?php
 
-namespace Slayer\Test\Controller\Adminhtml\Orders;
+namespace Slayer\Test\Controller\Adminhtml\Customers;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context;
@@ -8,9 +8,9 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Slayer\Test\Api\Data\OrderInterface;
-use Slayer\Test\Api\Data\OrderInterfaceFactory;
-use Slayer\Test\Api\OrderRepositoryInterface;
+use Slayer\Test\Api\Data\CustomerInterface;
+use Slayer\Test\Api\Data\CustomerInterfaceFactory;
+use Slayer\Test\Api\CustomerRepositoryInterface;
 
 /**
  * Class Edit
@@ -20,7 +20,7 @@ class Edit extends BackendAction implements HttpGetActionInterface
     /**
      * {@inheritdoc}
      */
-    const ADMIN_RESOURCE = 'Slayer_Test::order_edit';
+    const ADMIN_RESOURCE = 'Slayer_Test::customer_edit';
 
     /**
      * @var PageFactory
@@ -28,29 +28,29 @@ class Edit extends BackendAction implements HttpGetActionInterface
     private $resultPageFactory;
 
     /**
-     * @var OrderRepositoryInterface
+     * @var CustomerRepositoryInterface
      */
-    private $orderRepository;
+    private $customerRepository;
 
     /**
-     * @var OrderInterfaceFactory
+     * @var CustomerInterfaceFactory
      */
-    private $orderFactory;
+    private $customerFactory;
 
     /**
      * @param Context $context
-     * @param OrderRepositoryInterface $orderRepository
-     * @param OrderInterfaceFactory $orderFactory
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param CustomerInterfaceFactory $customerFactory
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
         Context $context,
-        OrderRepositoryInterface $orderRepository,
-        OrderInterfaceFactory $orderFactory,
+        CustomerRepositoryInterface $customerRepository,
+        CustomerInterfaceFactory $customerFactory,
         PageFactory $resultPageFactory
     ) {
-        $this->orderRepository = $orderRepository;
-        $this->orderFactory = $orderFactory;
+        $this->customerRepository = $customerRepository;
+        $this->customerFactory = $customerFactory;
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
@@ -60,11 +60,11 @@ class Edit extends BackendAction implements HttpGetActionInterface
      */
     public function execute()
     {
-        $id = (int)$this->getRequest()->getParam(OrderInterface::ENTITY_ID);
+        $id = (int)$this->getRequest()->getParam(CustomerInterface::ENTITY_ID);
 
         if ($id) {
             try {
-                $model = $this->orderRepository->getById($id);
+                $model = $this->customerRepository->getById($id);
             } catch (NoSuchEntityException $e) {
                 $this->messageManager->addErrorMessage(__($e->getMessage()));
                 /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
@@ -72,15 +72,15 @@ class Edit extends BackendAction implements HttpGetActionInterface
                 return $resultRedirect->setPath('*/*/');
             }
         } else {
-            $model = $this->orderFactory->create();
+            $model = $this->customerFactory->create();
         }
 
         /** @var ResultInterface $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Slayer_Test::slayer_manage_orders');
+        $resultPage->setActiveMenu('Slayer_Test::slayer_manage_customers');
 
-        $resultPage->getConfig()->getTitle()->prepend(__('Order'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getName() : __('New Order'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Customer'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getName() : __('New Customer'));
         return $resultPage;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Slayer\Test\Controller\Adminhtml\Orders;
+namespace Slayer\Test\Controller\Adminhtml\Customers;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context;
@@ -17,7 +17,7 @@ class NewAction extends BackendAction implements HttpGetActionInterface
     /**
      * {@inheritdoc}
      */
-    const ADMIN_RESOURCE = 'Slayer_Test::order_add';
+    const ADMIN_RESOURCE = 'Slayer_Test::customer_add';
 
     /**
      * @var ForwardFactory

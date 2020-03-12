@@ -1,6 +1,6 @@
 <?php
 
-namespace Slayer\Test\Controller\Adminhtml\Orders;
+namespace Slayer\Test\Controller\Adminhtml\Customers;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context;
@@ -13,12 +13,12 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Controller\ResultInterface;
-use Slayer\Test\Api\CustomerRepositoryInterface;
-use Slayer\Test\Api\Data\CustomerInterface;
-use Slayer\Test\Api\Data\OrderInterface;
-use Slayer\Test\Api\Data\OrderInterfaceFactory;
 use Slayer\Test\Api\OrderRepositoryInterface;
-use Slayer\Test\Model\OrderModel;
+use Slayer\Test\Api\Data\OrderInterface;
+use Slayer\Test\Api\Data\CustomerInterface;
+use Slayer\Test\Api\Data\CustomerInterfaceFactory;
+use Slayer\Test\Api\CustomerRepositoryInterface;
+use Slayer\Test\Model\CustomerModel;
 
 /**
  * Class Save
@@ -28,7 +28,7 @@ class Save extends BackendAction implements HttpPostActionInterface
     /**
      * {@inheritdoc}
      */
-    const ADMIN_RESOURCE = 'Slayer_Test::order_save';
+    const ADMIN_RESOURCE = 'Slayer_Test::customer_save';
 
     /**
      * @var DataPersistorInterface
@@ -36,19 +36,19 @@ class Save extends BackendAction implements HttpPostActionInterface
     private $dataPersistor;
 
     /**
-     * @var OrderRepositoryInterface
-     */
-    private $orderRepository;
-
-    /**
      * @var CustomerRepositoryInterface
      */
     private $customerRepository;
 
     /**
-     * @var OrderInterfaceFactory
+     * @var OrderRepositoryInterface
      */
-    private $orderFactory;
+    private $orderRepository;
+
+    /**
+     * @var CustomerInterfaceFactory
+     */
+    private $customerFactory;
 //
 //    /**
 //     * @var ImageUploader
@@ -57,24 +57,24 @@ class Save extends BackendAction implements HttpPostActionInterface
 
     /**
      * @param Context $context
-     * @param OrderRepositoryInterface $orderRepository
      * @param CustomerRepositoryInterface $customerRepository
-     * @param OrderInterfaceFactory $orderFactory
+     * @param OrderRepositoryInterface $orderRepository
+     * @param CustomerInterfaceFactory $customerFactory
      * @param DataPersistorInterface $dataPersistor
     //     * @param ImageUploader $imageUploader
      */
     public function __construct(
         Context $context,
-        OrderRepositoryInterface $orderRepository,
         CustomerRepositoryInterface $customerRepository,
-        OrderInterfaceFactory $orderFactory,
+        OrderRepositoryInterface $orderRepository,
+        CustomerInterfaceFactory $customerFactory,
         DataPersistorInterface $dataPersistor
 //        ImageUploader $imageUploader
     ) {
         $this->dataPersistor = $dataPersistor;
-        $this->orderRepository = $orderRepository;
         $this->customerRepository = $customerRepository;
-        $this->orderFactory = $orderFactory;
+        $this->orderRepository = $orderRepository;
+        $this->customerFactory = $customerFactory;
 //        $this->imageUploader = $imageUploader;
         parent::__construct($context);
     }
@@ -91,15 +91,15 @@ class Save extends BackendAction implements HttpPostActionInterface
         $request = $this->getRequest();
         $data = $request->getPostValue();
         if ($data) {
-            $id = $this->getRequest()->getParam(OrderInterface::ENTITY_ID);
-            if (empty($data[OrderInterface::ENTITY_ID])) {
-                $data[OrderInterface::ENTITY_ID] = null;
+            $id = $this->getRequest()->getParam(CustomerInterface::ENTITY_ID);
+            if (empty($data[CustomerInterface::ENTITY_ID])) {
+                $data[CustomerInterface::ENTITY_ID] = null;
             }
 
             if ($id) {
                 try {
-                    /** @var OrderInterface $model */
-                    $model = $this->orderRepository->getById($id);
+                    /** @var CustomerInterface $model */
+                    $model = $this->customerRepository->getById($id);
                 } catch (NoSuchEntityException $e) {
                     $this->messageManager->addErrorMessage(__($e->getMessage()));
                     /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
@@ -107,25 +107,18 @@ class Save extends BackendAction implements HttpPostActionInterface
                     return $resultRedirect->setPath('*/*/');
                 }
             } else {
-                /** @var OrderModel $model */
-                $model = $this->orderFactory->create();
+                /** @var CustomerModel $model */
+                $model = $this->customerFactory->create();
             }
 //            $this->processImage($data);
             $model->setData($data);
 
             try {
-                /**
-                 * This chunk of code was added in order to check if car customer exists
-                 * in database by provided user_id from the form on admin edit page
-                 */
-                $customerId = (int)$data[OrderInterface::USER_ID];
-                $this->customerRepository->getById($customerId);
-
-                $this->orderRepository->save($model);
-                $this->messageManager->addSuccessMessage(__('You saved the order.'));
-                $this->dataPersistor->clear('order');
+                $this->customerRepository->save($model);
+                $this->messageManager->addSuccessMessage(__('You saved the customer.'));
+                $this->dataPersistor->clear('customer');
                 if ($this->getRequest()->getParam('back')) {
-                    return $resultRedirect->setPath('*/*/edit', [OrderInterface::ENTITY_ID => $model->getId()]);
+                    return $resultRedirect->setPath('*/*/edit', [CustomerInterface::ENTITY_ID => $model->getId()]);
                 }
 
                 return $resultRedirect->setPath('*/*/');
@@ -134,11 +127,11 @@ class Save extends BackendAction implements HttpPostActionInterface
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the order.'));
+                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the customer.'));
             }
 
-            $this->dataPersistor->set('order', $data);
-            return $resultRedirect->setPath('*/*/edit', [OrderInterface::ENTITY_ID => $id]);
+            $this->dataPersistor->set('customer', $data);
+            return $resultRedirect->setPath('*/*/edit', [CustomerInterface::ENTITY_ID => $id]);
         }
 
         return $resultRedirect->setPath('*/*/');

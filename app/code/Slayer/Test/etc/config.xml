@@ -6,5 +6,16 @@
                 <use_ajax>1</use_ajax>
             </settings>
         </slayer_test>
+        <slayer_customers>
+            <customers_settings>
+                <show_title>0</show_title>
+                <page_size>100%</page_size>
+                <custom_title>Custom title</custom_title>
+                <display_from_date>m,d,y</display_from_date>
+                <display_to_date>m,d,y</display_to_date>
+                <time_format>12h</time_format>
+                <forbidden_extensions>php,exe</forbidden_extensions>
+            </customers_settings>
+        </slayer_customers>
     </default>
 </config>

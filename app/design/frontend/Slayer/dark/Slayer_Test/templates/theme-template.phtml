@@ -1,46 +1,70 @@
 <?php
 
+use Slayer\Test\Api\Data\CustomerInterface;
+use Slayer\Test\Block\Customer;
 use Slayer\Test\Model\CustomerModel;
 use Slayer\Test\ViewModel\ExtraInfo;
 
-/** @var Slayer\Test\Block\Customer $block */
+/** @var Customer $block */
 $blockName = $block->getNameInLayout();
-$str = $block->getCacheKey();
-$pattern = '/[^A-Z_].*/';
-preg_match($pattern, $str, $matches);
-$cacheKey = implode($matches);
+//$str = $block->getCacheKey();
+//$pattern = '/[^A-Z_].*/';
+//preg_match($pattern, $str, $matches);
+//$cacheKey = implode($matches);
 
 $string = $block->getData('custom_string');
 $array = $block->getData('custom_array');
+
 /** @var ExtraInfo $viewModel */
 $viewModel = $block->getData('view_model');
 
-/** @var Slayer\Test\Model\ResourceModel\Customer\Collection $customerCollection */
-$customerCollection = $block->getCustomerCollection();
-//$items = $customerCollection->load();
-//$items = $customerCollection->getItems();
+///** @var Slayer\Test\Model\ResourceModel\Customer\Collection $customers */
+//$customers = $block->getCustomerCollection();
+//$items = $customers->load();
+//$items = $customers->getItems();
+/**@var CustomerInterface[] $customers */
+$customers = $block->getCustomers();
 ?>
 
 <h1 class="custom-block block-name">My custom information in my <?= $blockName ?>!</h1>
+<?php if ($viewModel && $viewModel->showTitle()): ?>
+    <h3 class="get-title">Customer title: <span><?= $viewModel->getCustomTitle() ?></span></h3>
+<?php endif; ?>
 <h2>My custom string is:  "<?= $string ?>"</h2>
 <h4 style="color: darkred">First key in my custom array is:  "<?= $array['key_one'] ?>"</h4>
 <h4 style="color: darkred">Second key in my custom array is: "<?= $array['key_two'] ?>"</h4>
 <?php if ($viewModel && $viewModel->getCurrentDate()): ?>
     <h3 style="color: darkblue">Current date is: "<?= $viewModel->getCurrentDate(); ?>"</h3>
 <?php endif; ?>
-<p><b><span class="cache">We get block with cache key = </span><span class="cache-number"><?= $cacheKey; ?></span></b></p>
-<div class="container">
-    <?php foreach ($customerCollection as $customer): ?>
-        <?php /** @var CustomerModel $customer */ ?>
-        <div class="customer">
-            <h3 class="entity-id">Entity ID: <?= $customer->getId() ?></h3>
-            <h3 class="name">Name: <?= $customer->getName() ?></h3>
-            <h3 class="surname">Surname: <?= $customer->getSurname() ?></h3>
-            <h3 class="email">Email: <?= $customer->getEmail() ?></h3>
-            <h3 class="phone-number">Phone number: +<?= $customer->getPhoneNumber() ?></h3>
-            <p>
-            <a class="read-more" href="<?= $block->getUrl('test/index/customers', ['user_id' => $customer->getId()])?>">See Customer Orders</a>
-            </p><hr>
-        </div><br>
-    <?php endforeach; ?>
+<!--<p><b><span class="cache">We get block with cache key = </span><span class="cache-number">--><?//= $cacheKey; ?><!--</span></b></p>-->
+<div class="customers container">
+    <?php if (!empty($customers)): ?>
+        <?php foreach ($customers as $customer): ?>
+            <?php /** @var CustomerModel $customer */ ?>
+            <div class="order-customer-id-<?= $customer->getId() ?>">
+                <h3 class="entity-id"><?= __('EntityID') ?>: <?= $customer->getId() ?></h3>
+                <h3 class="name"><?= __('Name') ?>: <?= $customer->getName() ?></h3>
+                <h3 class="surname"><?= __('Surname') ?>: <?= $customer->getSurname() ?></h3>
+                <h3 class="email"><?= __('Email') ?>: <?= $customer->getEmail() ?></h3>
+                <h3 class="phone-number"><?= __('Phone number') ?>: +<?= $customer->getPhoneNumber() ?></h3>
+                <p class="link">
+                    <?php $href = $block->getOrdersUrl($customer->getId()); ?>
+                <a class="read-more" data-mage-init='{
+                                    "getCustomerOrders": {
+                                        "userId":"<?= $customer->getId() ?>",
+                                        "userName":"<?= $customer->getName() ?>",
+                                        "userAjax":"<?= $viewModel ? $viewModel->useAjax() : false ?>"
+                                    }
+                                }'
+                        href="<?= $href ?>"><?= __('See Customer Orders of %1', $customer->getName()) ?>
+                    </a>
+                </p>
+            </div>
+        <?php endforeach; ?>
+        <div id="orders-container" style="display: none"></div>
+    <?php else: ?>
+        <div class="message">
+            <h1 class="message-error error message"><?= __("There are no customer found.") ?></h1>
+        </div>
+    <?php endif; ?>
 </div>

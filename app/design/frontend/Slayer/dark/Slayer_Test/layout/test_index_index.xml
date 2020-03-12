@@ -21,7 +21,7 @@
                 <block class="Slayer\Test\Block\Customer" name="custom.block" template="Slayer_Test::theme-template.phtml">
                     <arguments>
                         <argument name="view_model" xsi:type="object">Slayer\Test\ViewModel\ExtraInfo</argument>
-                        <argument name="custom_string" xsi:type="string">Magento fucks me every day!</argument>
+                        <argument name="custom_string" xsi:type="string">Magento 2!</argument>
                         <argument name="custom_array" xsi:type="array">
                             <item name="key_one" xsi:type="string">First item</item>
                             <item name="key_two" xsi:type="string">Second item</item>

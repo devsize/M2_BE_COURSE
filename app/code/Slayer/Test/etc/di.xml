@@ -19,6 +19,11 @@
                 <item name="slayer_test_listing_data_source" xsi:type="string">Slayer\Test\Model\ResourceModel\Orders\Grid\Collection</item>
             </argument>
         </arguments>
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="slayer_test_customers_listing_data_source" xsi:type="string">Slayer\Test\Model\ResourceModel\Customers\Grid\Collection</item>
+            </argument>
+        </arguments>
     </type>
     <virtualType name="Slayer\Test\Model\ResourceModel\Orders\Grid\Collection" type="Slayer\Test\Model\ResourceModel\GridCollectionUniversal">
         <arguments>
@@ -28,14 +33,6 @@
             <argument name="resourceModel" xsi:type="string">Slayer\Test\Model\ResourceModel\Order</argument>
         </arguments>
     </virtualType>
-
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
-        <arguments>
-            <argument name="collections" xsi:type="array">
-                <item name="slayer_test_customers_listing_data_source" xsi:type="string">Slayer\Test\Model\ResourceModel\Customers\Grid\Collection</item>
-            </argument>
-        </arguments>
-    </type>
     <virtualType name="Slayer\Test\Model\ResourceModel\Customers\Grid\Collection" type="Slayer\Test\Model\ResourceModel\CustomersGridCollection">
         <arguments>
             <argument name="mainTable" xsi:type="string">my_customers_table</argument>

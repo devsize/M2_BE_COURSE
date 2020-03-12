@@ -13,7 +13,7 @@
                 <label translate="true">Add New Customer</label>
             </button>
         </buttons>
-        <spinner>slayer_test_customers_columns</spinner>
+        <spinner>slayer_test_columns</spinner>
         <deps>
             <dep>slayer_test_customers_listing.slayer_test_customers_listing_data_source</dep>
         </deps>
@@ -56,7 +56,7 @@
                 <settings>
                     <callback>
                         <target>editSelected</target>
-                        <provider>slayer_test_customers_listing.slayer_test_customers_listing.slayer_test_customers_columns_editor</provider>
+                        <provider>slayer_test_customers_listing.slayer_test_customers_listing.slayer_test_columns_editor</provider>
                     </callback>
                     <type>edit</type>
                     <label translate="true">Edit</label>
@@ -74,11 +74,11 @@
                 </param>
                 <param name="indexField" xsi:type="string">entity_id</param>
                 <param name="enabled" xsi:type="boolean">true</param>
-                <param name="selectProvider" xsi:type="string">slayer_test_customers_listing.slayer_test_customers_listing.slayer_test_customers_columns.ids</param>
+                <param name="selectProvider" xsi:type="string">slayer_test_customers_listing.slayer_test_customers_listing.slayer_test_columns.ids</param>
             </editorConfig>
             <childDefaults>
                 <param name="fieldAction" xsi:type="array">
-                    <item name="provider" xsi:type="string">slayer_test_customers_listing.slayer_test_customers_listing.slayer_test_customers_columns_editor</item>
+                    <item name="provider" xsi:type="string">slayer_test_customers_listing.slayer_test_customers_listing.slayer_test_columns_editor</item>
                     <item name="target" xsi:type="string">startEdit</item>
                     <item name="params" xsi:type="array">
                         <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -95,47 +95,65 @@
         <column name="entity_id">
             <settings>
                 <filter>textRange</filter>
-                <label translate="true">ID</label>
-                <sorting>asc</sorting>
-            </settings>
-        </column>
-        <column name="name">
-            <settings>
-                <filter>text</filter>
-                <editor>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">true</rule>
-                    </validation>
-                    <editorType>text</editorType>
-                </editor>
-                <label translate="true">Name</label>
+                <label translate="false">ID</label>
+                <visible>false</visible>
             </settings>
         </column>
         <column name="surname">
             <settings>
                 <filter>text</filter>
+                <label translate="false">Surname</label>
+                <sorting>asc</sorting>
                 <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                        <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                        <rule name="max_text_length" xsi:type="number">64</rule>
+                    </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Surname</label>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <label translate="false">Name</label>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                        <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                        <rule name="max_text_length" xsi:type="number">64</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
             </settings>
         </column>
         <column name="email">
             <settings>
                 <filter>text</filter>
+                <label translate="false">Email</label>
                 <editor>
+                    <validation>
+                        <rule name="validate-email" xsi:type="boolean">true</rule>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                        <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                        <rule name="max_text_length" xsi:type="number">64</rule>
+                    </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="false">Email</label>
             </settings>
         </column>
-        <column name="phone">
+        <column name="phone_number">
             <settings>
                 <filter>text</filter>
+                <label translate="true">Phone</label>
                 <editor>
+                    <validation>
+                        <rule name="no-whitespace" xsi:type="boolean">true</rule>
+                        <rule name="max_text_length" xsi:type="number">12</rule>
+                    </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Phone number</label>
             </settings>
         </column>
         <actionsColumn name="actions" class="Slayer\Test\UI\Component\Listing\Column\CustomersActions">

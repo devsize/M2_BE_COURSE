@@ -14,6 +14,6 @@ class PreferenceCustomerModel extends CustomerModel
      */
     public function getName()
     {
-        return '<span class="preference">From Preference Customer Model: </span>' . $this->getData(self::NAME);
+//        return '<span class="preference">From Preference Customer Model: </span>' . $this->getData(self::NAME);
     }
 }

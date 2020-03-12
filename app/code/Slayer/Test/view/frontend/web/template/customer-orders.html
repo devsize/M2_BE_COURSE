@@ -1,0 +1,42 @@
+<div class="orders items">
+    <% if (orders && Object.keys(orders).length > 0) { %>
+    <a class="close" href="#">Close</a>
+    <strong class="label">
+        <span class="orders-label"><%- userName %>'s Orders:</span>
+    </strong>
+    <div class="orders-list wrapper">
+        <ul class="orders">
+            <% _.each(orders, function(order, index) { %>
+            <% if (index > 2) { %>
+            <% return false; %>
+            <% } %>
+            <li class="order entity-id" data-code="<%- order.id %>">
+                <span class="line order-id">
+                    <span class="label">OrderId: </span>
+                    <span class="value">"<%- order.order_id %>"</span>
+                </span>
+                <span class="line user-id">
+                    <span class="label">UserId: </span>
+                    <span class="value">"<%- order.user_id %>"</span>
+                </span>
+                <span class="line order-name">
+                    <span class="label">Order Name: </span>
+                    <span class="value">"<%- order.order_name %>"</span>
+                </span>
+                <span class="line created-at">
+                    <span class="label">CreatedAt: </span>
+                    <span class="value">"<%- order.created_at %>"</span>
+                </span>
+                <span class="line price">
+                    <span class="label">Price: </span>
+                    <span class="value">"<%- order.price %>"</span>
+                </span>
+            </li>
+            <% }); %>
+        </ul>
+        <% if (Object.keys(orders).length > 3) { %>
+        <a href="<%- hrefMore %>" class="show-more">Show More...</a>
+        <% } %>
+    </div>
+    <% } %>
+</div>
