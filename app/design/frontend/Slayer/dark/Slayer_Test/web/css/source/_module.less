@@ -28,10 +28,14 @@
     font-weight: @link_hover_color;
   }
 
-  .block-name, .slayer-sidebar h2 {
+  .block-name, .slayer-sidebar h2, h1.customers-list {
     color: @orange_color;
     font-weight: @font_bold;
     text-shadow: @text_shadow;
+  }
+
+  h1.customers-list {
+    margin-bottom: 10px;
   }
 
   .cache {
@@ -62,6 +66,17 @@
       color: #b40700;
     }
   }
+
+  #customers-list {
+    width: auto;
+    padding: 5px 30px 5px 5px;
+    border-radius: 3px;
+  }
+  #customers-list:nth-last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
   .customers {
     &.container {
       position: relative;

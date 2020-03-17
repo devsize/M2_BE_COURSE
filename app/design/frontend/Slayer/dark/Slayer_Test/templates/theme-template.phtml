@@ -37,11 +37,43 @@ $customers = $block->getCustomers();
     <h3 style="color: darkblue">Current date is: "<?= $viewModel->getCurrentDate(); ?>"</h3>
 <?php endif; ?>
 <!--<p><b><span class="cache">We get block with cache key = </span><span class="cache-number">--><?//= $cacheKey; ?><!--</span></b></p>-->
+<!-- My ko component -->
+<div class="my-app" data-bind="scope:'slayer-app'">
+<!--    <input type="text" id="slayer-input" name="customer-list" data-bind="value: myObservableCount">-->
+    <h1 class="customers-list">Set the number of customers per page</h1>
+    <select id="customers-list" name="customers_list" data-bind="value: myObservableCount">
+        <option value="1">show 1 customer per page</option>
+        <option value="2">show 2 customers per page</option>
+        <option value="3">show 3 customers per page</option>
+        <option value="4">show 4 customers per page</option>
+        <option value="5">show 5 customers per page</option>
+        <option value="6">show 6 customers per page</option>
+        <option value="7">show 7 customers per page</option>
+        <option value="8">show 8 customers per page</option>
+        <option value="9">show 9 customers per page</option>
+        <option value="10">show 10 customers per page</option>
+        <option value="0">no customers</option>
+    </select>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "slayer-app": {
+                            "component": "Slayer_Test/js/filter",
+                            "listItemsSelector": ".list-item"
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</div>
 <div class="customers container">
     <?php if (!empty($customers)): ?>
         <?php foreach ($customers as $customer): ?>
             <?php /** @var CustomerModel $customer */ ?>
-            <div class="order-customer-id-<?= $customer->getId() ?>">
+            <div class="list-item order-customer-id-<?= $customer->getId() ?>">
                 <h3 class="entity-id"><?= __('EntityID') ?>: <?= $customer->getId() ?></h3>
                 <h3 class="name"><?= __('Name') ?>: <?= $customer->getName() ?></h3>
                 <h3 class="surname"><?= __('Surname') ?>: <?= $customer->getSurname() ?></h3>
@@ -50,17 +82,29 @@ $customers = $block->getCustomers();
                 <p class="link">
 <!--   <a class="read-more" href="--><?//= $block->getUrl('test/index/customers', ['user_id' => $customer->getId()])?><!--">See Customer Orders</a>-->
                     <?php $href = $block->getOrdersUrl($customer->getId()); ?>
-                <a class="read-more" data-mage-init='{
-                                    "getCustomerOrders": {
-                                        "userId":"<?= $customer->getId() ?>",
-                                        "userName":"<?= $customer->getName() ?>",
-                                        "useAjax":"<?= $viewModel ? $viewModel->useAjax() : false ?>"
+                    <!--<a class="read-more" data-mage-init='{
+                                        "getCustomerOrders": {
+                                        "userId":"<?/*= $customer->getId() */?>",
+                                        "userName":"<?/*= $customer->getName() */?>",
+                                        "useAjax":"<?/*= $viewModel ? $viewModel->useAjax() : false */?>"
                                     }
                                 }'
-                        href="<?= $href ?>"><?= __('See Orders of %1', $customer->getName()) ?>
-                    </a>
+                        href="<?/*= $href */?>"><?/*= __('See Orders of %1', $customer->getName()) */?>
+                    </a>-->
+                    <a class="read-more link-user-id-<?= $customer->getId() ?>" href="<?= $href ?>"><?= __('See Orders of %1', $customer->getName()) ?></a>
                 </p>
             </div>
+            <script type="text/x-magento-init">
+                {
+                    ".link-user-id-<?= $customer->getId() ?>": {
+                        "getCustomerOrders": {
+                            "userId":"<?= $customer->getId() ?>",
+                            "userName":"<?= $customer->getName() ?>",
+                            "useAjax":"<?= $viewModel ? $viewModel->useAjax() : false ?>"
+                        }
+                    }
+                }
+            </script>
         <?php endforeach; ?>
         <div id="orders-container" style="display: none"></div>
     <?php else: ?>
