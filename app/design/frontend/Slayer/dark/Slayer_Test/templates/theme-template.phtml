@@ -31,10 +31,10 @@ $customers = $block->getCustomers();
     <h3 class="get-title">Customer title: <span><?= $viewModel->getCustomTitle() ?></span></h3>
 <?php endif; ?>
 <h2>My custom string is:  "<?= $string ?>"</h2>
-<h4 style="color: darkred">First key in my custom array is:  "<?= $array['key_one'] ?>"</h4>
-<h4 style="color: darkred">Second key in my custom array is: "<?= $array['key_two'] ?>"</h4>
+<h4 class="keys">First key in my custom array is:  "<?= $array['key_one'] ?>"</h4>
+<h4 class="keys">Second key in my custom array is: "<?= $array['key_two'] ?>"</h4>
 <?php if ($viewModel && $viewModel->getCurrentDate()): ?>
-    <h3 style="color: darkblue">Current date is: "<?= $viewModel->getCurrentDate(); ?>"</h3>
+    <h3 class="current-date">Current date is: "<?= $viewModel->getCurrentDate(); ?>"</h3>
 <?php endif; ?>
 <!--<p><b><span class="cache">We get block with cache key = </span><span class="cache-number">--><?//= $cacheKey; ?><!--</span></b></p>-->
 <!-- My ko component -->
@@ -52,7 +52,7 @@ $customers = $block->getCustomers();
         <option value="8">show 8 customers per page</option>
         <option value="9">show 9 customers per page</option>
         <option value="10">show 10 customers per page</option>
-        <option value="0">no customers</option>
+        <option value="0" id="customers-last-elem">no customers</option>
     </select>
     <script type="text/x-magento-init">
         {

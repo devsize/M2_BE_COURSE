@@ -16,25 +16,25 @@ $orders = $block->getOrders();
 $viewModel = $block->getData('view_model');
 ?>
 
-<h1 class="custom-block block-name" style="color: #fc6c24; font-weight: bold; text-shadow: 1px 1px 1px #000000;"><?= __('My Orders Collection: '); ?><?= $blockName ?>!</h1>
+<h1 class="custom-block block-name"><?= __('My Orders Collection: '); ?><?= $blockName ?>!</h1>
 <!--<h2 class="sql-query">Query was:
-    <span style="color: red"><?/*= $sqlString */?></span>
+    <span><?/*= $sqlString */?></span>
 </h2>-->
 <?php if ($viewModel && $viewModel->getCurrentDate()): ?>
-    <h3 style="color: darkblue"><?= __('Current date is: %1', $viewModel->getCurrentDate()); ?></h3>
+    <h3 class="current-date"><?= __('Current date is: %1', $viewModel->getCurrentDate()); ?></h3>
 <?php endif; ?>
 <div class="container">
     <?php if ($orders): ?>
         <?php foreach ($orders as $order): ?>
             <?php /** @var OrderModel $order */ ?>
             <div class="customer">
-                <h3 class="user-id" style="color: darkred;"><?= __('User ID: '); ?><span style="color: #0e301a"><?= $order->getUserId() ?></span></h3>
-                <h3 class="order-id" style="color: darkred;"><?= __('Order ID: '); ?><span style="color: #0e301a"><?= $order->getOrderId() ?></span></h3>
-                <h3 class="order-name" style="color: darkred;"><?= __('Order name: '); ?><span style="color: #0e301a"><?= $order->getOrderName() ?></span></h3>
-                <h3 class="created-at" style="color: darkred;"><?= __('Created At: '); ?><span style="color: #0e301a"><?= $order->getCreatedAt() ?></span></h3>
-                <h3 class="price" style="color: darkred;"><?= __('Price: '); ?><span style="color: #0e301a"><?= $order->getPrice() ?> грн.</span></h3>
+                <h3 class="user-id customer-item"><?= __('User ID: '); ?><span class="order-span"><?= $order->getUserId() ?></span></h3>
+                <h3 class="order-id customer-item"><?= __('Order ID: '); ?><span class="order-span"><?= $order->getOrderId() ?></span></h3>
+                <h3 class="order-name customer-item"><?= __('Order name: '); ?><span class="order-span"><?= $order->getOrderName() ?></span></h3>
+                <h3 class="created-at customer-item"><?= __('Created At: '); ?><span class="order-span"><?= $order->getCreatedAt() ?></span></h3>
+                <h3 class="price customer-item"><?= __('Price: '); ?><span class="order-span"><?= $order->getPrice() ?> грн.</span></h3>
                 <p>
-                    <a class="go-back" href="<?= $block->getUrl('test') ?>" style="font-weight: bolder; color: #006bb4; font-size: 1.5em; text-decoration: none;"
+                    <a class="go-back order-go-back" href="<?= $block->getUrl('test') ?>"
                        onmouseover="this.style.color='#4ca939';" onmouseout="this.style.color='darkblue';"><?= __('Go Back'); ?></a>
                 </p>
                 <hr>

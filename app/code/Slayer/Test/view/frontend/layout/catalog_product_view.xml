@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <container name="product.info.custom.cms.block" after="product.info.price">
+               <block class="Magento\Cms\Block\Block" name="custom-cms-block">
+                    <arguments>
+                        <!-- argument name="block_id" it`s not a value, it`s just variable,which means that this block
+                        can be identify by fields "block_id" or "identifier" in "cms_block" table -->
+                        <argument name="block_id" xsi:type="string">custom-cms-block</argument>
+                    </arguments>
+               </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
