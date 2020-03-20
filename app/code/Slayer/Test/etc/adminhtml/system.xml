@@ -14,6 +14,10 @@
                     <label>Use Ajax Loading</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="show_cms_block" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show Block on Product Listing Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
         </section>
         <section id="slayer_customers" translate="label" type="text" sortOrder="910" showInDefault="1" showInWebsite="1" showInStore="1">

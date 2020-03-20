@@ -36,4 +36,22 @@
                     table="my_orders_table" column="user_id" referenceTable="my_customers_table"
                     referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
+    <table name="my_login_table" resource="default" engine="innodb" comment="My Login Schema">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="smallint" name="user_id" padding="11" unsigned="true" nullable="false" identity="false"
+                comment="User ID"/>
+        <column xsi:type="varchar" name="login" length="64" nullable="false" comment="User Login"/>
+        <column xsi:type="varchar" name="password" length="32" nullable="false" comment="User Password"/>
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP" on_update="true" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="MY_LOGIN_TABLE_LOGIN">
+            <column name="login"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="MY_LOGIN_TABLE"
+                    table="my_login_table" column="user_id" referenceTable="my_customers_table"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
 </schema>

@@ -4,6 +4,7 @@
         <slayer_test>
             <settings>
                 <use_ajax>1</use_ajax>
+                <show_cms_block>1</show_cms_block>
             </settings>
         </slayer_test>
         <slayer_customers>
