@@ -66,11 +66,12 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                                 <?= /* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                             </a>
                         </strong>
-                        <?= $this->getLayout()
-                                ->createBlock('Magento\Cms\Block\Block')
-                                ->setBlockId('plp-page-login')
-                                ->toHtml();
-                        ?>
+
+
+                        <? /* @ showing MY CUSTOM CMS BLOCK */ ?>
+                        <?= $block->getChildHtml('plp-page-login'); ?>
+
+
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <?= /* @noEscape */ $block->getProductPrice($_product) ?>
                         <?= $block->getProductDetailsHtml($_product) ?>
@@ -127,13 +128,25 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
     </div>
     <?= $block->getToolbarHtml() ?>
     <script>
-        'use strict';
-        require(["jquery"], function()
+        require(["jquery"], function($)
         {
-            $(document).ready(function () {
-                $( '.plp-close-btn' ).on('click', function() {
-                    $('.cms-plp-page').toggle();
+            $( '.plp-close-btn' ).on('click', function(event) {
+                event.preventDefault();
+                // $(this).parent().hide();
+                $(this).parent().css({
+                    "border": "none",
+                    "padding": 0
                 });
+                $('.plp-show-btn').show().parentsUntil('.cms-plp-page').andSelf().siblings().hide();
+            });
+
+            $( '.plp-show-btn' ).on('click', function(event) {
+                event.preventDefault();
+                $(this).parent().css({
+                    "border": "1px solid #dadada",
+                    "padding": "5px 5px 5px 17px"
+                });
+                $('.plp-show-btn').parentsUntil('.cms-plp-page').andSelf().siblings().show();
             });
         });
     </script>

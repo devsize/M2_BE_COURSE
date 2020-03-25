@@ -2,14 +2,21 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="product.info.main">
-            <container name="product.info.custom.cms.block" after="product.info.price">
-               <block class="Magento\Cms\Block\Block" name="custom-cms-block">
+<!--            <container name="product.info.custom.cms.block" after="product.info.price">-->
+<!--               <block class="Magento\Cms\Block\Block" name="custom-cms-block">-->
+<!--                    <arguments>-->
+<!--                        &lt;!&ndash; argument name="block_id" it`s not a value(just ctr+v name="block_id"!!!), it`s just variable,which means that this block-->
+<!--                        can be identify by fields "block_id" or "identifier" in "cms_block" table &ndash;&gt;-->
+<!--                        <argument name="block_id" xsi:type="string">custom-cms-block</argument>-->
+<!--                    </arguments>-->
+<!--               </block>-->
+<!--            </container>-->
+            <container  name="cms-message-block" label="cms message" htmlTag="div" htmlClass="cms_message" after="product.info.price">
+                <block class="Magento\Cms\Block\Block" name="my_message_block" ifconfig="slayer_test/settings/show_cms_on_pdp">
                     <arguments>
-                        <!-- argument name="block_id" it`s not a value(just ctr+v name="block_id"!!!), it`s just variable,which means that this block
-                        can be identify by fields "block_id" or "identifier" in "cms_block" table -->
-                        <argument name="block_id" xsi:type="string">custom-cms-block</argument>
+                        <argument name="block_id" xsi:type="string">my_message_block</argument>
                     </arguments>
-               </block>
+                </block>
             </container>
         </referenceContainer>
     </body>

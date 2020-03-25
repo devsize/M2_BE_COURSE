@@ -4,7 +4,8 @@
         <slayer_test>
             <settings>
                 <use_ajax>1</use_ajax>
-                <show_cms_block>1</show_cms_block>
+                <show_cms_block_on_plp>1</show_cms_block_on_plp>
+                <show_cms_on_pdp>1</show_cms_on_pdp>
             </settings>
         </slayer_test>
         <slayer_customers>

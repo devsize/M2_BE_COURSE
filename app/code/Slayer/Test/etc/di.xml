@@ -41,7 +41,6 @@
             <argument name="resourceModel" xsi:type="string">Slayer\Test\Model\ResourceModel\Customer</argument>
         </arguments>
     </virtualType>
-
     <!--    <virtualType name="Roma\Test\Model\ImageUploader" type="Magento\Catalog\Model\ImageUploader">-->
     <!--        <arguments>-->
     <!--            <argument name="baseTmpPath" xsi:type="string">cars/tmp</argument>-->

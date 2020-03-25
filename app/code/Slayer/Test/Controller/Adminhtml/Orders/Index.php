@@ -36,6 +36,18 @@ abstract class Index extends BackendAction implements HttpGetActionInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function dispatch(\Magento\Framework\App\RequestInterface $request)
+    {
+        if (false) {
+            return $this->_redirect('backend/admin/dashboard/index/');
+        }
+
+        return parent::dispatch($request);
+    }
+
+    /**
      * Orders list
      *
      * @return Page

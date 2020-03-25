@@ -13,9 +13,17 @@
                 <field id="use_ajax" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Use Ajax Loading</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+<!--                    <frontend_model>Slayer\Test\Block\Adminhtml\System\Config\Toggle</frontend_model>-->
+<!--                    <attribute type="shared">1</attribute>-->
                 </field>
-                <field id="show_cms_block" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="show_cms_block_on_plp" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Show Block on Product Listing Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+<!--                    <frontend_model>Slayer\Test\Block\Adminhtml\System\Config\Toggle</frontend_model>-->
+<!--                    <attribute type="shared">1</attribute>-->
+                </field>
+                <field id="show_cms_on_pdp" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Show My CMS block on PDP</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
