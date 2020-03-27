@@ -130,24 +130,22 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
     <script>
         require(["jquery"], function($)
         {
-            $( '.plp-close-btn' ).on('click', function(event) {
+            $( '.plp-btn' ).on('click', function(event) {
                 event.preventDefault();
+                let block = $(this).parent().find('.cms-plp-block');
+                block.toggle();
+                if (block.is(':hidden')) {
+                    $("a", this).text("show");
+                } else if (block.is(":visible")) {
+                    $("a", this).text("hide");
+                }
+
+                // $(this).siblings().toggle();
                 // $(this).parent().hide();
-                $(this).parent().css({
-                    "border": "none",
-                    "padding": 0
-                });
-                $('.plp-show-btn').show().parentsUntil('.cms-plp-page').andSelf().siblings().hide();
             });
 
-            $( '.plp-show-btn' ).on('click', function(event) {
-                event.preventDefault();
-                $(this).parent().css({
-                    "border": "1px solid #dadada",
-                    "padding": "5px 5px 5px 17px"
-                });
-                $('.plp-show-btn').parentsUntil('.cms-plp-page').andSelf().siblings().show();
-            });
+
+
         });
     </script>
     <?php if (!$block->isRedirectToCartEnabled()) :?>

@@ -31,8 +31,15 @@ class MyCustomObserver implements ObserverInterface
     public function execute(Observer $observer)
     {
         $event = $observer->getEvent();
+        $request = $event->getRequest();
         $product = $event->getData('product');
         $date = new \DateTime('now');
+
+        /** @var $product \Magento\Catalog\Model\Product */
+        $str = $product->getSku();
+        $pattern = '/(\w+)-(\w+)-(\w+)/i';
+        $replacement = '${2}';
+        $size = preg_replace($pattern, $replacement, $str);
 
         $message = __(
             'You added product "%3" with id "%1" at "%2" with price: "%4"',
@@ -41,6 +48,12 @@ class MyCustomObserver implements ObserverInterface
             $product->getName(),
             number_format($product->getPrice(), 2, '.', '')
         );
+
+        if ($size == 'XL') {
+            $message = __('Oh, u`re fucking fat! It\'s disgusting :D Lose some weight!');
+        } elseif ($size == 'XS') {
+            $message = __('You are bony like death! Eat something!');
+        }
 
         $this->messageManager->addSuccessMessage($message);
     }
