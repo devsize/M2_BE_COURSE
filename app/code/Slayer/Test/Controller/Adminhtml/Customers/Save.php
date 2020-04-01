@@ -18,7 +18,7 @@ use Slayer\Test\Api\Data\OrderInterface;
 use Slayer\Test\Api\Data\CustomerInterface;
 use Slayer\Test\Api\Data\CustomerInterfaceFactory;
 use Slayer\Test\Api\CustomerRepositoryInterface;
-use Slayer\Test\Model\CustomerModel;
+use Slayer\Test\Model\ManufacturerModel;
 
 /**
  * Class Save
@@ -107,7 +107,7 @@ class Save extends BackendAction implements HttpPostActionInterface
                     return $resultRedirect->setPath('*/*/');
                 }
             } else {
-                /** @var CustomerModel $model */
+                /** @var ManufacturerModel $model */
                 $model = $this->customerFactory->create();
             }
 //            $this->processImage($data);

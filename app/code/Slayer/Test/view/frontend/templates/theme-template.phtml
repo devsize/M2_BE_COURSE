@@ -1,6 +1,6 @@
 <?php
 
-use Slayer\Test\Model\CustomerModel;
+use Slayer\Test\Model\ManufacturerModel;
 
 /** @var Slayer\Test\Block\Customer $block */
 $blockName = $block->getNameInLayout();
@@ -17,7 +17,7 @@ $customerCollection = $block->getCustomerCollection();
 <p><b><span class="cache">We get block with cache key = </span><span class="cache-number"><?= $cacheKey; ?></span></b></p>
 <div class="container">
     <?php foreach ($customerCollection as $customer): ?>
-        <?php /** @var CustomerModel $customer */ ?>
+        <?php /** @var ManufacturerModel $customer */ ?>
         <div class="customer">
             <h3 class="entity-id">Entity ID: <?= $customer->getId() ?></h3>
             <h3 class="name">Name: <?= $customer->getName() ?></h3>

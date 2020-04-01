@@ -12,7 +12,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Slayer\Test\Api\Data\CustomerInterface;
 use Slayer\Test\Api\CustomerRepositoryInterface;
-use Slayer\Test\Model\CustomerModel;
+use Slayer\Test\Model\ManufacturerModel;
 
 /**
  * Class InlineEdit

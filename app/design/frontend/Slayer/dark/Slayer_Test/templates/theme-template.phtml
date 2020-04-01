@@ -2,7 +2,7 @@
 
 use Slayer\Test\Api\Data\CustomerInterface;
 use Slayer\Test\Block\Customer;
-use Slayer\Test\Model\CustomerModel;
+use Slayer\Test\Model\ManufacturerModel;
 use Slayer\Test\ViewModel\ExtraInfo;
 
 /** @var Customer $block */
@@ -72,7 +72,7 @@ $customers = $block->getCustomers();
 <div class="customers container">
     <?php if (!empty($customers)): ?>
         <?php foreach ($customers as $customer): ?>
-            <?php /** @var CustomerModel $customer */ ?>
+            <?php /** @var ManufacturerModel $customer */ ?>
             <div class="list-item order-customer-id-<?= $customer->getId() ?>">
                 <h3 class="entity-id"><?= __('EntityID') ?>: <?= $customer->getId() ?></h3>
                 <h3 class="name"><?= __('Name') ?>: <?= $customer->getName() ?></h3>

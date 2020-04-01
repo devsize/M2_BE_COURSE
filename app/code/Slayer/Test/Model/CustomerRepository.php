@@ -74,7 +74,7 @@ class CustomerRepository implements CustomerRepositoryInterface
     public function save(CustomerInterface $customer): CustomerInterface
     {
         try {
-            /** @var CustomerModel|CustomerInterface $customer */
+            /** @var ManufacturerModel|CustomerInterface $customer */
             $this->resource->save($customer);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
@@ -88,7 +88,7 @@ class CustomerRepository implements CustomerRepositoryInterface
      */
     public function getById(int $customerId): CustomerInterface
     {
-        /** @var CustomerModel|CustomerInterface $customer */
+        /** @var ManufacturerModel|CustomerInterface $customer */
         $customer = $this->customerFactory->create();
         $customer->load($customerId);
         if (!$customer->getId()) {
@@ -121,7 +121,7 @@ class CustomerRepository implements CustomerRepositoryInterface
     public function delete(CustomerInterface $customer): bool
     {
         try {
-            /** @var CustomerModel $customer */
+            /** @var ManufacturerModel $customer */
             $this->resource->delete($customer);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
