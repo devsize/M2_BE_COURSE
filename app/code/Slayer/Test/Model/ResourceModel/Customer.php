@@ -3,7 +3,7 @@
 namespace Slayer\Test\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
-use Slayer\Test\Model\ManufacturerModel;
+use Slayer\Test\Model\CustomerModel;
 
 /**
  * Class Customer
@@ -18,7 +18,7 @@ class Customer extends AbstractDb
     {
          $this->_init(
              self::MY_CUSTOMERS_TABLE,
-             ManufacturerModel::ENTITY_ID
+             CustomerModel::ENTITY_ID
          );
     }
 }

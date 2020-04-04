@@ -2,12 +2,12 @@
 
 namespace Slayer\Test\Preference\Model;
 
-use Slayer\Test\Model\ManufacturerModel;
+use Slayer\Test\Model\CustomerModel;
 
 /**
  * Class PreferenceCustomerModel
  */
-class PreferenceManufacturerModel extends ManufacturerModel
+class PreferenceCustomerModel extends CustomerModel
 {
     /**
      * {@inheritdoc}
