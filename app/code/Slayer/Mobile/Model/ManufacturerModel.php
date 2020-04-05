@@ -1,29 +1,23 @@
 <?php
 
-namespace Slayer\Test\Model;
+namespace Slayer\Mobile\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Slayer\Test\Api\Data\CustomerInterface;
-use Slayer\Test\Model\ResourceModel\Customer as CustomerResourceModel;
+use Slayer\Mobile\Api\Data\ManufacturerInterface;
+use Slayer\Mobile\Model\ResourceModel\Manufacturer as ManufacturerResourceModel;
 
 /**
- * Class CarCustomerModel
+ * Class ManufacturerModel
  */
-class ManufacturerModel extends AbstractModel implements CustomerInterface
+class ManufacturerModel extends AbstractModel implements ManufacturerInterface
 {
-
-//    const ENTITY_ID = 'entity_id';
-//    const NAME = 'name';
-//    const SURNAME = 'surname';
-//    const EMAIL = 'email';
-//    const PHONE_NUMBER = 'phone_number';
 
     /**
      * {@inheritdoc}
      */
     public function _construct()
     {
-        $this->_init(CustomerResourceModel::class);
+        $this->_init(ManufacturerResourceModel::class);
     }
 
     /**
@@ -49,16 +43,9 @@ class ManufacturerModel extends AbstractModel implements CustomerInterface
     /**
      * {@inheritdoc}
      */
-    public function getSurname()
+    public function getDirector()
     {
-        return $this->getData(self::SURNAME);
-    }
-    /**
-     * {@inheritdoc}
-     */
-    public function getEmail()
-    {
-        return $this->getData(self::EMAIL);
+        return $this->getData(self::DIRECTOR);
     }
 
     /**
@@ -70,8 +57,28 @@ class ManufacturerModel extends AbstractModel implements CustomerInterface
     }
 
     /**
-     * SETTERS
+     * {@inheritdoc}
      */
+    public function getEmail()
+    {
+        return $this->getData(self::EMAIL);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAddress()
+    {
+        return $this->getData(self::ADDRESS);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFoundationDate()
+    {
+        return $this->getData(self::FOUNDATION_DATE);
+    }
 
     /**
      * {@inheritdoc}
@@ -84,7 +91,7 @@ class ManufacturerModel extends AbstractModel implements CustomerInterface
     /**
      * {@inheritdoc}
      */
-    public function setName(string $name): CustomerInterface
+    public function setName(string $name): ManufacturerInterface
     {
         return $this->setData(self::NAME, $name);
     }
@@ -92,15 +99,23 @@ class ManufacturerModel extends AbstractModel implements CustomerInterface
     /**
      * {@inheritdoc}
      */
-    public function setSurname(string $surname): CustomerInterface
+    public function setDirector(string $director): ManufacturerInterface
     {
-        return $this->setData(self::SURNAME, $surname);
+        return $this->setData(self::DIRECTOR, $director);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setEmail(string $email): CustomerInterface
+    public function setPhoneNumber(string $phoneNumber): ManufacturerInterface
+    {
+        return $this->setData(self::PHONE_NUMBER, $phoneNumber);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmail(string $email): ManufacturerInterface
     {
         return $this->setData(self::EMAIL, $email);
     }
@@ -108,8 +123,16 @@ class ManufacturerModel extends AbstractModel implements CustomerInterface
     /**
      * {@inheritdoc}
      */
-    public function setPhoneNumber(int $phoneNumber): CustomerInterface
+    public function setAddress(string $address): ManufacturerInterface
     {
-        return $this->setData(self::PHONE_NUMBER, $phoneNumber);
+        return $this->setData(self::ADDRESS, $address);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFoundationDate(string $foundationDate): ManufacturerInterface
+    {
+        return $this->setData(self::FOUNDATION_DATE, $foundationDate);
     }
 }

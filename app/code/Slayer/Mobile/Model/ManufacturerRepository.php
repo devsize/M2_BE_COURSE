@@ -1,6 +1,6 @@
 <?php
 
-namespace Slayer\Test\Model;
+namespace Slayer\Mobile\Model;
 
 use Magento\Framework\Api\SearchResults;
 use Magento\Framework\Api\SearchResultsInterface;
@@ -10,30 +10,31 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Slayer\Test\Api\CustomerRepositoryInterface;
-use Slayer\Test\Api\Data\CustomerInterface;
-use Slayer\Test\Model\CustomerModelFactory;
-use Slayer\Test\Model\ResourceModel\Customer\Collection;
-use Slayer\Test\Model\ResourceModel\Customer\CollectionFactory as CustomerCollectionFactory;
-use Slayer\Test\Model\ResourceModel\Customer as CustomerResource;
+use Slayer\Mobile\Api\ManufacturerRepositoryInterface;
+use Slayer\Mobile\Api\Data\ManufacturerInterface;
+use Slayer\Mobile\Model\ManufacturerModel;
+use Slayer\Mobile\Model\ManufacturerModelFactory;
+use Slayer\Mobile\Model\ResourceModel\Manufacturer\Collection;
+use Slayer\Mobile\Model\ResourceModel\Manufacturer\CollectionFactory as ManufacturerCollectionFactory;
+use Slayer\Mobile\Model\ResourceModel\Manufacturer as ManufacturerResource;
 
 /**
- * Class CustomerRepository
+ * Class ManufacturerRepository
  */
-class CustomerRepository implements CustomerRepositoryInterface
+class ManufacturerRepository implements ManufacturerRepositoryInterface
 {
     /**
-     * @var CustomerModelFactory
+     * @var ManufacturerModelFactory
      */
-    private $customerFactory;
+    private $manufacturerFactory;
 
     /**
-     * @var CustomerCollectionFactory
+     * @var ManufacturerCollectionFactory
      */
-    private $customerCollectionFactory;
+    private $manufacturerCollectionFactory;
 
     /**
-     * @var CustomerResource
+     * @var ManufacturerResource
      */
     private $resource;
 
@@ -48,21 +49,21 @@ class CustomerRepository implements CustomerRepositoryInterface
     private $collectionProcessor;
 
     /**
-     * @param CustomerModelFactory $customerFactory
-     * @param CustomerCollectionFactory $customerCollectionFactory
-     * @param CustomerResource $resource
+     * @param ManufacturerModelFactory $manufacturerFactory
+     * @param ManufacturerCollectionFactory $manufacturerCollectionFactory
+     * @param ManufacturerResource $resource
      * @param SearchResultsInterfaceFactory $searchResultsFactory
      * @param CollectionProcessorInterface $collectionProcessor
      */
     public function __construct(
-        CustomerModelFactory $customerFactory,
-        CustomerCollectionFactory $customerCollectionFactory,
-        CustomerResource $resource,
+        ManufacturerModelFactory $manufacturerFactory,
+        ManufacturerCollectionFactory $manufacturerCollectionFactory,
+        ManufacturerResource $resource,
         SearchResultsInterfaceFactory $searchResultsFactory,
         CollectionProcessorInterface $collectionProcessor
     ) {
-        $this->customerFactory = $customerFactory;
-        $this->customerCollectionFactory = $customerCollectionFactory;
+        $this->manufacturerFactory = $manufacturerFactory;
+        $this->manufacturerCollectionFactory = $manufacturerCollectionFactory;
         $this->resource = $resource;
         $this->searchResultsFactory = $searchResultsFactory;
         $this->collectionProcessor = $collectionProcessor;
@@ -71,31 +72,31 @@ class CustomerRepository implements CustomerRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function save(CustomerInterface $customer): CustomerInterface
+    public function save(ManufacturerInterface $manufacturer): ManufacturerInterface
     {
         try {
-            /** @var CustomerModel|CustomerInterface $customer */
-            $this->resource->save($customer);
+            /** @var ManufacturerModel|ManufacturerInterface $manufacturer */
+            $this->resource->save($manufacturer);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
 
-        return $customer;
+        return $manufacturer;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getById(int $customerId): CustomerInterface
+    public function getById(int $manufacturerId): ManufacturerInterface
     {
-        /** @var CustomerModel|CustomerInterface $customer */
-        $customer = $this->customerFactory->create();
-        $customer->load($customerId);
-        if (!$customer->getId()) {
-            throw new NoSuchEntityException(__('Customer entity with id `%1` does not exist.', $customerId));
+        /** @var ManufacturerModel|ManufacturerInterface $manufacturer */
+        $manufacturer = $this->manufacturerFactory->create();
+        $manufacturer->load($manufacturerId);
+        if (!$manufacturer->getId()) {
+            throw new NoSuchEntityException(__('Manufacturer entity with id `%1` does not exist.', $manufacturerId));
         }
 
-        return $customer;
+        return $manufacturer;
     }
 
     /**
@@ -104,7 +105,7 @@ class CustomerRepository implements CustomerRepositoryInterface
     public function getList(SearchCriteriaInterface $criteria): SearchResults
     {
         /** @var Collection $collection */
-        $collection = $this->customerCollectionFactory->create();
+        $collection = $this->manufacturerCollectionFactory->create();
         $this->collectionProcessor->process($criteria, $collection);
 
         /** @var SearchResults $searchResults */
@@ -118,11 +119,11 @@ class CustomerRepository implements CustomerRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function delete(CustomerInterface $customer): bool
+    public function delete(ManufacturerInterface $manufacturer): bool
     {
         try {
-            /** @var CustomerModel $customer */
-            $this->resource->delete($customer);
+            /** @var ManufacturerModel $manufacturer */
+            $this->resource->delete($manufacturer);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }
@@ -133,8 +134,8 @@ class CustomerRepository implements CustomerRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function deleteById(int $customerId): bool
+    public function deleteById(int $manufacturerId): bool
     {
-        return $this->delete($this->getById($customerId));
+        return $this->delete($this->getById($manufacturerId));
     }
 }

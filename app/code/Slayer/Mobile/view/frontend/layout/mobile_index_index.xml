@@ -8,8 +8,8 @@
                        template="Slayer_Mobile::manufacturer-template.phtml">
                 </block>
             </container>-->
-            <block class="Magento\Framework\View\Element\Template" name="my.block.for.test"
-                   template="Slayer_Mobile::manufacturer-template.phtml"/>
+            <!--<block class="Magento\Framework\View\Element\Template" name="my.block.for.test"
+                   template="Slayer_Mobile::manufacturer-template.phtml"/>-->
         </referenceContainer>
     </body>
 </page>

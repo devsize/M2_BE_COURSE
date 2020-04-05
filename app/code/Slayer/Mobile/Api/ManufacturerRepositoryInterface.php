@@ -7,7 +7,7 @@ use Magento\Framework\Api\SearchResults;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Slayer\Test\Api\Data\CustomerInterface;
+use Slayer\Mobile\Api\Data\ManufacturerInterface;
 
 /**
  * Interface ManufacturerRepositoryInterface
@@ -15,25 +15,25 @@ use Slayer\Test\Api\Data\CustomerInterface;
 interface ManufacturerRepositoryInterface
 {
     /**
-     * Save Customer entity
+     * Save Manufacturer entity
      *
-     * @param CustomerInterface $customer
-     * @return CustomerInterface
+     * @param ManufacturerInterface $manufacturer
+     * @return ManufacturerInterface
      * @throws CouldNotSaveException
      */
-    public function save(CustomerInterface $customer): CustomerInterface;
+    public function save(ManufacturerInterface $manufacturer): ManufacturerInterface;
 
     /**
-     * Get Customer by its id
+     * Get Manufacturer by its id
      *
-     * @param int $customerId
-     * @return CustomerInterface
+     * @param int $manufacturerId
+     * @return ManufacturerInterface
      * @throws NoSuchEntityException
      */
-    public function getById(int $customerId): CustomerInterface;
+    public function getById(int $manufacturerId): ManufacturerInterface;
 
     /**
-     * Get Customer entities list
+     * Get Manufacturer entities list
      *
      * @param SearchCriteriaInterface $searchCriteria
      * @return SearchResults
@@ -42,21 +42,21 @@ interface ManufacturerRepositoryInterface
     public function getList(SearchCriteriaInterface $searchCriteria): SearchResults;
 
     /**
-     * Delete Customer entity
+     * Delete Manufacturer entity
      *
-     * @param CustomerInterface $customer
+     * @param ManufacturerInterface $manufacturer
      * @return bool true on success
      * @throws LocalizedException
      */
-    public function delete(CustomerInterface $customer): bool;
+    public function delete(ManufacturerInterface $manufacturer): bool;
 
     /**
-     * Delete Customer entity by id
+     * Delete Manufacturer entity by id
      *
-     * @param int $customerId
+     * @param int $manufacturerId
      * @return bool true on success
      * @throws NoSuchEntityException
      * @throws LocalizedException
      */
-    public function deleteById(int $customerId): bool;
+    public function deleteById(int $manufacturerId): bool;
 }

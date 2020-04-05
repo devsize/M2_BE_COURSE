@@ -1,18 +1,25 @@
 <?php
 
-namespace Slayer\Test\Api\Data;
+namespace Slayer\Mobile\Api\Data;
 
 /**
- * Interface OrderInterface
+ * Interface PhoneInterface
  */
-interface OrderInterface
+interface PhoneInterface
 {
     const ENTITY_ID = 'entity_id';
-    const USER_ID = 'user_id';
-    const ORDER_ID = 'order_id';
-    const ORDER_NAME = 'order_name';
-    const CREATED_AT = 'created_at';
+    const MANUFACTURER_ID = 'manufacturer_id';
+    const MODEL = 'model';
+    const OS = 'os';
+    const RESOLUTION = 'resolution';
+    const RAM = 'ram';
+    const CPU = 'cpu';
+    const BATTERY = 'battery';
+    const DESCRIPTION = 'description';
+    const RELEASED = 'released';
+    const PHOTO = 'photo';
     const PRICE = 'price';
+    const CREATED_AT = 'created_at';
 
     /**
      * Get entity id
@@ -22,39 +29,87 @@ interface OrderInterface
     public function getId();
 
     /**
-     * Get user id
+     * Get manufacturer id
      *
      * @return int
      */
-    public function getUserId();
+    public function getManufacturerId();
 
     /**
-     * Get order id
-     *
-     * @return int
-     */
-    public function getOrderId();
-
-    /**
-     * Get order name
+     * Get phone model
      *
      * @return string
      */
-    public function getOrderName();
+    public function getModel();
 
+    /**
+     * Get phone os
+     *
+     * @return string
+     */
+    public function getOs();
+
+    /**
+     * Get phone resolution
+     *
+     * @return string
+     */
+    public function getResolution();
+
+    /**
+     * Get ram
+     *
+     * @return string
+     */
+    public function getRam();
+
+    /**
+     * Get cpu
+     *
+     * @return string
+     */
+    public function getCpu();
+
+    /**
+     * Get phone battery
+     *
+     * @return string
+     */
+    public function getBattery();
+
+    /**
+     * Get phone description
+     *
+     * @return string
+     */
+    public function getDescription();
+
+    /**
+     * Get phone release
+     *
+     * @return string
+     */
+    public function getReleased();
+
+    /**
+     * Get phone photo
+     *
+     * @return string
+     */
+    public function getPhoto();
+    /**
+     * Get phone price
+     *
+     * @return float
+     */
+    public function getPrice();
+    
     /**
      * Get created at date
      *
      * @return mixed
      */
     public function getCreatedAt();
-
-    /**
-     * Get car price
-     *
-     * @return float
-     */
-    public function getPrice();
 
     /**
      * Set entity id
@@ -65,43 +120,107 @@ interface OrderInterface
     public function setId($id);
 
     /**
-     * Set user id
+     * Set phone id
      *
      * @param int $userId
-     * @return OrderInterface
+     * @return PhoneInterface
      */
-    public function setUserId(int $userId): OrderInterface;
+    public function setUserId(int $userId): PhoneInterface;
 
     /**
-     * Set order id
+     * Set manufacturer id
      *
-     * @param int $orderId
-     * @return OrderInterface
+     * @param int $manufacturerId
+     * @return PhoneInterface
      */
-    public function setOrderId(int $orderId): OrderInterface;
+    public function setManufacturerId(int $manufacturerId): PhoneInterface;
 
     /**
-     * Set order name
+     * Set phone model
      *
-     * @param string $orderName
-     * @return OrderInterface
+     * @param string $model
+     * @return PhoneInterface
      */
-    public function setOrderName(string $orderName): OrderInterface;
+    public function setModel(string $model): PhoneInterface;
+
+    /**
+     * Set phone os
+     *
+     * @param string $os
+     * @return PhoneInterface
+     */
+    public function setOs(string $os): PhoneInterface;
+
+    /**
+     * Set phone resolution
+     *
+     * @param string $resolution
+     * @return PhoneInterface
+     */
+    public function setResolution(string $resolution): PhoneInterface;
+
+    /**
+     * Set ram
+     *
+     * @param string $ram
+     * @return PhoneInterface
+     */
+    public function setRam(string $ram): PhoneInterface;
+
+    /**
+     * Set cpu
+     *
+     * @param string $cpu
+     * @return PhoneInterface
+     */
+    public function setCpu(string $cpu): PhoneInterface;
+
+    /**
+     * Set phone battery
+     *
+     * @param string $battery
+     * @return PhoneInterface
+     */
+    public function setBattery(string $battery): PhoneInterface;
+
+    /**
+     * Set phone description
+     *
+     * @param string $description
+     * @return PhoneInterface
+     */
+    public function setDescription(string $description): PhoneInterface;
+
+    /**
+     * Set phone released date
+     *
+     * @param string $released
+     * @return PhoneInterface
+     */
+    public function setReleased(string $released): PhoneInterface;
+
+    /**
+     * Set phone photo
+     *
+     * @param string $photo
+     * @return PhoneInterface
+     */
+    public function setPhoto(string $photo): PhoneInterface;
+
+    /**
+     * Set phone price
+     *
+     * @param float $price
+     * @return PhoneInterface
+     */
+    public function setPrice(float $price): PhoneInterface;
 
     /**
      * Set created at date
      *
 //      @param \DateTime $createdAt
      * @param string $createdAt
-     * @return OrderInterface
+     * @return PhoneInterface
      */
-    public function setCreatedAt(string $createdAt): OrderInterface;
-
-    /**
-     * Set car price
-     *
-     * @param float $price
-     * @return OrderInterface
-     */
-    public function setPrice(float $price): OrderInterface;
+    public function setCreatedAt(string $createdAt): PhoneInterface;
 }

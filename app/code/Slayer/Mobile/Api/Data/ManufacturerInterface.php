@@ -1,19 +1,20 @@
 <?php
 
 
-namespace Slayer\Test\Api\Data;
+namespace Slayer\Mobile\Api\Data;
 
 /**
- * Interface CustomerInterface
+ * Interface ManufacturerInterface
  */
-interface CustomerInterface
+interface ManufacturerInterface
 {
     const ENTITY_ID = 'entity_id';
     const NAME = 'name';
-    const SURNAME = 'surname';
-    const EMAIL = 'email';
+    const DIRECTOR = 'director';
     const PHONE_NUMBER = 'phone_number';
-    const CREATED_AT = 'created_at';
+    const EMAIL = 'email';
+    const ADDRESS = 'address';
+    const FOUNDATION_DATE = 'foundation_date';
 
     /**
      * Get entity id
@@ -23,32 +24,46 @@ interface CustomerInterface
     public function getId();
 
     /**
-     * Get customer name
+     * Get manufacturer name
      *
      * @return string
      */
     public function getName();
 
     /**
-     * Get  customer surname
+     * Get  manufacturer director name & surname
      *
      * @return string
      */
-    public function getSurname();
+    public function getDirector();
 
     /**
-     * Get customer email
+     * Get manufacturer phone number
+     *
+     * @return int
+     */
+    public function getPhoneNumber();
+
+    /**
+     * Get manufacturer email
      *
      * @return string
      */
     public function getEmail();
 
     /**
-     * Get customer phone number
+     * Get manufacturer address
      *
-     * @return int
+     * @return string
      */
-    public function getPhoneNumber();
+    public function getAddress();
+
+    /**
+     * Get manufacturer foundation date
+     *
+     * @return string
+     */
+    public function getFoundationDate();
 
     /**
      * Set entity id
@@ -59,34 +74,50 @@ interface CustomerInterface
     public function setId($id);
 
     /**
-     * Set customer email
-     *
-     * @param string $email
-     * @return CustomerInterface
-     */
-    public function setEmail(string $email): CustomerInterface;
-
-    /**
-     * Set customer name
+     * Set manufacturer name
      *
      * @param string $name
-     * @return CustomerInterface
+     * @return ManufacturerInterface
      */
-    public function setName(string $name): CustomerInterface;
+    public function setName(string $name): ManufacturerInterface;
 
     /**
-     * Set customer surname
+     * Set manufacturer director name & surname
      *
-     * @param string $surname
-     * @return CustomerInterface
+     * @param string $director
+     * @return ManufacturerInterface
      */
-    public function setSurname(string $surname): CustomerInterface;
+    public function setDirector(string $director): ManufacturerInterface;
 
     /**
-     * Set some id
+     * Set manufacturer phone
      *
-     * @param int $phoneNumber
-     * @return CustomerInterface
+     * @param string $phoneNumber
+     * @return ManufacturerInterface
      */
-    public function setPhoneNumber(int $phoneNumber): CustomerInterface;
+    public function setPhoneNumber(string $phoneNumber): ManufacturerInterface;
+
+    /**
+     * Set manufacturer email
+     *
+     * @param string $email
+     * @return ManufacturerInterface
+     */
+    public function setEmail(string $email): ManufacturerInterface;
+
+    /**
+     * Set manufacturer email
+     *
+     * @param string $address
+     * @return ManufacturerInterface
+     */
+    public function setAddress(string $address): ManufacturerInterface;
+
+    /**
+     * Set manufacturer surname
+     *
+     * @param string $foundationDate
+     * @return ManufacturerInterface
+     */
+    public function setFoundationDate(string $foundationDate): ManufacturerInterface;
 }

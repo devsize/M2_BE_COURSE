@@ -1,10 +1,10 @@
 <?php
 
-namespace Slayer\Test\Model\ResourceModel\Customer;
+namespace Slayer\Mobile\Model\ResourceModel\Manufacturer;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
-use Slayer\Test\Model\CustomerModel;
-use Slayer\Test\Model\ResourceModel\Customer as CustomerResourceModel;
+use Slayer\Mobile\Model\ManufacturerModel;
+use Slayer\Mobile\Model\ResourceModel\Manufacturer as ManufacturerResourceModel;
 
 /**
  * Class Collection
@@ -14,13 +14,13 @@ class Collection extends AbstractCollection
     /**
      * {@inheritDoc}
      */
-    protected $_idFieldName = CustomerModel::ENTITY_ID;
+    protected $_idFieldName = ManufacturerModel::ENTITY_ID;
 
     protected function _construct()
     {
         $this->_init(
-            CustomerModel::class,
-            CustomerResourceModel::class
+            ManufacturerModel::class,
+            ManufacturerResourceModel::class
         );
     }
 }

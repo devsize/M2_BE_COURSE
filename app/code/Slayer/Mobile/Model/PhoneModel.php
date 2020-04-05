@@ -3,34 +3,35 @@
 namespace Slayer\Mobile\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Slayer\Mobile\Api\Data\ManufacturerInterface;
-use Slayer\Mobile\Model\ResourceModel\Manufacturer as ManufacturerResourceModel;
+use Slayer\Mobile\Api\Data\PhoneInterface;
+use Slayer\Mobile\Model\ResourceModel\Phone as PhoneResourceModel;
 
 /**
- * Class ManufacturerModel
+ * Class PhoneModel
  */
-class ManufacturerModel extends AbstractModel implements ManufacturerInterface
+class PhoneModel extends AbstractModel implements PhoneInterface
 {
-
     const ENTITY_ID = 'entity_id';
-    const NAME = 'name';
-    const DIRECTOR = 'director';
-    const PHONE_NUMBER = 'phone_number';
-    const EMAIL = 'email';
-    const ADDRESS = 'address';
-    const FOUNDATION_DATE = 'foundation_date';
+    const MANUFACTURER_ID = 'manufacturer_id';
+    const MODEL = 'model';
+    const OS = 'os';
+    const RESOLUTION = 'resolution';
+    const RAM = 'ram';
+    const CPU = 'cpu';
+    const BATTERY = 'battery';
+    const DESCRIPTION = 'description';
+    const RELEASED = 'released';
+    const PHOTO = 'photo';
+    const PRICE = 'price';
+    const CREATED_AT = 'created_at';
 
     /**
      * {@inheritdoc}
      */
     public function _construct()
     {
-        $this->_init(ManufacturerResourceModel::class);
+        $this->_init(PhoneResourceModel::class);
     }
-
-    /**
-     * GETTERS
-     */
 
     /**
      * {@inheritdoc}
@@ -43,49 +44,97 @@ class ManufacturerModel extends AbstractModel implements ManufacturerInterface
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getManufacturerId()
     {
-        return $this->getData(self::NAME);
+        return $this->getData(self::MANUFACTURER_ID);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDirector()
+    public function getModel()
     {
-        return $this->getData(self::DIRECTOR);
+        return $this->getData(self::MODEL);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getPhoneNumber()
+    public function getOs()
     {
-        return $this->getData(self::PHONE_NUMBER);
+        return $this->getData(self::OS);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getEmail()
+    public function getResolution()
     {
-        return $this->getData(self::EMAIL);
+        return $this->getData(self::RESOLUTION);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getAddress()
+    public function getRam()
     {
-        return $this->getData(self::ADDRESS);
+        return $this->getData(self::RAM);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getFoundationDate()
+    public function getCpu()
     {
-        return $this->getData(self::FOUNDATION_DATE);
+        return $this->getData(self::CPU);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBattery()
+    {
+        return $this->getData(self::BATTERY);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescription()
+    {
+        return $this->getData(self::DESCRIPTION);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getReleased()
+    {
+        return $this->getData(self::RELEASED);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPhoto()
+    {
+        return $this->getData(self::PHOTO);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPrice()
+    {
+        return $this->getData(self::PRICE);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreatedAt()
+    {
+        return $this->getData(self::CREATED_AT);
     }
 
     /**
@@ -99,48 +148,101 @@ class ManufacturerModel extends AbstractModel implements ManufacturerInterface
     /**
      * {@inheritdoc}
      */
-    public function setName(string $name): ManufacturerInterface
+    public function setManufacturerId(int $manufacturerId): PhoneInterface
     {
-        return $this->setData(self::NAME, $name);
+        return $this->setData(self::MANUFACTURER_ID, $manufacturerId);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setDirector(string $director): ManufacturerInterface
+    public function setModel(string $model): PhoneInterface
     {
-        return $this->setData(self::DIRECTOR, $director);
+        return $this->setData(self::MODEL, $model);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setPhoneNumber(string $phoneNumber): ManufacturerInterface
+    public function setOs(string $os): PhoneInterface
     {
-        return $this->setData(self::PHONE_NUMBER, $phoneNumber);
+        return $this->setData(self::OS, $os);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setEmail(string $email): ManufacturerInterface
+    public function setResolution(string $resolution): PhoneInterface
     {
-        return $this->setData(self::EMAIL, $email);
+        return $this->setData(self::RESOLUTION, $resolution);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setAddress(string $address): ManufacturerInterface
+    public function setRam(string $ram): PhoneInterface
     {
-        return $this->setData(self::ADDRESS, $address);
+        return $this->setData(self::RAM, $ram);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setFoundationDate(string $foundationDate): ManufacturerInterface
+    public function setCpu(string $cpu): PhoneInterface
     {
-        return $this->setData(self::FOUNDATION_DATE, $foundationDate);
+        return $this->setData(self::CPU, $cpu);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setBattery(string $battery): PhoneInterface
+    {
+        return $this->setData(self::BATTERY, $battery);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDescription(string $description): PhoneInterface
+    {
+        return $this->setData(self::DESCRIPTION, $description);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setReleased(string $released): PhoneInterface
+    {
+        return $this->setData(self::RELEASED, $released);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPhoto(string $photo): PhoneInterface
+    {
+        return $this->setData(self::PHOTO, $photo);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPrice(float $price): PhoneInterface
+    {
+        return $this->setData(self::PRICE, $price);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCreatedAt(string $createdAt): PhoneInterface
+    {
+        try {
+            $createdAtObject = new \DateTime($createdAt);
+            return $this->setData(self::CREATED_AT, $createdAtObject->format('Y-m-d H:i:s'));
+        } catch (\Exception $exception) {
+            $this->_logger->debug($exception);
+        }
     }
 }
