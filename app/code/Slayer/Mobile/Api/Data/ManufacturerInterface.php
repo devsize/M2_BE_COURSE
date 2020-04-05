@@ -11,7 +11,7 @@ interface ManufacturerInterface
     const ENTITY_ID = 'entity_id';
     const NAME = 'name';
     const DIRECTOR = 'director';
-    const PHONE_NUMBER = 'phone_number';
+    const PHONE_NUMBER = 'phone';
     const EMAIL = 'email';
     const ADDRESS = 'address';
     const FOUNDATION_DATE = 'foundation_date';

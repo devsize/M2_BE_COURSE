@@ -120,14 +120,6 @@ interface PhoneInterface
     public function setId($id);
 
     /**
-     * Set phone id
-     *
-     * @param int $userId
-     * @return PhoneInterface
-     */
-    public function setUserId(int $userId): PhoneInterface;
-
-    /**
      * Set manufacturer id
      *
      * @param int $manufacturerId

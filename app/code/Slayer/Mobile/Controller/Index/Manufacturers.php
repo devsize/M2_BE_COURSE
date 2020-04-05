@@ -10,7 +10,7 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
-class Index extends Action
+class Manufacturers extends Action
 {
 
     /**

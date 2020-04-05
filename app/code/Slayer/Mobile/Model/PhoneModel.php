@@ -11,20 +11,6 @@ use Slayer\Mobile\Model\ResourceModel\Phone as PhoneResourceModel;
  */
 class PhoneModel extends AbstractModel implements PhoneInterface
 {
-    const ENTITY_ID = 'entity_id';
-    const MANUFACTURER_ID = 'manufacturer_id';
-    const MODEL = 'model';
-    const OS = 'os';
-    const RESOLUTION = 'resolution';
-    const RAM = 'ram';
-    const CPU = 'cpu';
-    const BATTERY = 'battery';
-    const DESCRIPTION = 'description';
-    const RELEASED = 'released';
-    const PHOTO = 'photo';
-    const PRICE = 'price';
-    const CREATED_AT = 'created_at';
-
     /**
      * {@inheritdoc}
      */

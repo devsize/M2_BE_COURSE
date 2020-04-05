@@ -23,7 +23,7 @@ use Slayer\Mobile\Api\Data\PhoneInterface;
 class Manufacturer extends Template
 {
 
-    const PHONES_ACTION_ROUTE = 'mobile/manufacturer/phones';
+//    const PHONES_ACTION_ROUTE = 'mobile/manufacturer/phones';
 
     /**
      * @var ManufacturerCollectionFactory
@@ -36,14 +36,14 @@ class Manufacturer extends Template
     private $manufacturerCollection;
 
     /**
-     * @var ManufacturerInterface[]|null
+//     * @var ManufacturerInterface[]|null
      */
-    private $manufacturers;
+//    private $manufacturers;
 
     /**
-     * @var SearchCriteriaBuilder
+//     * @var SearchCriteriaBuilder
      */
-    private $searchCriteriaBuilder;
+//    private $searchCriteriaBuilder;
 
     /**
 //     * @var ManufacturerRepositoryInterface
@@ -51,32 +51,31 @@ class Manufacturer extends Template
 //    private $manufacturerRepository;
 
     /**
-     * @var SortOrderBuilder
+//     * @var SortOrderBuilder
      */
-    private $sortOrderBuilder;
+//    private $sortOrderBuilder;
 
     /**
      * @param Context $context
-     * @param ManufacturerModel $context
      * @param ManufacturerCollectionFactory $manufacturerCollectionFactory
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+//     * @param SearchCriteriaBuilder $searchCriteriaBuilder
 //     * @param ManufacturerRepositoryInterface $manufacturerRepository
-     * @param SortOrderBuilder $sortOrderBuilder
+//     * @param SortOrderBuilder $sortOrderBuilder
      * @param array $data
      */
     public function __construct(
         Context $context,
         ManufacturerCollectionFactory $manufacturerCollectionFactory,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
+//        SearchCriteriaBuilder $searchCriteriaBuilder,
 //        ManufacturerRepositoryInterface $manufacturerRepository,
-        SortOrderBuilder $sortOrderBuilder,
+//        SortOrderBuilder $sortOrderBuilder,
         array $data = []
     ) {
         parent::__construct($context, $data);
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+//        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->manufacturerCollectionFactory = $manufacturerCollectionFactory;
 //        $this->manufacturerRepository = $manufacturerRepository;
-        $this->sortOrderBuilder = $sortOrderBuilder;
+//        $this->sortOrderBuilder = $sortOrderBuilder;
     }
 
     /**
@@ -113,7 +112,7 @@ class Manufacturer extends Template
     /**
      * @return ManufacturerCollection|null
      */
-    public function getManufacturerCollection()
+    public function getManufacturersCollection()
     {
         return $this->manufacturerCollection;
     }

@@ -4,8 +4,8 @@
     <body>
         <referenceContainer name="main">
             <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
-                <block class="Slayer\Mobile\Block\Manufacturer" name="manufacturer.block"
-                       template="Slayer_Mobile::manufacturer-template.phtml">
+                <block class="Slayer\Mobile\Block\Phones" name="phones.block"
+                       template="Slayer_Mobile::phone-template.phtml">
                 </block>
             </container>
         </referenceContainer>
