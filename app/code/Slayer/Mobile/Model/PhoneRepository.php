@@ -10,30 +10,30 @@ use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Slayer\Mobile\Api\ManufacturerRepositoryInterface;
-use Slayer\Mobile\Api\Data\ManufacturerInterface;
-use Slayer\Mobile\Model\ManufacturerModelFactory;
-use Slayer\Mobile\Model\ResourceModel\Manufacturer\Collection;
-use Slayer\Mobile\Model\ResourceModel\Manufacturer\CollectionFactory as ManufacturerCollectionFactory;
-use Slayer\Mobile\Model\ResourceModel\Manufacturer as ManufacturerResource;
+use Slayer\Mobile\Api\PhoneRepositoryInterface;
+use Slayer\Mobile\Api\Data\PhoneInterface;
+use Slayer\Mobile\Model\PhoneModelFactory;
+use Slayer\Mobile\Model\ResourceModel\Phone\Collection;
+use Slayer\Mobile\Model\ResourceModel\Phone\CollectionFactory as PhoneCollectionFactory;
+use Slayer\Mobile\Model\ResourceModel\Phone as PhoneResource;
 
 /**
- * Class ManufacturerRepository
+ * Class PhoneRepository
  */
-class ManufacturerRepository implements ManufacturerRepositoryInterface
+class PhoneRepository implements PhoneRepositoryInterface
 {
     /**
-     * @var ManufacturerModelFactory
+     * @var PhoneModelFactory
      */
-    private $manufacturerFactory;
+    private $phoneFactory;
 
     /**
-     * @var ManufacturerCollectionFactory
+     * @var PhoneCollectionFactory
      */
-    private $manufacturerCollectionFactory;
+    private $phoneCollectionFactory;
 
     /**
-     * @var ManufacturerResource
+     * @var PhoneResource
      */
     private $resource;
 
@@ -48,21 +48,21 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
     private $collectionProcessor;
 
     /**
-     * @param ManufacturerModelFactory $manufacturerFactory
-     * @param ManufacturerCollectionFactory $manufacturerCollectionFactory
-     * @param ManufacturerResource $resource
+     * @param PhoneModelFactory $phoneFactory
+     * @param PhoneCollectionFactory $phoneCollectionFactory
+     * @param PhoneResource $resource
      * @param SearchResultsInterfaceFactory $searchResultsFactory
      * @param CollectionProcessorInterface $collectionProcessor
      */
     public function __construct(
-        ManufacturerModelFactory $manufacturerFactory,
-        ManufacturerCollectionFactory $manufacturerCollectionFactory,
-        ManufacturerResource $resource,
+        PhoneModelFactory $phoneFactory,
+        PhoneCollectionFactory $phoneCollectionFactory,
+        PhoneResource $resource,
         SearchResultsInterfaceFactory $searchResultsFactory,
         CollectionProcessorInterface $collectionProcessor
     ) {
-        $this->manufacturerFactory = $manufacturerFactory;
-        $this->manufacturerCollectionFactory = $manufacturerCollectionFactory;
+        $this->phoneFactory = $phoneFactory;
+        $this->phoneCollectionFactory = $phoneCollectionFactory;
         $this->resource = $resource;
         $this->searchResultsFactory = $searchResultsFactory;
         $this->collectionProcessor = $collectionProcessor;
@@ -71,31 +71,31 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function save(ManufacturerInterface $manufacturer): ManufacturerInterface
+    public function save(PhoneInterface $phone): PhoneInterface
     {
         try {
-            /** @var ManufacturerModel|ManufacturerInterface $manufacturer */
-            $this->resource->save($manufacturer);
+            /** @var PhoneModel|PhoneInterface $phone */
+            $this->resource->save($phone);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
 
-        return $manufacturer;
+        return $phone;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getById(int $manufacturerId): ManufacturerInterface
+    public function getById(int $phoneId): PhoneInterface
     {
-        /** @var ManufacturerModel|ManufacturerInterface $manufacturer */
-        $manufacturer = $this->manufacturerFactory->create();
-        $manufacturer->load($manufacturerId);
-        if (!$manufacturer->getId()) {
-            throw new NoSuchEntityException(__('Manufacturer entity with id `%1` does not exist.', $manufacturerId));
+        /** @var PhoneModel|PhoneInterface $phone */
+        $phone = $this->phoneFactory->create();
+        $phone->load($phoneId);
+        if (!$phone->getId()) {
+            throw new NoSuchEntityException(__('Phone entity with id `%1` does not exist.', $phoneId));
         }
 
-        return $manufacturer;
+        return $phone;
     }
 
     /**
@@ -104,7 +104,7 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
     public function getList(SearchCriteriaInterface $criteria): SearchResults
     {
         /** @var Collection $collection */
-        $collection = $this->manufacturerCollectionFactory->create();
+        $collection = $this->phoneCollectionFactory->create();
         $this->collectionProcessor->process($criteria, $collection);
 
         /** @var SearchResults $searchResults */
@@ -118,11 +118,11 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function delete(ManufacturerInterface $manufacturer): bool
+    public function delete(PhoneInterface $phone): bool
     {
         try {
-            /** @var ManufacturerModel $manufacturer */
-            $this->resource->delete($manufacturer);
+            /** @var PhoneModel $phone */
+            $this->resource->delete($phone);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__($exception->getMessage()));
         }
@@ -133,8 +133,8 @@ class ManufacturerRepository implements ManufacturerRepositoryInterface
     /**
      * {@inheritDoc}
      */
-    public function deleteById(int $manufacturerId): bool
+    public function deleteById(int $phoneId): bool
     {
-        return $this->delete($this->getById($manufacturerId));
+        return $this->delete($this->getById($phoneId));
     }
 }

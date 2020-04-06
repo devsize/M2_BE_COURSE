@@ -6,13 +6,12 @@ use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SearchResultsInterface;
-use Slayer\Mobile\Model\ManufacturerModel;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Slayer\Mobile\Api\Data\ManufacturerInterface;
-//use Slayer\Mobile\Api\ManufacturerRepositoryInterface;
+use Slayer\Mobile\Api\ManufacturerRepositoryInterface;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\Collection as ManufacturerCollection;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\CollectionFactory as ManufacturerCollectionFactory;
 use Slayer\Mobile\Api\Data\PhoneInterface;
@@ -26,56 +25,56 @@ class Manufacturer extends Template
 //    const PHONES_ACTION_ROUTE = 'mobile/manufacturer/phones';
 
     /**
-     * @var ManufacturerCollectionFactory
+//     * @var ManufacturerCollectionFactory
      */
-    private $manufacturerCollectionFactory;
+//    private $manufacturerCollectionFactory;
 
     /**
-     * @var ManufacturerCollection|null
+//     * @var ManufacturerCollection|null
      */
-    private $manufacturerCollection;
+//    private $manufacturerCollection;
 
     /**
-//     * @var ManufacturerInterface[]|null
+     * @var ManufacturerInterface[]|null
      */
-//    private $manufacturers;
+    private $manufacturers;
 
     /**
-//     * @var SearchCriteriaBuilder
+     * @var SearchCriteriaBuilder
      */
-//    private $searchCriteriaBuilder;
+    private $searchCriteriaBuilder;
 
     /**
-//     * @var ManufacturerRepositoryInterface
+     * @var ManufacturerRepositoryInterface
      */
-//    private $manufacturerRepository;
+    private $manufacturerRepository;
 
     /**
-//     * @var SortOrderBuilder
+     * @var SortOrderBuilder
      */
-//    private $sortOrderBuilder;
+    private $sortOrderBuilder;
 
     /**
      * @param Context $context
-     * @param ManufacturerCollectionFactory $manufacturerCollectionFactory
-//     * @param SearchCriteriaBuilder $searchCriteriaBuilder
-//     * @param ManufacturerRepositoryInterface $manufacturerRepository
-//     * @param SortOrderBuilder $sortOrderBuilder
+//     * @param ManufacturerCollectionFactory $manufacturerCollectionFactory
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param ManufacturerRepositoryInterface $manufacturerRepository
+     * @param SortOrderBuilder $sortOrderBuilder
      * @param array $data
      */
     public function __construct(
         Context $context,
-        ManufacturerCollectionFactory $manufacturerCollectionFactory,
-//        SearchCriteriaBuilder $searchCriteriaBuilder,
-//        ManufacturerRepositoryInterface $manufacturerRepository,
-//        SortOrderBuilder $sortOrderBuilder,
+//        ManufacturerCollectionFactory $manufacturerCollectionFactory,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        ManufacturerRepositoryInterface $manufacturerRepository,
+        SortOrderBuilder $sortOrderBuilder,
         array $data = []
     ) {
         parent::__construct($context, $data);
-//        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->manufacturerCollectionFactory = $manufacturerCollectionFactory;
-//        $this->manufacturerRepository = $manufacturerRepository;
-//        $this->sortOrderBuilder = $sortOrderBuilder;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+//        $this->manufacturerCollectionFactory = $manufacturerCollectionFactory;
+        $this->manufacturerRepository = $manufacturerRepository;
+        $this->sortOrderBuilder = $sortOrderBuilder;
     }
 
     /**
@@ -84,70 +83,45 @@ class Manufacturer extends Template
      */
     protected function _prepareLayout()
     {
-        if ($this->manufacturerCollection === null) {
-            $this->manufacturerCollection = $this->manufacturerCollectionFactory->create();
-            $this->manufacturerCollection->setOrder(ManufacturerModel::NAME, 'ASC');
-        }
-
 //        if ($this->manufacturerCollection === null) {
-//            /** @var SortOrder $sortOrder */
-//            $sortOrder = $this->sortOrderBuilder
-//                ->setField(ManufacturerModel::NAME)
-//                ->setDirection(SortOrder::SORT_ASC)
-//                ->create();
-//            /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
-//            $searchCriteria = $this->searchCriteriaBuilder
-//                ->addSortOrder($sortOrder)
-//                ->create();
-//            /** @var SearchResults $searchResults */
-//            $searchResults = $this->manufacturerRepository->getList($searchCriteria);
-//            if ($searchResults->getTotalCount() > 0) {
-//                $this->manufacturerCollection = $searchResults->getItems();
-//            }
+//            $this->manufacturerCollection = $this->manufacturerCollectionFactory->create();
+//            $this->manufacturerCollection->setOrder(ManufacturerModel::NAME, 'ASC');
 //        }
+
+        if ($this->manufacturers === null) {
+            $this->manufacturers = [];
+            try {
+                /** @var SortOrder $sortOrder */
+                $sortOrder = $this->sortOrderBuilder
+                    ->setField(ManufacturerInterface::NAME)
+                    ->setDirection(SortOrder::SORT_ASC)
+                    ->create();
+                /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
+                $searchCriteria = $this->searchCriteriaBuilder
+                    ->addSortOrder($sortOrder)
+                    ->create();
+                /** @var SearchResultsInterface $searchResults */
+                $searchResults = $this->manufacturerRepository->getList($searchCriteria);
+                if ($searchResults->getTotalCount() > 0) {
+                    $this->manufacturers = $searchResults->getItems();
+                }
+            } catch (\Exception $exception) {
+                $error = $exception->getMessage();
+                $text = 'Manufacturers loading has failed: message "%s"';
+                $message = sprintf($text, $error);
+                $this->_logger->debug($message);
+            }
+        }
 
         return parent::_prepareLayout();
     }
 
     /**
-     * @return ManufacturerCollection|null
+//     * @return ManufacturerCollection|null
      */
-    public function getManufacturersCollection()
-    {
-        return $this->manufacturerCollection;
-    }
-
-//    /**
-//     * {@inheritDoc}
-//     */
-//    protected function _prepareLayout()
+//    public function getManufacturersCollection()
 //    {
-//        if ($this->manufacturers === null) {
-//            $this->manufacturers = [];
-//            try {
-//                /** @var SortOrder $sortOrder */
-//                $sortOrder = $this->sortOrderBuilder
-//                    ->setField(ManufacturerInterface::NAME)
-//                    ->setDirection(SortOrder::SORT_ASC)
-//                    ->create();
-//                /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
-//                $searchCriteria = $this->searchCriteriaBuilder
-//                    ->addSortOrder($sortOrder)
-//                    ->create();
-//                /** @var SearchResultsInterface $searchResults */
-//                $searchResults = $this->manufacturerRepository->getList($searchCriteria);
-//                if ($searchResults->getTotalCount() > 0) {
-//                    $this->manufacturers = $searchResults->getItems();
-//                }
-//            } catch (\Exception $exception) {
-//                $error = $exception->getMessage();
-//                $text = 'Manufacturers loading has failed: message "%s"';
-//                $message = sprintf($text, $error);
-//                $this->_logger->debug($message);
-//            }
-//        }
-//
-//        return parent::_prepareLayout();
+//        return $this->manufacturerCollection;
 //    }
 
     /**
@@ -158,17 +132,17 @@ class Manufacturer extends Template
         return $this->manufacturers;
     }
 
-    /**
-     * @param string|int $id
-     * @return string
-     */
-    public function getPhonesUrl($id)
-    {
-        return $this->getUrl(
-            self::PHONES_ACTION_ROUTE,
-            [
-                PhoneInterface::ENTITY_ID => $id
-            ]
-        );
-    }
+//    /**
+//     * @param string|int $id
+//     * @return string
+//     */
+//    public function getPhonesUrl($id)
+//    {
+//        return $this->getUrl(
+//            self::PHONES_ACTION_ROUTE,
+//            [
+//                PhoneInterface::ENTITY_ID => $id
+//            ]
+//        );
+//    }
 }

@@ -1,28 +1,33 @@
 <?php
-use Slayer\Mobile\Model\ManufacturerModel;
 use Slayer\Mobile\Block\Manufacturer;
+use Slayer\Mobile\Api\Data\ManufacturerInterface;
+use Slayer\Mobile\Model\ManufacturerModel;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\Collection as ManufacturersCollection;
 
 /** @var Manufacturer $block */
 $blockName = $block->getNameInLayout();
-/** @var ManufacturersCollection $manufacturers */
-$manufacturers = $block->getManufacturersCollection();
+///** @var ManufacturersCollection $manufacturers */
+//$manufacturers = $block->getManufacturersCollection();
+/** @var ManufacturerInterface[] $manufacturers */
+$manufacturers = $block->getManufacturers();
 ?>
 
 <h1 class="manufacturer-block-name"><?= $blockName ?>!</h1>
 <div class="manufacturer-container">
-    <?php foreach ($manufacturers as $manufacturer): ?>
-        <?php /** @var ManufacturerModel $manufacturer */ ?>
-        <div class="manufacturer">
-            <h3 class="name">Name: <span><?= $manufacturer->getName() ?></span></h3>
-            <h3 class="surname">Surname: <span><?= $manufacturer->getDirector() ?></span></h3>
-            <h3 class="phone">Phone: +<span><?= $manufacturer->getPhoneNumber() ?></span></h3>
-            <h3 class="email">Email: <span><?= $manufacturer->getEmail() ?></span></h3>
-            <h3 class="address">Address: <span><?= $manufacturer->getAddress() ?></span></h3>
-            <h3 class="foundation-date">Foundation Date: <span><?= $manufacturer->getFoundationDate() ?></span></h3>
-            <p>
-            <a class="manufacturer-btn read-more" href="<?= $block->getUrl('mobile/index/manufacturers', ['manufacturer_id' => $manufacturer->getId()])?>">Read more about the <?= $manufacturer->getName() ?> Phones</a>
-            </p><hr>
-        </div><br>
-    <?php endforeach; ?>
+    <?php if ($manufacturers): ?>
+        <?php foreach ($manufacturers as $manufacturer): ?>
+            <?php /** @var ManufacturerModel $manufacturer */ ?>
+            <div class="manufacturer">
+                <h3 class="name"><?= $manufacturer->getName() ?></h3>
+                <h3 class="surname">Surname: <span><?= $manufacturer->getDirector() ?></span></h3>
+                <h3 class="phone">Phone: <span>+<?= $manufacturer->getPhoneNumber() ?></span></h3>
+                <h3 class="email">Email: <span><?= $manufacturer->getEmail() ?></span></h3>
+                <h3 class="address">Address: <span><?= $manufacturer->getAddress() ?></span></h3>
+                <h3 class="foundation-date">Foundation Date: <span><?= $manufacturer->getFoundationDate() ?></span></h3>
+                <p>
+                <a class="manufacturer-btn read-more" href="<?= $block->getUrl('mobile/index/manufacturers', ['manufacturer_id' => $manufacturer->getId()])?>">Read more about the <?= $manufacturer->getName() ?> Phones</a>
+                </p><hr>
+            </div><br>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>

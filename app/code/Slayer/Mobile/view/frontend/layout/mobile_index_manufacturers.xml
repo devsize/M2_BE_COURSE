@@ -4,7 +4,7 @@
     <body>
         <referenceContainer name="main">
             <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
-                <block class="Slayer\Mobile\Block\Phones" name="phones.block"
+                <block class="Slayer\Mobile\Block\Phone" name="phones.block"
                        template="Slayer_Mobile::phone-template.phtml">
                 </block>
             </container>
