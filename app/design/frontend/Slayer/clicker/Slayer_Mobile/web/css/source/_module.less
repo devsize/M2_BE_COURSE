@@ -1,7 +1,7 @@
 /** COMMON VARIABLES **/
 @font: normal 1em/1.2em Times, 'Helvetica Neue', sans-serif;
 @fw-bold: 600;
-@blue1: #06799F;
+@blue1: #26769f;
 @blue2: #06799F;
 @blue3: #4b75ba;
 @orange: #ce771a;
@@ -37,6 +37,14 @@
 
 /** COMMON STYLES **/
 & when (@media-common = true) {
+  .switcher-store, .switcher-language {
+    background: #ce771a;
+    padding: 0 5px;
+    border-radius: 2px;
+    .switcher-dropdown {
+      border-radius: 2px;
+    }
+  }
   .category-view {
     border: 1px solid #414e60;
     padding: 30px 20px;
@@ -50,16 +58,53 @@
     }
     h1.manufacturer-block-name {
       .headers(@color: @orange; @font-size: 2em; @text-align: center; @text-shadow: none);
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
-    .manufacturer > h3.name, .manufacturer > h3.model {
+    /*.manufacturer > span > span.currency {
+      color: @blue1;
+      font-size: @fw-bold;
+    }*/
+    /*.manufacturer > h3.name, .manufacturer > h3.model {
       .headers();
-    }
-    h1::first-letter {
-      text-transform: uppercase;
-    }
+    }*/
+    //h1::first-letter {
+    //  text-transform: uppercase;
+    //}
     .manufacturer-container {
       padding: 5px;
-      h3.price {
+      a {
+        .manufacturer-btn();
+      }
+      .manufacturer {
+        h3 {
+          font-size: 1.6em;
+          font-weight: @fw-bold;
+          color: @orange;
+          span {
+            color: @black;
+            text-shadow: none;
+            font-size: 0.75em;
+            font-weight: @fw-bold;
+          }
+          b.currency {
+            color: @blue1;
+            font-size: @font-size * 1.2;
+          }
+        }
+        h3.name, h3.model {
+          .headers();
+        }
+        .manufacturer-left {
+          text-align: right;
+          padding-right: 20px;
+          h3.price {
+            margin-right: 116px;
+          }
+        }
+      }
+      /*h3.price {
         margin-right: 135px;
       }
       h3 {
@@ -72,15 +117,15 @@
           font-size: 0.75em;
           font-weight: @fw-bold;
         }
-      }
-      .manufacturer > .manufacturer-left {
+      }*/
+      /*.manufacturer > .manufacturer-left {
         text-align: right;
         padding-right: 20px;
-      }
+      }*/
 
-      a {
+      /*a {
         .manufacturer-btn();
-      }
+      }*/
     }
   }
 

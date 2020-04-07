@@ -8,9 +8,17 @@
                 type="Slayer\Mobile\Model\PhoneRepository"/>
     <preference for="Slayer\Mobile\Api\Data\PhoneInterface"
                 type="Slayer\Mobile\Model\PhoneModel"/>
-    <!--<preference for="Slayer\Mobile\Api\PhonesServiceInterface"
-                type="Slayer\Mobile\Model\PhonesService"/>-->
 
+    <type name="Magento\Directory\Model\Currency\Import\Config">
+        <arguments>
+            <argument name="servicesConfig" xsi:type="array">
+                <item name="currencyLayer" xsi:type="array">
+                    <item name="label" xsi:type="string">Currency Layer</item>
+                    <item name="class" xsi:type="string">Slayer\Mobile\Model\Currency\Import\CurrencyLayer</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
     <!--<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

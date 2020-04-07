@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="currency">
+            <group id="currencyLayer" translate="label" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Currency Layer</label>
+                    <field id="apikey" translate="label" type="password" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>API Key</label>
+                        <comment>Please sign up a free api key in here https://currencylayer.com/product</comment>
+                        <config_path>currency/currencyLayer/apikey</config_path>
+                        <validate>required-entry validate-length minimum-length-30 maximum-length-35</validate>
+                    </field>
+                <field id="timeout" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Connection Timeout in Seconds</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
