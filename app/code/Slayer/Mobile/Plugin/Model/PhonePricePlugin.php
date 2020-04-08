@@ -2,6 +2,7 @@
 
 namespace Slayer\Mobile\Plugin\Model;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
 use Magento\Directory\Model\Currency;
 use Magento\Directory\Model\CurrencyFactory;
@@ -45,7 +46,7 @@ class PhonePricePlugin extends Template
     /**
      * @param $amountValue
      * @return float|int
-     * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     private function convertPrice($amountValue)
     {
@@ -58,11 +59,12 @@ class PhonePricePlugin extends Template
                     $amountValue = $amountValue * $rate;
                 }
             }
-        } catch (\Exception $exception) {
-            $error = $exception->getMessage();
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
             $text = 'Error happened during currency loading."%s"';
             $message = sprintf($text, $error);
             $this->_logger->debug($message);
+            throw new LocalizedException(__($message));
         }
         return $amountValue;
     }
@@ -70,6 +72,7 @@ class PhonePricePlugin extends Template
     /**
      * @param PhoneInterface $subject
      * @param $result
+     * @throws LocalizedException
      */
     public function afterGetPrice(PhoneInterface $subject, $result)
     {
@@ -78,8 +81,8 @@ class PhonePricePlugin extends Template
                 $result = round($this->convertPrice($result), 2);
                 $currencySymbol = $this->_currency->getCurrencySymbol();
             }
-        } catch (\Exception $exception) {
-            $exception->getMessage();
+        } catch (\Exception $e) {
+            throw new LocalizedException(__($e->getMessage()));
         }
         echo "$result <b class=\"currency\"> &nbsp;$currencySymbol</b>";
     }

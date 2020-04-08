@@ -78,6 +78,7 @@ class Phone extends Template
                 /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
                 $searchCriteria = $this->searchCriteriaBuilder
                     ->addFilter(PhoneInterface::MANUFACTURER_ID, $manufacturerId)
+                    ->addFilter('released', null, 'neq')
                     ->addSortOrder($sortOrder)
                     ->create();
                 /** @var SearchResultsInterface $searchResults */

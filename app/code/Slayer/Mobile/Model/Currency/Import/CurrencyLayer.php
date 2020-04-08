@@ -16,8 +16,7 @@ class CurrencyLayer extends \Magento\Directory\Model\Currency\Import\AbstractImp
     /**
      * @var string
      */
-    const CURRENCY_CONVERTER_URL = 'http://apilayer.net/api/live?access_key={{API_KEY}}&currencies={{CURRENCY_TO}}
-                                    &source={{CURRENCY_FROM}}&format=1';
+    const CURRENCY_CONVERTER_URL = 'http://apilayer.net/api/live?access_key={{API_KEY}}&currencies={{CURRENCY_TO}}&source={{CURRENCY_FROM}}&format=1';
 
     /** @var Data */
     protected $jsonHelper;

@@ -119,7 +119,7 @@ class Manufacturer extends Template
     /**
 //     * @return ManufacturerCollection|null
      */
-//    public function getManufacturersCollection()
+//    public function getManufacturerCollection()
 //    {
 //        return $this->manufacturerCollection;
 //    }

@@ -55,7 +55,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '2019 Sep 21, Smartphone, 71.4x144x8.1 mm, iOS, Apple A13 Bionic APL1085 / APL1W85 (T8030), 4.00 GiB RAM, 512.0 GB ROM, 1-notch, 5.8 inch, 1125x2436, AM-OLED display, Dual standby operation, NFC (A), NFC (B), FeliCa, GPS, 12.2 MP camera, 12.2 MP aux. camera, 12.2 MP aux. 2 camera, 12.2 MP 2nd camera, Light sensor, Proximity sensor, Barometer, 3046 mAh battery',
                 'released' => '2019-09-00',
                 'photo' => 'iphone11pro.jpg',
-                'price' => 46999,
+                'price' => 1678.5311,
                 'created_at' => '',
             ],
             [
@@ -70,7 +70,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '2019 Sep 21, Smartphone, 77.8x158x8.1 mm, iOS, Apple A13 Bionic APL1085 / APL1W85 (T8030), 4.00 GiB RAM, 512.0 GB ROM, 1-notch, 6.5 inch, 1242x2688, AM-OLED display, Dual standby operation, NFC (A), NFC (B), GPS, 12.2 MP camera, 12.2 MP aux. camera, 12.2 MP aux. 2 camera, 12.2 MP 2nd camera, Light sensor, Proximity sensor, Barometer, 3969 mAh battery',
                 'released' => '2019-09-00',
                 'photo' => 'iphone11pro_max.jpg',
-                'price' => 39999,
+                'price' => 1428.53,
                 'created_at' => '',
             ],
             [
@@ -85,7 +85,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '2017 Oct, Smartphone, 78.1x158.4x7.5 mm, iOS, Apple A11 Bionic APL1072 / APL1W72 (T8015), 3.00 GiB RAM, 256.0 GB ROM, 5.5 inch, 1080x1920, Color IPS TFT LCD display, NFC (A), NFC (B), GPS, 12.2 MP camera, 12.2 MP aux. camera, 7.2 MP 2nd camera, Light sensor, Proximity sensor, Barometer, Fingerprint sensor, 2675 mAh battery',
                 'released' => '2017-09-00',
                 'photo' => 'iphone8plus.jpg',
-                'price' => 19499,
+                'price' => 696.39,
                 'created_at' => '',
             ],
             [
@@ -100,7 +100,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => 'NEW 2020 Feb 3, Smartphone, 76.1x163.7x8.7 mm, Android, Samsung Exynos 9 Octa 9810, 6.00 GiB RAM, 128.0 GB ROM, 1-hole, 6.7 inch, 1080x2400, AM-OLED display, Dual standby operation, NFC (A), NFC (B), GPS, 12.2 MP camera, 12.2 MP aux. camera, 12.2 MP aux. 2 camera, 32.0 MP 2nd camera, Light sensor, Proximity sensor, Hall, In-screen fingerprint sensor, 4500 mAh battery',
                 'released' => '2020-02-03',
                 'photo' => 'samsung_galaxy_note10ls.jpg',
-                'price' => 18999,
+                'price' => 678.53,
                 'created_at' => '',
             ],
             [
@@ -115,7 +115,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => 'NEW 2020 Feb 3, Smartphone, 76.1x163.7x8.7 mm, Android, Samsung Exynos 9 Octa 9810, 8.00 GiB RAM, 128.0 GB ROM, 1-hole, 6.7 inch, 1080x2400, AM-OLED display, Dual standby operation, NFC (A), NFC (B), GPS, 12.2 MP camera, 12.2 MP aux. camera, 12.2 MP aux. 2 camera, 32.0 MP 2nd camera, Light sensor, Proximity sensor, Hall, In-screen fingerprint sensor, 4500 mAh battery',
                 'released' => '2020-02-03',
                 'photo' => 'samsung_galaxy_note10lp.jpg',
-                'price' => 26999,
+                'price' => 964.25,
                 'created_at' => '',
             ],
             [
@@ -130,7 +130,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '2018 Aug 22, Smartphone, 76.4x161.9x8.8 mm, Android, Samsung Exynos 9 Octa 9810, 8.00 GiB RAM, 512.0 GB ROM, 6.4 inch, 1440x2960, AM-OLED display, Dual standby operation, NFC (A), NFC (B), GPS, 12.2 MP camera, 12.2 MP aux. camera, 8.0 MP 2nd camera, Light sensor, Proximity sensor, Barometer, Hall, Gesture sensor, Fingerprint sensor, Heart rate sensor, Iris scanner, 4000 mAh battery',
                 'released' => '2018-08-22',
                 'photo' => 'samsung_galaxy_note9.jpg',
-                'price' => 19095,
+                'price' => 681.96,
                 'created_at' => '',
             ],
             [
@@ -145,7 +145,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => 'UPCOMING 2020 May, Smartphone, 69x157x8.2 mm, Android, Qualcomm Snapdragon 665 SM6125 (Trinket), 4.00 GiB RAM, 64.0 GB ROM, 6 inch, 1080x2520, AM-OLED display, NFC (A), NFC (B), GPS, 12.2 MP camera, 8.0 MP aux. camera, 8.0 MP aux. 2 camera, 8.0 MP 2nd camera, Light sensor, Proximity sensor, Fingerprint sensor, Step counter, 3600 mAh battery',
                 'released' => '2020-05-00',
                 'photo' => 'sony_xperia10ll.jpg',
-                'price' => 11600.03,
+                'price' => 414.28,
                 'created_at' => '',
             ],
             [
@@ -159,8 +159,8 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'battery' => 'Li-ion 4000 mAh battery',
                 'description' => 'UPCOMING 2020 May, Smartphone, 72x166x7.9 mm, Android, Qualcomm Snapdragon 865 SM8250 (Kona), 8.00 GiB RAM, 256.0 GB ROM, 6.5 inch, 1644x3840, AM-OLED display, NFC (A), NFC (B), ISDB-T 1-Seg, ISDB-T Full-Seg receiver, GPS, 12.2 MP camera, 12.2 MP aux. camera, 12.2 MP aux. 2 camera, 8.0 MP 2nd camera, Light sensor, Proximity sensor, Fingerprint sensor, 4000 mAh battery',
                 'released' => '2020-05-00',
-                'photo' => 'sony_xperia10ll5g.jpg',
-                'price' => 24440,
+                'photo' => 'sony_xperia1ll5g.jpg',
+                'price' => 872.85,
                 'created_at' => '',
             ],
             [
@@ -174,8 +174,8 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'battery' => 'Li-ion 3600 mAh battery',
                 'description' => '',
                 'released' => '2020-04-00',
-                'photo' => 'sony_xperia1llgds.jpg',
-                'price' => 11600,
+                'photo' => 'sony_xperia10llgds.jpg',
+                'price' => 414.28,
                 'created_at' => '',
             ],
             [
@@ -190,7 +190,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => 'NEW 2020 Apr 4, Smartphone, 75.4x163.3x8.9 mm, Android, Qualcomm Snapdragon 865 SM8250 (Kona), 8.00 GiB RAM, 256.0 GB ROM, 6.7 inch, 1080x2400, AM-OLED display, Dual standby operation, NFC (A), NFC (B), IR: Yes, GPS, 63.7 MP camera, 13.0 MP aux. camera, 8.0 MP aux. 2 camera, 1.9 MP aux. 3 camera, 19.7 MP 2nd camera, Light sensor, Proximity sensor, Barometer, Hall, In-screen fingerprint sensor, 4700 mAh battery',
                 'released' => '2020-04-04',
                 'photo' => 'xiaomi_redmik30_pro.jpg',
-                'price' => 10339,
+                'price' => 369.25,
                 'created_at' => '',
             ],
             [
@@ -205,7 +205,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2020-03-26',
                 'photo' => 'xiaomi_redmi_note9_pro_max.jpg',
-                'price' => 10000,
+                'price' => 357.14,
                 'created_at' => '',
             ],
             [
@@ -220,7 +220,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2020-03-17',
                 'photo' => 'xiaomi_redmi_note9_pro_dual.jpg',
-                'price' => 9500.37,
+                'price' => 339.29,
                 'created_at' => '',
             ],
             [
@@ -235,7 +235,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2020-04-00',
                 'photo' => 'huawei_mate_xs.jpg',
-                'price' => 10000,
+                'price' => 357.14,
                 'created_at' => '',
             ],
             [
@@ -250,7 +250,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2020-03-00',
                 'photo' => 'huawei_honor_view_30pro.jpg',
-                'price' => 9000,
+                'price' => 321.42,
                 'created_at' => '',
             ],
             [
@@ -265,7 +265,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2020-03-06',
                 'photo' => 'huawei_p40_lite.jpg',
-                'price' => 4000,
+                'price' => 142.85,
                 'created_at' => '',
             ],
             [
@@ -280,7 +280,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2019-12-11',
                 'photo' => 'asus_rog_phonell_ue.jpg',
-                'price' => 25999,
+                'price' => 928.53,
                 'created_at' => '',
             ],
             [
@@ -295,7 +295,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2019-09-21',
                 'photo' => 'asus_rog_phonell_gd.jpg',
-                'price' => 16977,
+                'price' => 606.32,
                 'created_at' => '',
             ],
             [
@@ -310,7 +310,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'description' => '',
                 'released' => '2019-07-00',
                 'photo' => 'asus_zenfone6.jpg',
-                'price' => 21066.92,
+                'price' => 752.39,
                 'created_at' => '',
             ],
         ];
