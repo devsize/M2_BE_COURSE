@@ -1,10 +1,9 @@
 <?php
 
-namespace Slayer\Test\ViewModel;
+namespace Slayer\Mobile\ViewModel;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class ExtraInfo
@@ -41,7 +40,7 @@ class ExtraInfo implements ArgumentInterface
             $date = new \DateTime('now');
             $result = $date->format('d-M-yy');
         } catch (\Exception $exception) {
-            //logger->debug();
+            $this->logger->debug($exception);
         }
 
         return $result;
@@ -56,7 +55,7 @@ class ExtraInfo implements ArgumentInterface
         try {
             $result = $this->scopeConfig->isSetFlag(self::SHOW_TITLE);
         } catch (\Exception $exception) {
-            // logger->debug();
+             $this->logger->debug($exception);
         }
 
         return $result;
@@ -71,27 +70,11 @@ class ExtraInfo implements ArgumentInterface
         try {
             $result = $this->scopeConfig->getValue(self::CUSTOM_TITLE);
         } catch (\Exception $exception) {
-            // logger->debug();
+            $this->logger->debug($exception);
         }
 
         return $result;
     }
-
-    /**
-     * @return string
-     */
-//    public function getOrderDate()
-//    {
-//        $result = '';
-//        try {
-//            $date = new \DateTime();
-//            $result = $date->format('d-M-yy');
-//        } catch (\Exception $exception) {
-//             logger->debug();
-//        }
-//
-//        return $result;
-//    }
 
     /**
      * @return bool

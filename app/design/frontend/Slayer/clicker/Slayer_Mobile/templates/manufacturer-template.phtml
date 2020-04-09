@@ -2,15 +2,21 @@
 use Slayer\Mobile\Block\Manufacturer;
 use Slayer\Mobile\Api\Data\ManufacturerInterface;
 use Slayer\Mobile\Model\ManufacturerModel;
+use Slayer\Mobile\ViewModel\ExtraInfo;
 
 /** @var Manufacturer $block */
 $blockName = $block->getNameInLayout();
 /** @var ManufacturerInterface[] $manufacturers */
 $manufacturers = $block->getManufacturers();
+/** @var ExtraInfo $viewModel */
+$viewModel = $block->getData('view_model');
 ?>
 
 <h1 class="manufacturer-block-name"><?= $blockName ?>!</h1>
 <div class="manufacturer-container">
+    <?php if ($viewModel && $viewModel->getCurrentDate()): ?>
+        <h3 class="view-model"><?= __('Now is ')?><span><?= __($viewModel->getCurrentDate()) ?></span></h3>
+    <?php endif; ?>
     <?php if (!empty($manufacturers)): ?>
         <?php foreach ($manufacturers as $manufacturer): ?>
             <?php /** @var ManufacturerModel $manufacturer */ ?>
