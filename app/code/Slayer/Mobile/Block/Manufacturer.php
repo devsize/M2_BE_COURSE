@@ -2,6 +2,7 @@
 
 namespace Slayer\Mobile\Block;
 
+use Magento\Catalog\Model\Product\ProductList\Toolbar as ToolbarModel;
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
@@ -12,9 +13,12 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Slayer\Mobile\Api\Data\ManufacturerInterface;
 use Slayer\Mobile\Api\ManufacturerRepositoryInterface;
+use Magento\Framework\App\Request\Http;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\Collection as ManufacturerCollection;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\CollectionFactory as ManufacturerCollectionFactory;
 use Slayer\Mobile\Api\Data\PhoneInterface;
+use Slayer\Mobile\Model\ManufacturerModel;
+use Slayer\Mobile\ViewModel\MobileViewModel;
 
 /**
  * Class Manufacturer
@@ -22,17 +26,22 @@ use Slayer\Mobile\Api\Data\PhoneInterface;
 class Manufacturer extends Template
 {
 
-//    const PHONES_ACTION_ROUTE = 'mobile/manufacturer/phones';
+    const PHONES_ACTION_ROUTE = 'mobile/manufacturer/phones';
 
     /**
-//     * @var ManufacturerCollectionFactory
+     * @var ManufacturerCollectionFactory
      */
-//    private $manufacturerCollectionFactory;
+    private $manufacturerCollectionFactory;
 
     /**
-//     * @var ManufacturerCollection|null
+     * @var ManufacturerCollection|null
      */
-//    private $manufacturerCollection;
+    private $manufacturerCollection;
+
+    /**
+     * @var MobileViewModel
+     */
+    private $viewModel;
 
     /**
      * @var ManufacturerInterface[]|null
@@ -56,7 +65,8 @@ class Manufacturer extends Template
 
     /**
      * @param Context $context
-//     * @param ManufacturerCollectionFactory $manufacturerCollectionFactory
+     * @param MobileViewModel $viewModel
+     * @param ManufacturerCollectionFactory $manufacturerCollectionFactory
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param ManufacturerRepositoryInterface $manufacturerRepository
      * @param SortOrderBuilder $sortOrderBuilder
@@ -64,15 +74,17 @@ class Manufacturer extends Template
      */
     public function __construct(
         Context $context,
-//        ManufacturerCollectionFactory $manufacturerCollectionFactory,
+        MobileViewModel $viewModel,
+        ManufacturerCollectionFactory $manufacturerCollectionFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         ManufacturerRepositoryInterface $manufacturerRepository,
         SortOrderBuilder $sortOrderBuilder,
         array $data = []
     ) {
         parent::__construct($context, $data);
+        $this->viewModel = $viewModel;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-//        $this->manufacturerCollectionFactory = $manufacturerCollectionFactory;
+        $this->manufacturerCollectionFactory = $manufacturerCollectionFactory;
         $this->manufacturerRepository = $manufacturerRepository;
         $this->sortOrderBuilder = $sortOrderBuilder;
     }
@@ -88,23 +100,37 @@ class Manufacturer extends Template
 //            $this->manufacturerCollection->setOrder(ManufacturerModel::NAME, 'ASC');
 //        }
 
+        /** @var Http $request */
+        $request = $this->getRequest();
+        $sort = (int)$request->getParam(ManufacturerModel::SORT);
         if ($this->manufacturers === null) {
             $this->manufacturers = [];
             try {
-                /** @var SortOrder $sortOrder */
-                $sortOrder = $this->sortOrderBuilder
+                if ($sort != 1) {
+                    /** @var SortOrder $sortOrder */
+                    $sortOrder = $this->sortOrderBuilder
                     ->setField(ManufacturerInterface::NAME)
                     ->setDirection(SortOrder::SORT_ASC)
                     ->create();
+                } else {
+                    /** @var SortOrder $sortOrder */
+                    $sortOrder = $this->sortOrderBuilder
+                        ->setField(ManufacturerInterface::NAME)
+                        ->setDirection(SortOrder::SORT_DESC)
+                        ->create();
+                }
+
                 /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
-                $searchCriteria = $this->searchCriteriaBuilder
-                    ->addSortOrder($sortOrder)
-                    ->create();
+                    $searchCriteria = $this->searchCriteriaBuilder
+                        ->addSortOrder($sortOrder)
+                        ->create();
+
                 /** @var SearchResultsInterface $searchResults */
                 $searchResults = $this->manufacturerRepository->getList($searchCriteria);
                 if ($searchResults->getTotalCount() > 0) {
                     $this->manufacturers = $searchResults->getItems();
                 }
+
             } catch (\Exception $exception) {
                 $error = $exception->getMessage();
                 $text = 'Manufacturers loading has failed: message "%s"';
@@ -117,12 +143,26 @@ class Manufacturer extends Template
     }
 
     /**
-//     * @return ManufacturerCollection|null
+     * @return int
      */
-//    public function getManufacturerCollection()
-//    {
-//        return $this->manufacturerCollection;
-//    }
+    public function changeSortOrder()
+    {
+        $param = (int)$this->getRequest()->getParam(ManufacturerModel::SORT);
+        $count = (int)$this->getRequest()->getParam(MobileViewModel::MANUFACTURERS_COUNT);
+        if ($param == 1) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    /**
+     * @return ManufacturerCollection|null
+     */
+    public function getManufacturerCollection()
+    {
+        return $this->manufacturerCollection;
+    }
 
     /**
      * @return ManufacturerInterface[]|null
@@ -132,17 +172,17 @@ class Manufacturer extends Template
         return $this->manufacturers;
     }
 
-//    /**
-//     * @param string|int $id
-//     * @return string
-//     */
-//    public function getPhonesUrl($id)
-//    {
-//        return $this->getUrl(
-//            self::PHONES_ACTION_ROUTE,
-//            [
-//                PhoneInterface::ENTITY_ID => $id
-//            ]
-//        );
-//    }
+    /**
+     * @param string|int $id
+     * @return string
+     */
+    public function getPhonesUrl($id)
+    {
+        return $this->getUrl(
+            self::PHONES_ACTION_ROUTE,
+            [
+                PhoneInterface::MANUFACTURER_ID => $id
+            ]
+        );
+    }
 }

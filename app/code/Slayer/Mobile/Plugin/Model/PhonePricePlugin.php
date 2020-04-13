@@ -2,14 +2,15 @@
 
 namespace Slayer\Mobile\Plugin\Model;
 
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\View\Element\Template;
 use Magento\Directory\Model\Currency;
 use Magento\Directory\Model\CurrencyFactory;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Slayer\Mobile\Api\Data\PhoneInterface;
-use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Backend\Block\Template\Context;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\View\Element\Template;
+use Slayer\Mobile\Api\Data\PhoneInterface;
+
 
 class PhonePricePlugin extends Template
 {
@@ -18,12 +19,17 @@ class PhonePricePlugin extends Template
     protected $_currency;
 
     /**
+     * @var EventManager
+     */
+    private $eventManager;
+
+    /**
      * @var CurrencyFactory
      */
     protected $currencyFactory;
 
     /**
-     *
+     * @param EventManager $eventManager
      * @param Context $context
      * @param Currency $currency
      * @param CurrencyFactory $currencyFactory
@@ -32,11 +38,13 @@ class PhonePricePlugin extends Template
      */
     public function __construct(
         Context $context,
+        EventManager $eventManager,
         Currency $currency,
         CurrencyFactory $currencyFactory,
         StoreManagerInterface $storeManager,
         array $data = []
     ) {
+        $this->eventManager = $eventManager;
         $this->_currency = $currency;
         $this->_storeManager = $storeManager;
         $this->currencyFactory = $currencyFactory;
@@ -57,6 +65,7 @@ class PhonePricePlugin extends Template
                 if ($currentCurrency != $baseCurrency) {
                     $rate = $this->_storeManager->getStore()->getCurrentCurrencyRate();
                     $amountValue = $amountValue * $rate;
+                    $this->eventManager->dispatch('add_currency_logic_after');
                 }
             }
         } catch (\Exception $e) {

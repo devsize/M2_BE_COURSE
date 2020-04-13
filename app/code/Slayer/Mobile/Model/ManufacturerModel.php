@@ -10,6 +10,7 @@ use Slayer\Mobile\Model\ResourceModel\Manufacturer as ManufacturerResourceModel;
  * Class ManufacturerModel
  */
 class ManufacturerModel extends AbstractModel implements ManufacturerInterface
+
 {
 
     /**
