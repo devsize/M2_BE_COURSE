@@ -37,6 +37,57 @@
   text-shadow: @text-shadow;
 }
 
+/** MOBILE STYLES **/
+& when (@media-target = 'mobile') {
+  @media only screen and (max-width: (@screen__xs - 1)) {
+    .category-view {
+      .manufacturer-container {
+        div.manufacturers-sort {
+          position: relative;
+          right: 50px;
+          .manufacturers-list {
+            margin-left: 23%;
+            margin-top: 10px;
+            option {
+              font-size: @font-size;
+            }
+          }
+          .manufacturers-list-placeholder {
+            display: none;
+          }
+
+          .manufacturer-name-sorter {
+            margin-left: -160px;
+            margin-right: -42px;
+            margin-top: 10px;
+            width: 30px;
+            height: 43px;
+            overflow-wrap: break-word;
+            overflow: hidden;
+          }
+        }
+        p.link {
+          a.manufacturer-btn, a.go-back {
+            font-size: @font-size * 1.45;
+            margin-left: 7%;
+          }
+        }
+        h3.model {
+          font-size: 1.8em !important;
+        }
+        .manufacturer-left {
+          h3.price {
+            margin-right: 0 !important;
+          }
+        }
+        a.go-back-mobile {
+          font-size: 1.75em !important;
+        }
+      }
+    }
+  }
+}
+
 /** COMMON STYLES **/
 & when (@media-common = true) {
 
@@ -53,6 +104,7 @@
   }
 
   .category-view {
+    position: relative;
     padding: 30px 20px;
     border-radius: 8px;
     box-shadow: @bs;
@@ -94,21 +146,6 @@
           .manufacturer-btn();
         }
 
-        a.manufacturer-name-sorter {
-          display: block;
-          width: auto;
-          padding: 9px 8px;
-          font-size: 1.25em;
-          color: @grey;
-          cursor: pointer;
-          border-radius: 8px;
-          float: right;
-          border: 1px solid #cccccc;
-          &:hover {
-            background-color: @grey;
-            color: @white;
-          }
-        }
         h3.view-model {
           font-size: 1.25em;
           span {
@@ -119,32 +156,67 @@
 
         .manufacturers-sort {
           position: absolute;
-          top: 379px;
-          right: 203px;
+          top: 3%;
+          right: 4%;
 
           select.manufacturers-list {
-            height: 3em;
             width: auto;
-            padding: 7px 30px 7px 10px;
+            padding: 7px 30px 5px 10px;
             line-height: 1.3em;
             font-size: @font-size;
             color: @grey;
             cursor: pointer;
             border-radius: 8px;
             border: 1px solid #cccccc;
-            option:hover {
+            &:hover {
               background-color: @grey;
               color: @white;
             }
+            option {
+              display: block;
+              &:hover {
+                background-color: @white;
+                color: @grey;
+              }
+              &:nth-child(1) {
+                border-radius: 8px 8px 0px 0px;
+                -moz-border-radius: 8px 8px 0px 0px;
+                -webkit-border-radius: 8px 8px 0px 0px;
+                border: 0px solid #6e716e;
+              }
+              &:nth-child(10) {
+                border-radius: 0px 0px 8px 8px;
+                -moz-border-radius: 0px 0px 8px 8px;
+                -webkit-border-radius: 0px 0px 8px 8px;
+                border: 0px solid #6e716e;
+              }
+            }
           }
 
-          h3.manufacturers-list-placeholder {
-            font-size: @font-size;
+          .manufacturers-list-placeholder {
+            font-size: 0.8em;
             margin-top: 8px;
             margin-left: 5px;
             width: 225px;
             word-wrap: break-word;
             color: @grey;
+          }
+
+          .manufacturer-name-sorter {
+            display: block;
+            width: auto;
+            margin-right: 1%;
+            padding: 8px;
+            font-size: @font-size;
+            color: @grey;
+            cursor: pointer;
+            border-radius: 8px;
+            float: right;
+            border: 1px solid #cccccc;
+            &:hover {
+              background-color: @grey;
+              color: @white;
+            }
           }
         }
 
@@ -177,128 +249,10 @@
             text-align: right;
             padding-right: 20px;
             h3.price {
-              margin-right: 116px;
-            }
-          }
-        }
-
-      }
-  }
-
-  /*.cms-plp-conteiner {
-    position: relative;
-    height: 35px;
-    margin-bottom: 15px;
-    .cms-plp-block {
-      border: 1px solid #dadada;
-      color: #333333;
-      padding: 5px 5px 5px 17px;
-      font-size: 0.9em;
-      background: #f0f0f0;
-    }
-
-    .plp-btn {
-      position: absolute;
-      border: 1px solid #00000045;
-      padding: 0;
-      top: 5px;
-      right: 5px;
-
-      a {
-        display: block;
-        width: 35px;
-        text-decoration: none;
-        padding: 0 5px 0 5px;
-        background: #f0f0f0;
-        color: #0000005e;
-        line-height: 1.2em;
-        font-size: 1em;
-      }
-
-      a:hover {
-        background: #0000005e;
-        color: #ffffff;
-      }
-    }
-  }
-
-  #customers-list {
-    width: auto;
-    padding: 5px 30px 5px 5px;
-    border-radius: 3px;
-  }
-  #customers-list:nth-last-child {
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-  }
-
-  .customers {
-    &.container {
-      position: relative;
-
-      #orders-container {
-        display: block;
-        position: fixed;
-        right: 0;
-        top: 0;
-        z-index: 10;
-        width: 500px;
-        background-color: aliceblue;
-        height: 100%;
-
-        .orders.items {
-          position: relative;
-          padding: 40px 25px;
-
-          .close {
-            display: block;
-            position: absolute;
-            top: 40px;
-            right: 25px;
-            font-weight: 600;
-            color: #cd181d;
-          }
-
-          .label {
-            .orders-label {
-              color: teal;
-            }
-          }
-
-          .orders-list.wrapper {
-            padding: 25px;
-
-            ul.orders {
-              list-style-type: none;
-
-              .order {
-                display: block;
-
-                .line {
-                  display: block;
-
-                  .label, .value {
-                    display: inline-block;
-                  }
-
-                  .label {
-                    color: darkmagenta;
-                  }
-
-                  .value {
-                    font-weight: 600;
-                    color: forestgreen;
-                  }
-                }
-              }
-            }
-            .show-more {
-              padding-left: 40px;
-              font-weight: 600;
+              margin-right: 14.5%%;
             }
           }
         }
       }
-    }
-  }*/
+  }
 }

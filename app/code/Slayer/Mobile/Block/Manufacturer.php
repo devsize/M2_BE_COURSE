@@ -148,7 +148,6 @@ class Manufacturer extends Template
     public function changeSortOrder()
     {
         $param = (int)$this->getRequest()->getParam(ManufacturerModel::SORT);
-        $count = (int)$this->getRequest()->getParam(MobileViewModel::MANUFACTURERS_COUNT);
         if ($param == 1) {
             return 0;
         } else {
