@@ -24,11 +24,11 @@ class Index extends Action
      */
     public function execute()
     {
-        $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         $sortDirection = $this->getRequest()->getParam('sort');
         if ($sortDirection === "" || $sortDirection == null) {
             $sortDirection = 'asc';
         }
+        $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         /** @var Template $block */
         $block = $page->getLayout()->getBlock('manufacturer.block');
         $block->setData('sort', $sortDirection);

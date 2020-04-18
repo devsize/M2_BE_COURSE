@@ -39,7 +39,7 @@ $sortOrder = $block->changeSortOrder();
         <script type="text/x-magento-init">
         {
             "*": {
-                "Magento_Ui/js/core/app": {$sort
+                "Magento_Ui/js/core/app": {
                     "components": {
                         "slayer-sort": {
                             "component": "Slayer_Mobile/js/filter",
@@ -62,7 +62,7 @@ $sortOrder = $block->changeSortOrder();
             }
             ?>
 
-        <form action="mobile" method="get">
+        <form action="#" method="get">
             <button class="manufacturer-name-sorter" name="sort" value="<?= $direction = $sortOrder ? $block->changeSortOrder() : 'asc'; ?>"><?= $block->changeSortOrder(); ?></button><br>
         </form>
 

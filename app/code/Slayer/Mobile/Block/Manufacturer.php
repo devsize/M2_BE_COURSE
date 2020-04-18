@@ -105,7 +105,7 @@ class Manufacturer extends Template
         if ($this->manufacturers === null) {
             $this->manufacturers = [];
             try {
-                if ($direction === 'asc') {
+                if ($direction === '' || $direction === 'asc') {
                     /** @var SortOrder $sortOrder */
                     $sortOrder = $this->sortOrderBuilder
                     ->setField(ManufacturerInterface::NAME)
