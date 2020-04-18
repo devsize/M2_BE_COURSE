@@ -1,11 +1,11 @@
 <?php
-namespace Slayer\Test\Controller\Adminhtml\Customers;
+namespace Slayer\Mobile\Controller\Adminhtml\Phones;
 
-use \Magento\Backend\App\Action as BackendAction;
-use \Magento\Backend\App\Action\Context;
+use Magento\Backend\App\Action as BackendAction;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
-use \Magento\Backend\Model\View\Result\Page;
-use \Magento\Framework\View\Result\PageFactory;
+use Magento\Backend\Model\View\Result\Page;
+use Magento\Framework\View\Result\PageFactory;
 
 /**
  * Class Index
@@ -15,9 +15,9 @@ abstract class Index extends BackendAction implements HttpGetActionInterface
     /**
      * Authorization level of a basic admin session
      *
-     * @see \Magento\Backend\App\Action\_isAllowed()
+     * @see BackendAction\_isAllowed()
      */
-    const ADMIN_RESOURCE = 'Slayer_Test::slayer_manage_customers';
+    const ADMIN_RESOURCE = 'Slayer_Mobile::manage_phones';
 
     /**
      * @var PageFactory
@@ -48,9 +48,8 @@ abstract class Index extends BackendAction implements HttpGetActionInterface
         /** @var Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE);
-        $resultPage->getConfig()->getTitle()->prepend(__('My customers'));
-        $resultPage->addBreadcrumb(__('My Customers'), __('My Customers'));
-        $resultPage->addBreadcrumb(__('Customers'), __('Customers'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Phones'));
+        $resultPage->addBreadcrumb(__('Phones'), __('Phones'));
         return $resultPage;
     }
 }

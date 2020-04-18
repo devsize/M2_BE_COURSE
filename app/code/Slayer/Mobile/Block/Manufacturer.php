@@ -2,7 +2,6 @@
 
 namespace Slayer\Mobile\Block;
 
-use Magento\Catalog\Model\Product\ProductList\Toolbar as ToolbarModel;
 use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
@@ -17,7 +16,6 @@ use Magento\Framework\App\Request\Http;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\Collection as ManufacturerCollection;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\CollectionFactory as ManufacturerCollectionFactory;
 use Slayer\Mobile\Api\Data\PhoneInterface;
-use Slayer\Mobile\Model\ManufacturerModel;
 use Slayer\Mobile\ViewModel\MobileViewModel;
 
 /**
@@ -102,11 +100,12 @@ class Manufacturer extends Template
 
         /** @var Http $request */
         $request = $this->getRequest();
-        $sort = (int)$request->getParam(ManufacturerModel::SORT);
+        $direction = (string)$request->getParam('sort');
+
         if ($this->manufacturers === null) {
             $this->manufacturers = [];
             try {
-                if ($sort != 1) {
+                if ($direction === 'asc') {
                     /** @var SortOrder $sortOrder */
                     $sortOrder = $this->sortOrderBuilder
                     ->setField(ManufacturerInterface::NAME)
@@ -142,16 +141,14 @@ class Manufacturer extends Template
         return parent::_prepareLayout();
     }
 
-    /**
-     * @return int
-     */
     public function changeSortOrder()
     {
-        $param = (int)$this->getRequest()->getParam(ManufacturerModel::SORT);
-        if ($param == 1) {
-            return 0;
+        /** @var Http $request */
+        $direction = (string)$this->getRequest()->getParam('sort');
+        if ($direction === 'asc') {
+            return  'desc';
         } else {
-            return 1;
+            return  'asc';
         }
     }
 
