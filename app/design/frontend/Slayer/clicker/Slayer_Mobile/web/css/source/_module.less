@@ -14,7 +14,7 @@
 .manufacturer-btn {
   display: inline-block;
   color: @white;
-  font-size: 2.5em;
+  font-size: 2rem;
   font-weight: 600;
   padding: 5px 15px;
   background-color: #d48836;
@@ -81,8 +81,12 @@
       }
     }
 
+    form {
+      margin: 0;
+    }
+
     h1.manufacturer-block-name {
-        .headers(@color: @orange; @font-size: 2em; @text-align: center; @text-shadow: none);
+        .headers(@color: @orange; @font-size: 2.5rem; @text-align: center; @text-shadow: none);
         &::first-letter {
           text-transform: uppercase;
         }
@@ -110,15 +114,13 @@
         }
 
         .manufacturers-sort {
-          position: absolute;
-          top: 3%;
-          right: 4%;
-
-          select.manufacturers-list {
+          position: relative;
+          margin-bottom: 45px;
+          .manufacturers-list {
             width: auto;
-            padding: 7px 30px 5px 10px;
-            line-height: 1.3em;
-            font-size: @font-size;
+            padding: 7px 26px 5px 10px;
+            margin-bottom: 10px;
+            height: 100%;
             color: @grey;
             cursor: pointer;
             border-radius: 8px;
@@ -137,9 +139,8 @@
           }
 
           .manufacturers-list-placeholder {
-            font-size: 0.8em;
-            margin-top: 8px;
-            margin-left: 5px;
+            font-size: @font-size * 0.8;
+            margin: 8px 0 0 5px;
             width: 225px;
             word-wrap: break-word;
             color: @grey;
@@ -148,14 +149,14 @@
           .manufacturer-name-sorter {
             display: block;
             width: auto;
-            margin-right: 1%;
             padding: 8px;
             font-size: @font-size;
             color: @grey;
             cursor: pointer;
             border-radius: 8px;
-            margin-left: 83%;
             border: 1px solid #cccccc;
+            margin-top: -114px;
+            margin-left: 205px;
             &:hover {
               background-color: @grey;
               color: @white;
@@ -191,217 +192,8 @@
           .manufacturer-left {
             text-align: right;
             padding-right: 20px;
-            h3.price {
-              margin-right: 14.5%;
-            }
           }
         }
       }
   }
 }
-
-/** MOBILE STYLES **/
-@media only screen
-and (max-device-width: 320px)
-and (orientation: portrait) {
-  div.category-view  {
-    h1.manufacturer-block-name {
-      font-size: @font-size * 1.5;
-    }
-    .manufacturer-container {
-      .manufacturer {
-        h3 {
-          font-size: @font-size * 1.2;
-        }
-        h3.name {
-          font-size: @font-size * 2;
-        }
-        h3.model {
-          font-size: @font-size * 1.8;
-          text-align: left;
-        }
-        .manufacturer-left {
-          h3.price {
-            margin-right: 0;
-          }
-        }
-      }
-      a.manufacturer-btn {
-        font-size: 1.2em;
-        margin-left: 10%;
-      }
-      .manufacturers-sort {
-        position: inherit;
-        margin-left: -3%;
-        margin-bottom: -12%;
-        .manufacturer-name-sorter {
-          position: fixed;
-          top: 28%;
-          right: 9%;
-        }
-      }
-    }
-  }
-}
-
-@media only screen
-and (min-device-width: 321px)
-and (max-device-width: 360px)
-and (orientation: portrait) {
-  div.category-view  {
-    .manufacturer-container {
-      a.manufacturer-btn {
-        font-size: 1.5em;
-        margin-left: 4%;
-      }
-      .manufacturers-sort {
-        position: relative;
-        top: 3%;
-        right: 4%;
-        .manufacturer-name-sorter {
-          top: 32%;
-          right: 6%;
-          position: fixed;
-        }
-      }
-      .manufacturer {
-        .manufacturer-left {
-          h3.price {
-            margin-right: 0;
-          }
-        }
-        h3.model {
-          font-size: 2em;
-          text-align: left;
-        }
-      }
-    }
-  }
-}
-
-@media only screen
-and (min-device-width: 361px)
-and (max-device-width: 480px)
-and (orientation: portrait) {
-  div.category-view {
-    .manufacturer-container {
-      a.manufacturer-btn {
-        font-size: 1.5em;
-        margin-left: 7%;
-        .manufacturer {
-          h3.model {
-            font-size: 1.9em;
-            text-align: left;
-          }
-          .manufacturer-left {
-            h3.price {
-              margin-right: 0;
-            }
-          }
-        }
-      }
-      .manufacturers-sort {
-        position: relative;
-        top: 6%;
-        right: 4%;
-        .manufacturer-name-sorter {
-          position: fixed;
-          top: 28.2%;
-          right: 6%;
-        }
-      }
-    }
-  }
-}
-
-@media only screen
-and (max-device-width: 568px)
-and (orientation: landscape) {
-  div.category-view {
-    .manufacturer-container {
-      a.manufacturer-btn {
-        font-size: @font-size * 2;
-      }
-      .manufacturers-sort {
-        position: relative;
-        top: 13%;
-        right: 4%;
-        margin-bottom: -8%;
-        .manufacturer-name-sorter {
-          position: fixed;
-          top: 64%;
-          right: 4%;
-        }
-      }
-      .manufacturer {
-        h3.model {
-          font-size: @font-size * 2.2;
-          text-align: left;
-        }
-        .manufacturer-left {
-          h3.price {
-            margin-right: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-
-
-@media only screen
-and (min-device-width: 569px)
-and (max-device-width: 768px)
-and (orientation: landscape) {
-  div.category-view {
-    .manufacturer-container {
-      a.manufacturer-btn {
-        font-size: @font-size * 2;
-      }
-      .manufacturers-sort {
-        position: relative;
-        top: 13%;
-        right: 1%;
-        margin-bottom: -8%;
-        .manufacturer-name-sorter {
-          position: fixed;
-          top: 58%;
-          right: 4%;
-        }
-      }
-      .manufacturer {
-        h3.model {
-          font-size: @font-size * 2.2;
-          text-align: left;
-        }
-        .manufacturer-left {
-          h3.price {
-            margin-right: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-/*@media only screen
-and (min-device-width: 1024px)
-and (max-device-width: 1440px)
-and (orientation: portrait) {
-
-}
-
-
-
- .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xs) {
-  .category-view {
-    .manufacturer-container {
-      div.manufacturers-sort {
-        top: 9%;
-      }
-    }
-  }
-}*/
