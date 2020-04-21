@@ -57,7 +57,7 @@ class PutDataIntoMobileManufacturerTable implements DataPatchInterface
                 'name' => 'Samsung',
                 'director' => 'Ki-Nam Kim',
                 'phone' => '800 726-7864',
-                'email' => 'apple@gmail.com',
+                'email' => 'samsung@gmail.com',
                 'address' => 'Samsung 105 Challenger Rd. Ridgefield Park, NJ 07660-0511',
                 'foundation_date' => '1938-03-01',
             ],
@@ -108,10 +108,15 @@ class PutDataIntoMobileManufacturerTable implements DataPatchInterface
             foreach ($data as $row) {
                 $connection->insert(self::MOBILE_MANUFACTURERS_TABLE, $row);
             }
+            $connection->addIndex(
+                self::MOBILE_MANUFACTURERS_TABLE,
+                ['name', 'director', 'phone', 'address'],
+                ['name', 'director', 'phone', 'address'],
+                \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT
+            );
         } catch (\Exception $exception) {
             $this->logger->debug('Cannot insert row, message: "'. $exception->getMessage() . '"');
         }
-
         $this->moduleDataSetup->endSetup();
     }
 

@@ -83,7 +83,6 @@ class DataProvider extends AbstractDataProvider
                 $this->dataPersistor->clear('manufacturers');
             }
         }
-
         return $this->loadedData;
     }
 
