@@ -57,7 +57,7 @@ class PutDataIntoMobileManufacturerTable implements DataPatchInterface
                 'name' => 'Samsung',
                 'director' => 'Ki-Nam Kim',
                 'phone' => '800 726-7864',
-                'email' => 'samsung@gmail.com',
+                'email' => 'apple@gmail.com',
                 'address' => 'Samsung 105 Challenger Rd. Ridgefield Park, NJ 07660-0511',
                 'foundation_date' => '1938-03-01',
             ],
@@ -111,6 +111,7 @@ class PutDataIntoMobileManufacturerTable implements DataPatchInterface
         } catch (\Exception $exception) {
             $this->logger->debug('Cannot insert row, message: "'. $exception->getMessage() . '"');
         }
+
         $this->moduleDataSetup->endSetup();
     }
 

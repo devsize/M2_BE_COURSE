@@ -173,7 +173,7 @@ class PutDataIntoMobilePhoneTable implements DataPatchInterface
                 'cpu' => 'Qualcomm Snapdragon 665 SM6125 (Trinket), 2019, 64 bit, octa-core, 11 nm, Qualcomm Adreno 610 GPU',
                 'battery' => 'Li-ion 3600 mAh battery',
                 'description' => '',
-                'released' => '',
+                'released' => '2020-04-00',
                 'photo' => 'sony_xperia10llgds.jpg',
                 'price' => 414.28,
                 'created_at' => '',
