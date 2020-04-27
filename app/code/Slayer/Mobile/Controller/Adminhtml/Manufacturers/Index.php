@@ -1,10 +1,11 @@
 <?php
+
 namespace Slayer\Mobile\Controller\Adminhtml\Manufacturers;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context;
-use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
 use Magento\Backend\Model\View\Result\Page;
+use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
@@ -13,9 +14,7 @@ use Magento\Framework\View\Result\PageFactory;
 abstract class Index extends BackendAction implements HttpGetActionInterface
 {
     /**
-     * Authorization level of a basic admin session
-     *
-     * @see BackendAction\_isAllowed()
+     * {@inheritdoc}
      */
     const ADMIN_RESOURCE = 'Slayer_Mobile::manage_manufacturers';
 
@@ -25,8 +24,6 @@ abstract class Index extends BackendAction implements HttpGetActionInterface
     private $resultPageFactory;
 
     /**
-     * Initialize Group Controller
-     *
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */

@@ -11,11 +11,12 @@ use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Slayer\Mobile\Api\Data\ManufacturerInterface;
+use Slayer\Mobile\Api\Data\PhoneInterface;
 use Slayer\Mobile\Api\ManufacturerRepositoryInterface;
 use Magento\Framework\App\Request\Http;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\Collection as ManufacturerCollection;
 use Slayer\Mobile\Model\ResourceModel\Manufacturer\CollectionFactory as ManufacturerCollectionFactory;
-use Slayer\Mobile\Api\Data\PhoneInterface;
+use Slayer\Mobile\Model\ManufacturerModel;
 use Slayer\Mobile\ViewModel\MobileViewModel;
 
 /**
@@ -23,7 +24,6 @@ use Slayer\Mobile\ViewModel\MobileViewModel;
  */
 class Manufacturer extends Template
 {
-
     const PHONES_ACTION_ROUTE = 'mobile/manufacturer/phones';
 
     /**
@@ -93,11 +93,6 @@ class Manufacturer extends Template
      */
     protected function _prepareLayout()
     {
-//        if ($this->manufacturerCollection === null) {
-//            $this->manufacturerCollection = $this->manufacturerCollectionFactory->create();
-//            $this->manufacturerCollection->setOrder(ManufacturerModel::NAME, 'ASC');
-//        }
-
         /** @var Http $request */
         $request = $this->getRequest();
         $direction = (string)$request->getParam('sort');

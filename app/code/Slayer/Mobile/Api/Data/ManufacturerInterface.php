@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Slayer\Mobile\Api\Data;
 
 /**

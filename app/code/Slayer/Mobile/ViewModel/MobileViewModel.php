@@ -2,16 +2,15 @@
 
 namespace Slayer\Mobile\ViewModel;
 
-use Magento\Framework\View\Element\Block\ArgumentInterface;
-use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Event\ManagerInterface as EventManager;
+use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 /**
  * Class MobileViewModel
  */
 class MobileViewModel implements ArgumentInterface
 {
-
     const MANUFACTURERS_COUNT = 'slayer_mobile/mobile_settings/manufacturers_count';
 
     /**
@@ -38,22 +37,12 @@ class MobileViewModel implements ArgumentInterface
 
     /**
      * @return string
+     * @throws \Exception
      */
     public function getCurrentDate()
     {
-        $result = '';
-        try {
-            $this->eventManager->dispatch('manufacturers_block_current_date_before');
-            $date = new \DateTime('now');
-            $result = $date->format('d-M-yy');
-            $this->eventManager->dispatch('manufacturers_block_current_date_after');
-        } catch (\Exception $exception) {
-            $message = "Error happened during application run.\n";
-            $message .= $exception->getMessage();
-            throw new \DomainException($message);
-        }
-
-        return $result;
+        $date = new \DateTime('now');
+        return $date->format('d-M-yy');
     }
 
     /**
@@ -61,12 +50,6 @@ class MobileViewModel implements ArgumentInterface
      */
     public function showManufacturersCountPerPage()
     {
-        $result = null;
-        try {
-            $result = (int)$this->scopeConfig->getValue(self::MANUFACTURERS_COUNT);
-        } catch (\Exception $exception) {
-            $exception->getMessage();
-        }
-        return $result;
+        return (int)$this->scopeConfig->getValue(self::MANUFACTURERS_COUNT);
     }
 }

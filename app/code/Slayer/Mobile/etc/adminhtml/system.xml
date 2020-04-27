@@ -10,9 +10,9 @@
                         <config_path>currency/currencyLayer/apikey</config_path>
                         <validate>required-entry validate-length minimum-length-30 maximum-length-35</validate>
                     </field>
-                <field id="timeout" translate="label" type="text" sortOrder="20" showInDefault="0" showInWebsite="0" showInStore="1">
-                    <label>Connection Timeout in Seconds</label>
-                </field>
+                    <field id="timeout" translate="label" type="text" sortOrder="20" showInDefault="0" showInWebsite="0" showInStore="1">
+                        <label>Connection Timeout in Seconds</label>
+                    </field>
             </group>
         </section>
 

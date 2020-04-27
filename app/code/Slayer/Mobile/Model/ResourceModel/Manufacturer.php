@@ -11,6 +11,7 @@ use Slayer\Mobile\Model\ManufacturerModel;
 class Manufacturer extends AbstractDb
 {
     const MOBILE_MANUFACTURERS_TABLE = 'mobile_manufacturer_table';
+
     /**
      * {@inheritDoc}
      */

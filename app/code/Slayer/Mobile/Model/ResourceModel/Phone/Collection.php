@@ -16,6 +16,9 @@ class Collection extends AbstractCollection
      */
     protected $_idFieldName = PhoneModel::ENTITY_ID;
 
+    /**
+     * {@inheritDoc}
+     */
     protected function _construct()
     {
         $this->_init(

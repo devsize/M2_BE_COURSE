@@ -10,9 +10,11 @@ use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Manufacturers
+ */
 class Manufacturers extends Action
 {
-
     /**
      * @param Context $context
      * @param PageFactory $resultPageFactory

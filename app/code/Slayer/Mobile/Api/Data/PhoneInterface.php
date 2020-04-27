@@ -210,7 +210,6 @@ interface PhoneInterface
     /**
      * Set created at date
      *
-//      @param \DateTime $createdAt
      * @param string $createdAt
      * @return PhoneInterface
      */

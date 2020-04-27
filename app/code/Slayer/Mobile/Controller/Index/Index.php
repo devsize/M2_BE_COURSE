@@ -11,9 +11,11 @@ use Magento\Framework\View\Result\Page;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\View\Element\Template;
 
+/**
+ * Class Index
+ */
 class Index extends Action
 {
-
     /**
      * @param Context $context
      * @param PageFactory $resultPageFactory

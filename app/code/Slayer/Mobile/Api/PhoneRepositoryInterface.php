@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Slayer\Mobile\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
