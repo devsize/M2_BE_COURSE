@@ -96,6 +96,6 @@ class PhonePricePlugin
             throw new LocalizedException(__($e->getMessage()));
         }
 
-        return "$resultPrice <b class=\"currency\"> &nbsp;$currencySymbol</b>";
+        return "$resultPrice <b class=\"currency\"> $currencySymbol</b>";
     }
 }
