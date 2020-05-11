@@ -1,4 +1,5 @@
 <?php
+
 namespace Slayer\Mobile\UI\Component\Listing\Column;
 
 use Magento\Framework\UrlInterface;
@@ -16,6 +17,7 @@ class ManufacturersActions extends Column
      * Url paths
      */
     const URL_PATH_EDIT = 'mobile_admin/manufacturers/edit';
+
     const URL_PATH_DELETE = 'mobile_admin/manufacturers/delete';
 
     /**

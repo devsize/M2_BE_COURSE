@@ -9,7 +9,6 @@ use Slayer\Mobile\ViewModel\MobileViewModel;
 $blockName = $block->getNameInLayout();
 
 /** @var MobileViewModel $viewModel */
-$viewModel = $block->getData('view_model');
 $viewModel = $block->getData('manufacturers_count');
 
 $manufacturersCount = $viewModel->showManufacturersCountPerPage();
@@ -55,16 +54,16 @@ $sortOrder = $block->changeSortOrder();
             <!-- This logic is needed for sorting in alphabetical order, DEPENDING on the number of entries set from
                 the admin panel "Stores->Configuration->Mobile Configuration->Settings"
                 $manufacturersCount is COUNT of records (raws from mobile_manufacturer_table) -->
-            <?php if ($sortOrder == 'desc') {
-                $manufacturers = array_slice($manufacturers, 0, $manufacturersCount);
-            } else {
-                $manufacturers = array_slice($manufacturers, -$manufacturersCount, $manufacturersCount);
-            }
+            <?php
+//            if ($sortOrder == 'desc') {
+//                $manufacturers = array_slice($manufacturers, 0, $manufacturersCount);
+//            } else {
+//                $manufacturers = array_slice($manufacturers, -$manufacturersCount, $manufacturersCount);
+//            }
             ?>
 
-        <form action="#" method="get">
-            <button class="manufacturer-name-sorter" name="sort" value="<?= $direction = $sortOrder ? $block->changeSortOrder() : 'asc'; ?>"><?= $block->changeSortOrder(); ?></button><br>
-        </form>
+        <a class="manufacturer-name-sorter" href="<?= $block->getUrl('mobile', ['sort' => $sortOrder ? $block->changeSortOrder() : 'asc']) ?>"><?= $block->changeSortOrder(); ?></a>
+
 
     </div>
         <?php foreach ($manufacturers as $manufacturer): ?>
