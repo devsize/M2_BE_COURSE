@@ -59,7 +59,7 @@ class PhonePricePlugin
         $currentCurrency = $this->_storeManager->getStore()->getCurrentCurrencyCode();
         $baseCurrency = $this->_storeManager->getStore()->getBaseCurrency()->getCode();
         try {
-            if (($currentCurrency && $baseCurrency)) {
+            if ($currentCurrency && $baseCurrency) {
                 if ($currentCurrency !== $baseCurrency) {
                     $rate = $this->_storeManager->getStore()->getCurrentCurrencyRate();
                     $amountValue *= $rate;

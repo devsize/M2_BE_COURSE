@@ -11,7 +11,6 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Slayer\Mobile\Api\PhoneRepositoryInterface;
 use Slayer\Mobile\Api\Data\PhoneInterface;
-use Slayer\Mobile\Model\PhoneModelFactory;
 use Slayer\Mobile\Model\ResourceModel\Phone as PhoneResource;
 use Slayer\Mobile\Model\ResourceModel\Phone\Collection;
 use Slayer\Mobile\Model\ResourceModel\Phone\CollectionFactory as PhoneCollectionFactory;
