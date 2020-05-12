@@ -30,6 +30,7 @@ class Index extends Action
         if ($sortDirection === "" || $sortDirection == null) {
             $sortDirection = 'asc';
         }
+
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
         /** @var Template $block */
         $block = $page->getLayout()->getBlock('manufacturer.block');

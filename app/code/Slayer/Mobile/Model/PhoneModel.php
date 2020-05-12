@@ -224,7 +224,7 @@ class PhoneModel extends AbstractModel implements PhoneInterface
      */
     public function setCreatedAt(string $createdAt): PhoneInterface
     {
-            $createdAtObject = new \DateTime($createdAt);
-            return $this->setData(self::CREATED_AT, $createdAtObject->format('Y-m-d H:i:s'));
+        $createdAtObject = new \DateTime($createdAt);
+        return $this->setData(self::CREATED_AT, $createdAtObject->format('Y-m-d H:i:s'));
     }
 }

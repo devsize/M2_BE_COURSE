@@ -9,6 +9,9 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
 use Slayer\Mobile\Api\Data\PhoneInterface;
 
+/**
+ * Class PhonePricePlugin
+ */
 class PhonePricePlugin
 {
     /**

@@ -10,7 +10,6 @@ use Slayer\Mobile\Model\PhoneModel;
  */
 class Phone extends AbstractDb
 {
-
     const MOBILE_PHONES_TABLE = 'mobile_phone_table';
 
     /**
