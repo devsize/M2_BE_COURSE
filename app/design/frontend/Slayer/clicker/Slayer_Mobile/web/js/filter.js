@@ -11,8 +11,7 @@ define([
 
     return Component.extend({
         defaults: {
-            myObservableCount: ko.observable(10),
-            mySorting: ko.observable('asc')
+            myObservableCount: ko.observable(10)
         },
 
         /** @inheritdoc */
@@ -24,16 +23,12 @@ define([
         /** @inheritdoc */
         initObservable: function () {
             this._super().observe(
-                'myObservableCount',
-                'mySorting'
+                'myObservableCount'
             );
 
             let self = this;
             this.myObservableCount.subscribe(function (value) {
                 self.applyFilter(value);
-            });
-            this.mySorting.subscribe(function (text) {
-                self.setSorting(text);
             });
 
             return this;
@@ -56,20 +51,6 @@ define([
                 $(element).show();
                 count++;
             }, this);
-        },
-
-        setSorting: function (text) {
-            let list = $(document).find(this.listItemsSelector);
-            let btn = $(document).find(this.sortingSelector);
-            console.log(list);
-            console.log(btn);
-            $(btn).click(() => {
-                let newText = text === "asc" ? "desc" : "asc";
-                $(btn).text(newText);
-                _.sortBy(list).reverse();
-            });
-            console.log(list);
-            return list;
         }
     });
 });

@@ -11,8 +11,6 @@ $blockName = $block->getNameInLayout();
 /** @var MobileViewModel $viewModel1 */
 $viewModel = $block->getData('mobile_view_model');
 
-//$manufacturersCount = $viewModel->showManufacturersCountPerPage();
-
 /**@var ManufacturerInterface[] $manufacturers */
 $manufacturers = $block->getManufacturers();
 $sortOrder = $block->changeSortOrder();
@@ -51,8 +49,7 @@ $sortOrder = $block->changeSortOrder();
         }
         </script>
 
-<!--        <a class="manufacturer-name-sorter" href="--><?//= $block->getUrl('mobile', ['sort' => $sortOrder ? $block->changeSortOrder() : 'asc']) ?><!--">--><?//= $block->changeSortOrder(); ?><!--</a>-->
-        <a class="manufacturer-name-sorter" href="#" data-bind="text: mySorting">asc</a>
+        <a class="manufacturer-name-sorter" href="<?= $block->getUrl('mobile', ['sort' => $sortOrder ? $block->changeSortOrder() : 'asc']) ?>"><?= $block->changeSortOrder(); ?></a>
 
     </div>
     <?php if (!empty($manufacturers)): ?>
