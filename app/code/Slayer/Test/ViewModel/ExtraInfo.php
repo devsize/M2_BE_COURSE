@@ -41,7 +41,7 @@ class ExtraInfo implements ArgumentInterface
             $date = new \DateTime('now');
             $result = $date->format('d-M-yy');
         } catch (\Exception $exception) {
-            //logger->debug();
+//            logger->debug();
         }
 
         return $result;

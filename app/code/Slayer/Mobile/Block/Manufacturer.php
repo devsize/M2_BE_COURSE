@@ -95,7 +95,7 @@ class Manufacturer extends Template
         /** @var Http $request */
         $request = $this->getRequest();
         $direction = (string)$request->getParam('sort');
-//        $count = $this->viewModel->showManufacturersCountPerPage();
+        $count = $this->viewModel->showManufacturersCountPerPage();
 
         if ($this->manufacturers === null) {
             $this->manufacturers = [];
@@ -117,7 +117,7 @@ class Manufacturer extends Template
                 /** @var SearchCriteria|SearchCriteriaInterface $searchCriteria */
                 $searchCriteria = $this->searchCriteriaBuilder
                     ->addSortOrder($sortOrder)
-//                    ->setPageSize($count)
+                    ->setPageSize($count)
                     ->create();
 
                 /** @var SearchResultsInterface $searchResults */
@@ -179,15 +179,5 @@ class Manufacturer extends Template
                 PhoneInterface::MANUFACTURER_ID => $id
             ]
         );
-    }
-
-    public function getCacheKeyInfo()
-    {
-        return parent::getCacheKeyInfo();
-    }
-
-    public function getCacheKey()
-    {
-        return parent::getCacheKey();
     }
 }

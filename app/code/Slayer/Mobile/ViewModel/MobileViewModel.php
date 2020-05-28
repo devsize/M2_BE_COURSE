@@ -5,6 +5,7 @@ namespace Slayer\Mobile\ViewModel;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class MobileViewModel
@@ -24,6 +25,11 @@ class MobileViewModel implements ArgumentInterface
     private $scopeConfig;
 
     /**
+     * @var LoggerInterface
+     */
+    private $_logger;
+
+    /**
      * @param ScopeConfigInterface $scopeConfig
      * @param EventManager $eventManager
      */
@@ -37,12 +43,21 @@ class MobileViewModel implements ArgumentInterface
 
     /**
      * @return string
-     * @throws \Exception
      */
     public function getCurrentDate()
     {
-        $date = new \DateTime('now');
-        return $date->format('d-M-yy');
+        $result = '';
+        try {
+            $date = new \DateTime('now');
+            $result = $date->format('d-M-yy');
+        } catch (\Exception $exception) {
+            $error = $exception->getMessage();
+            $text = 'Loading current date has failed: message "%s"';
+            $message = sprintf($text, $error);
+            $this->_logger->debug($message);
+        }
+
+        return $result;
     }
 
     /**
